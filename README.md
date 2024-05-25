@@ -1,3 +1,3 @@
-# Getgud Tutorials
+# Getgud Docs
 
-This repository contains tutorials for everything related to Getgud.io usage.
+This repository contains docs & tutorials for everything related to Getgud.io usage.
