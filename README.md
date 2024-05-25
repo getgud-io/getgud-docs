@@ -1,6 +1,6 @@
 # Getgud Docs
 
-This repository contains docs & tutorials for everything related to Getgud.io usage.
+This repository contains docs & tutorials for everything related to Getgud.io Platform usage.
 
 
 - <b>Integration Tutorials</b>
