@@ -1,4 +1,4 @@
-# Getgud Docs
+# Getgud.io Documentation
 
 This repository contains docs & tutorials for everything related to Getgud.io Platform usage.
 
