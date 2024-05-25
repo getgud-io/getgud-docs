@@ -122,6 +122,6 @@ UMyGameInstance::~UMyGameInstance()
 
 
 
-4. Follow [this tutorial](https://github.com/getgud-io/cpp-getgud-sdk/README.md) for calling actions during events on your server
+4. Follow [this tutorial](https://github.com/getgud-io/cpp-getgud-sdk/blob/main/README.md) for calling actions during events on your server
 
 
