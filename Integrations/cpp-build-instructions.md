@@ -4,7 +4,7 @@ Getgud C++ SDK allows you to integrate your game with the GetGud platform. Once 
 
 ## Table of Contents
 
-- [Build for Linux]([https://github.com/getgud-io/cpp-getgud-sdk-dev#build-for-linux](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/cpp-build-instructions.md#build-for-linux))
+- [Build for Linux](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/cpp-build-instructions.md#build-for-linux)
 - [Build for Windows](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/cpp-build-instructions.md#build-for-windows)
 
 ## Build for Linux
