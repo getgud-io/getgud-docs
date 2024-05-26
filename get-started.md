@@ -1,10 +1,33 @@
-# Get Started With Getgud.io
+# Get started with Getgud.io
 
 This guide will walk you through the initial steps to get started with Getgud.io, a platform that provides observability & insights on your game & players. With Getgud you can know and act on everything your players are doing, including if they cheat or grief!
+
+For better understanding we recommend watching our [onboarding tutorial](https://www.youtube.com/watch?v=4a7rFfUTUrI)
 
 ## Before you begin
 
 To get started, create an account with Getgud.io.
+
+- [Sign up](https://staging.dashboard.getgud.io/auth/register/)
+  - If you've never used Getgud.io before, sign up for a new Getgud account
+ 
+- [Log in](https://staging.dashboard.getgud.io/auth/login/)
+  - If you already have a Getgud account, log in to get started
+ 
+Once you create an account, you can create your first title with Getgud.
+
+## Create your first title
+
+To create your first title visit [Manage Titles](https://staging.dashboard.getgud.io/manage/titles/) section on the dashboard. 
+
+- On the right upper corner of the screen find `Title Actions` button, press the button, and then click `Add Title`.
+- In the form pop-up up fill your title name, title franchise and optionally add a logo.
+- Title name and title franchise may be the same name! Example: Title Name: `Apex Legends`, Title Franchise `Apex Legends`
+- But they also can be different names. Example: Title Name: `CS:GO`, Title Franchise `Counter Strike`
+
+## Invite your team
+
+
 
 
 
