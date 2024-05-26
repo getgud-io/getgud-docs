@@ -1,6 +1,8 @@
-# Integrate Unreal Engine server with Getgud.io
+# Integrate Unreal Engine Server with Getgud.io
 
-1. Add the following folder structure to your UE5 Project. Make sure to create ThirdParty folder if you do not have one.
+## 1. Create Folder Structure
+
+Add the following folder structure to your UE5 Project. Ensure you create the `ThirdParty` folder if it doesn't already exist.
 
 ```
 YourProject/
@@ -14,35 +16,26 @@ YourProject/
         ├── lib/
 ```
 
+- **bin folder**: Place the `.dll` / `.so` files here. These represent the compiled library of GetGudSDK (available from our releases or build the SDK yourself from the source).
+- **include folder**: Place all public headers here. You can find the headers [here](https://github.com/getgud-io/cpp-getgud-sdk/tree/main/include).
+- **lib folder**: Place the `.lib` file here if you are on Windows or if you use a static library. (You get the `.lib` file during the build process if you are on Windows or if you build a static library).
 
-- bin folder - Put .dll / .so files, they represent compiled library of GetGudSDK (you can take those files from our releases OR you can build SDK yourself from source)
+## 2. Add SDK Initialization to `<PROJECT_NAME>.Build.cs`
 
-- include folder - Put all public headers, you can find headers [here](https://github.com/getgud-io/cpp-getgud-sdk/tree/main/include)
-
-- lib folder - put .lib file IF you are on Windows OR if you use static library (you get .lib during build process if you are on Windows OR if you build static library)
-
-2. Add SDK Initialization into <PROJECT_NAME>.Builds.cs file
-
-Here is the project structure where you can find Build.cs file
-
+Locate the `Build.cs` file in your project structure:
 
 ```
-
 YourProject/
 ├── Source/
 │   ├── YourProject/
 │   │   ├── YourProject.Build.cs
 │   │   ├── YourProject.cpp
 │   │   └── YourProject.h
-
-
 ```
 
+Example of adding SDK initialization code to the `Build.cs` file:
 
-Example of adding SDK initialization code to Build.cs file
-
-
-```
+```csharp
 using System.IO;
 using UnrealBuildTool;
 
@@ -50,34 +43,32 @@ public class MyProject : ModuleRules
 {
     public MyProject(ReadOnlyTargetRules Target) : base(Target)
     {
-   	 PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-   	 PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput" });
+        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput" });
 
-    	// Setup the path to the directory containing the .lib and .dll files
-    	string ThirdPartyPath = Path.Combine(ModuleDirectory, "../../ThirdParty/GetGudSDK");
+        // Setup the path to the directory containing the .lib and .dll files
+        string ThirdPartyPath = Path.Combine(ModuleDirectory, "../../ThirdParty/GetGudSDK");
 
-    	PublicIncludePaths.Add(Path.Combine(ThirdPartyPath, "include"));
+        PublicIncludePaths.Add(Path.Combine(ThirdPartyPath, "include"));
 
-    	// Add the .lib file for linking
-    	PublicAdditionalLibraries.Add(Path.Combine(ThirdPartyPath, "lib", "GetGudSDK.lib"));
+        // Add the .lib file for linking
+        PublicAdditionalLibraries.Add(Path.Combine(ThirdPartyPath, "lib", "GetGudSDK.lib"));
 
-    	// Ensure the .dll file is copied to the Binaries/Win64 directory at runtime
-    	string BinariesPath = Path.Combine(ModuleDirectory, "../../Binaries/Win64", "GetGudSDK.dll");
-    	RuntimeDependencies.Add(BinariesPath, Path.Combine(ThirdPartyPath, "bin", "GetGudSDK.dll"));
-	}
+        // Ensure the .dll file is copied to the Binaries/Win64 directory at runtime
+        string BinariesPath = Path.Combine(ModuleDirectory, "../../Binaries/Win64", "GetGudSDK.dll");
+        RuntimeDependencies.Add(BinariesPath, Path.Combine(ThirdPartyPath, "bin", "GetGudSDK.dll"));
+    }
 }
-
 ```
 
+## 3. Initialize SDK in Your Code
 
+It is recommended to initialize the SDK when your server starts and dispose of it when your server stops.
 
+Example header file:
 
-3. [RECOMMENDED] Init SDK from your code on server start using the following command AND add SDK dispose on server stop:
-
-Example Header: 
-
-```
+```cpp
 #pragma once
 
 #include "GetGudSdk.h"
@@ -100,28 +91,23 @@ public:
 };
 ```
 
+Example cpp file:
 
-
-Example Cpp File: 
-```
+```cpp
 #include "MyGameInstance.h"
-
 
 void UMyGameInstance::Init()
 {
-	Super::Init();
-
-	GetgudSDK::Init();
+    Super::Init();
+    GetgudSDK::Init();
 }
 
 UMyGameInstance::~UMyGameInstance()
 {
-	GetgudSDK::Dispose();
+    GetgudSDK::Dispose();
 }
 ```
 
+## 4. Follow Further Tutorials
 
-
-4. Follow [this tutorial](https://github.com/getgud-io/cpp-getgud-sdk/blob/main/README.md) for calling actions during events on your server
-
-
+Follow [this tutorial](https://github.com/getgud-io/cpp-getgud-sdk/blob/main/README.md) for calling actions during events on your server.
