@@ -1,5 +1,13 @@
 # Get Started With Getgud.io
 
+This guide will walk you through the initial steps to get started with Getgud.io, a platform that provides observability & insights on your game & players. With Getgud you can know and act on everything your players are doing, including if they cheat or grief!
+
+## Before you begin
+
+To get started, create an account with Getgud.io.
+
+
+
 ## Prerequisites
 
 To start, we need to understand the basic structure GetGud uses to describe a video game: 
