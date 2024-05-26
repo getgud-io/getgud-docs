@@ -2,17 +2,18 @@
 
 This guide will walk you through the initial steps to get started with Getgud.io, a platform that provides observability & insights on your game & players. With Getgud you can know and act on everything your players are doing, including if they cheat or grief!
 
-For better understanding we recommend watching our [onboarding tutorial](https://www.youtube.com/watch?v=4a7rFfUTUrI)
+For better understanding, we recommend watching our [Onboarding Tutorial](https://www.youtube.com/watch?v=4a7rFfUTUrI)
 
 ## Before you begin
 
 To get started, create an account with Getgud.io.
 
 - [Sign up](https://staging.dashboard.getgud.io/auth/register/)
-  - If you've never used Getgud.io before, sign up for a new Getgud account
+  - If you or your organization never used Getgud.io before, sign up for a new Getgud account
  
 - [Log in](https://staging.dashboard.getgud.io/auth/login/)
-  - If you already have a Getgud account, log in to get started
+  - If you or your organization already have a Getgud account, log in to get started.
+  - Note: if you are a developer you may need to ask your organization admin to send you an invite to Getgud.io platform!
  
 Once you create an account, you can create your first title with Getgud.
 
@@ -21,19 +22,24 @@ Once you create an account, you can create your first title with Getgud.
 To create your first title visit [Manage Titles](https://staging.dashboard.getgud.io/manage/titles/) section on the dashboard. 
 
 - On the right upper corner of the screen find `Title Actions` button, press the button, and then click `Add Title`.
-- In the form pop-up up fill your title name, title franchise and optionally add a logo.
-- Title name and title franchise may be the same name! Example: Title Name: `Apex Legends`, Title Franchise `Apex Legends`
+- In the form pop-up up fill your Title Name, Title Franchise and optionally add a logo.
+- Title Name and Title Franchise may be the same name! Example: Title Name: `Apex Legends`, Title Franchise `Apex Legends`
 - But they also can be different names. Example: Title Name: `CS:GO`, Title Franchise `Counter Strike`
 
 ## Invite your team
 
+Once you create an account you can start adding members of your organization to Getgud.
+
+- Visit [Users](https://staging.dashboard.getgud.io/settings/users/) page in settings.
+- On the right upper corner of the screen finds `Actions` button, press the button and then click `Invite User`
+- In the form pop-up fill First Name, Last Name, Email and pick the User Role, then click invite.
+- The invited user will receive further instructions on his email.
+- Note: you can manage user roles and permissions if you click `Actions` button and then press `Manage User Roles`
 
 
+## Prerequisites to integration
 
-
-## Prerequisites
-
-To start, we need to understand the basic structure GetGud uses to describe a video game: 
+Now, we need to understand the basic structure GetGud uses to describe a video game: 
 
 **Titles->1->N->Games->1->N->Matches->1->N->Actions**
 
