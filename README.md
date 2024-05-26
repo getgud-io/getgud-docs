@@ -3,6 +3,7 @@
 This repository contains docs & tutorials for everything related to Getgud.io Platform usage.
 
 
+- <b>[Get Started](https://github.com/getgud-io/getgud-docs/blob/main/get-started.md)</b>
 - <b>Integration Tutorials</b>
   * [Build From Source](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/cpp-build-instructions.md)
   * [C++ Server Side Integration](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/C%2B%2B/cpp-integration.md)
