@@ -397,7 +397,11 @@ Example of configuration file `config.json`:
 }
 ```
 
+## Additional SDK Methods
+
+The GetGud C SDK provides several other methods for sending chat messages, reports, updating player information, and more. Refer to the [SDK Events documentation](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/C%2B%2B/cpp-integration.md#sdk-methods) and examples for detailed usage instructions of these methods.
+
 
 ## Examples
 
-An example of how to use the GetGud C SDK can be found in the [examples](/examples/) directory.
+An example of how to use the GetGud C SDK can be found in the [examples](https://github.com/getgud-io/c-getgud-sdk/tree/main/examples) directory.
