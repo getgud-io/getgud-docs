@@ -70,7 +70,7 @@ Now, we need to understand the basic structure GetGud uses to describe a video g
   7. `Affect` - Whenever an in-match effect of any kind is applied to the player. Examples: crouch, prone, jump, fly, use special ability, boost speed/ammo/shield/health, etc.
 
 
-## How to Start the Integration Process
+## How to start the integration process
 
 Getgud is integrated **server-side** into your game. Our SDK is built in C++, and we provide both source code and build files for popular systems like Windows and Linux. We offer header files in the most popular languages so you can integrate our code with C++, C#, C, and Python servers. If you are using Unreal Engine 4, Unreal Engine 5, or Unity, we provide separate instructions for integrating with those engines.
 
