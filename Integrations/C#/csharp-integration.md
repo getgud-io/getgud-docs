@@ -171,7 +171,7 @@ This will release any resources used by the SDK.
 
 ## Additional SDK Methods
 
-The GetGud C# SDK provides several other methods for sending chat messages, reports, updating player information, and more. Refer to the SDK documentation and examples for detailed usage instructions of these methods.
+The GetGud C# SDK provides several other methods for sending chat messages, reports, updating player information, and more. Refer to the [SDK Events documentation](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/C%2B%2B/cpp-integration.md#sdk-methods) and examples for detailed usage instructions of these methods.
 
 ## Configuration
 
@@ -181,4 +181,4 @@ The SDK allows you to configure various settings through a configuration file na
 
 The GetGud C# SDK repository provides examples that demonstrate the usage of the SDK in various scenarios. You can refer to these examples to understand how to integrate the SDK into your own C# projects.
 
-For more information and detailed usage instructions, refer to the GetGud C# SDK documentation and the provided examples.
+[C# Examples](https://github.com/getgud-io/csharp-getgud-sdk/tree/main/examples)
