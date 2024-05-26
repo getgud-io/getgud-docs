@@ -68,3 +68,15 @@ Now, we need to understand the basic structure GetGud uses to describe a video g
   5. `Damage` - Whenever a player receives any damage, either from another player, the environment, or the player themselves.
   6. `Heal` - Whenever a player is healed, no matter by whom or how.
   7. `Affect` - Whenever an in-match effect of any kind is applied to the player. Examples: crouch, prone, jump, fly, use special ability, boost speed/ammo/shield/health, etc.
+
+
+## How to Start the Integration Process
+
+Getgud is integrated **server-side** into your game. Our SDK is built in C++, and we provide both source code and build files for popular systems like Windows and Linux. We offer header files in the most popular languages so you can integrate our code with C++, C#, C, and Python servers. If you are using Unreal Engine 4, Unreal Engine 5, or Unity, we provide separate instructions for integrating with those engines.
+
+To get started:
+
+1. Decide if you are going to build the SDK from source or use our build files.
+2. If you are building from scratch, clone our [development repo](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/cpp-build-instructions.md) and follow the [build instructions](https://github.com/getgud-io/cpp-getgud-sdk-dev).
+3. Use the build files and appropriate header files to start integrating into your server.
+4. Ensure you understand the Getgud SDK [lifecycle and events](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/C%2B%2B/cpp-integration.md) you can send.
