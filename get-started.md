@@ -1,10 +1,10 @@
-# Get Started with Getgud.io
+# Get started with Getgud.io
 
 This guide will walk you through the initial steps to get started with Getgud.io, a platform that provides observability and insights on your game and players. With Getgud, you can monitor and act on everything your players are doing, including detecting cheating or griefing.
 
-For a better understanding, we recommend watching our [Onboarding Tutorial](https://www.youtube.com/watch?v=4a7rFfUTUrI).
+For a better understanding, we recommend watching our [Onboarding tutorial](https://www.youtube.com/watch?v=4a7rFfUTUrI).
 
-## Before You Begin
+## Before you begin
 
 To get started, create an account with Getgud.io.
 
@@ -17,7 +17,7 @@ To get started, create an account with Getgud.io.
 
 Once you create an account, you can create your first title with Getgud.
 
-## Create Your First Title
+## Create your first title
 
 To create your first title, visit the [Manage Titles](https://staging.dashboard.getgud.io/manage/titles/) section on the dashboard.
 
@@ -26,7 +26,7 @@ To create your first title, visit the [Manage Titles](https://staging.dashboard.
   - Title Name and Title Franchise may be the same. Example: Title Name: `Apex Legends`, Title Franchise: `Apex Legends`
   - They can also be different. Example: Title Name: `CS:GO`, Title Franchise: `Counter-Strike`
 
-## Invite Your Team
+## Invite your team
 
 Once you create an account, you can start adding members of your organization to Getgud.
 
@@ -36,7 +36,7 @@ Once you create an account, you can start adding members of your organization to
 - The invited user will receive further instructions via email.
 - Note: You can manage user roles and permissions by clicking the `Actions` button and then pressing `Manage User Roles`.
 
-## Prerequisites to Integration
+## Prerequisites to integration
 
 Now, we need to understand the basic structure GetGud uses to describe a video game:
 
