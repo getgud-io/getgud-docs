@@ -510,4 +510,4 @@ Example of configuration file `config.json`:
 
 ## Examples
 
-An example of how to use the GetGud C++ SDK can be found in the [examples](/examples/) directory.
+An example of how to use the GetGud C++ SDK can be found in the [examples](https://github.com/getgud-io/cpp-getgud-sdk/tree/main/examples) directory.
