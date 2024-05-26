@@ -1,6 +1,6 @@
 # Getgud.io documentation
 
-This repository contains docs & tutorials for everything related to Getgud.io Platform usage.
+This repository contains docs & tutorials for everything related to Getgud.io platform usage.
 
 
 - <b>[Get started](https://github.com/getgud-io/getgud-docs/blob/main/get-started.md)</b>
