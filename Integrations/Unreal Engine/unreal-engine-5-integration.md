@@ -64,7 +64,7 @@ public class MyProject : ModuleRules
 
 ## 3. Initialize SDK in Your Code
 
-It is recommended to initialize the SDK when your server starts and dispose of it when your server stops.
+It is recommended to initialize the SDK when your server starts and dispose it when your server stops.
 
 Example header file:
 
