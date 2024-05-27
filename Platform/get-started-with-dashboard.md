@@ -41,6 +41,7 @@ To set up the filter follow the steps described in [this tutorial](https://youtu
 
 ## Understand and set up your first query
 
+
 ## Understand and set up your first rule
 
 Rules in the Getgud platform allow you to take specific actions based on the behaviors and conditions identified by your Guard Laws and filters. By defining rules, you can proactively manage player behavior, enforce game policies, and maintain a healthy gaming environment.
@@ -52,7 +53,11 @@ A few examples of rules include:
 - Notify all AFK players via email
 - Promote all players who played more than 100 hours
 
+Note: you need to set up a query to create a rule!
+
 To set up your first rule follow the steps described in [this tutorial](https://youtu.be/4a7rFfUTUrI?list=PLMIGIFMfKUAv4AQHvnv4PzSvmd9dsYk0p&t=194)
+
+
 
 
 
