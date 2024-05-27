@@ -1,63 +1,62 @@
-# Get started with Getgud.io dashboard
+# Get Started with Getgud.io Dashboard
 
-After you have completed [initial steps](https://github.com/getgud-io/getgud-docs/blob/main/get-started.md) and integrated Getgud SDK into your server it is time to set up [Getgud.io Dashboard](https://staging.dashboard.getgud.io/) for your organization!
+After completing the [initial steps](https://github.com/getgud-io/getgud-docs/blob/main/get-started.md) and integrating the Getgud SDK into your server, it's time to set up the [Getgud.io Dashboard](https://staging.dashboard.getgud.io/) for your organization!
 
-In this tutorial, we will walk through the basic and most crucial steps to start getting results!
-We will:
+In this tutorial, we will walk through the basic and most crucial steps to start getting results. We will:
 - Attach the first guard law to your title
 - Understand and set up your first filter
 - Understand and set up your first query
 - Understand and set up your first rule
 
-Those 4 steps cover the most basic cycle so that Getgud can start processing your data, generating insights and sending those to you.
+These four steps cover the basic cycle so that Getgud can start processing your data, generating insights, and sending those to you.
 
-Before you continue with this tutorial we recommend reading [Get started](https://github.com/getgud-io/getgud-docs/blob/main/get-started.md) tutorial to understand Getgud.io platform better.
+Before continuing with this tutorial, we recommend reading the [Get Started](https://github.com/getgud-io/getgud-docs/blob/main/get-started.md) tutorial to better understand the Getgud.io platform.
 
-## Attach a guard law
+## Attach a Guard Law
 
-Guard laws are a crucial component of the Getgud platform, designed to monitor and analyze your game's streamed matches for specific toxic behaviors. A Guard law is essentially a piece of code that scans the data from your matches, detecting unwanted or harmful activities performed by players. 
+Guard laws are a crucial component of the Getgud platform, designed to monitor and analyze your game's streamed matches for specific toxic behaviors. A guard law is essentially a piece of code that scans the data from your matches, detecting unwanted or harmful activities performed by players. 
 
-We are constantly working on our Guard Laws and improving their accuracy, currently we support the following laws on our platform:
+We are constantly working on improving our Guard Laws. Currently, we support the following laws on our platform:
 - Basic Aimbot Protection
 - Rapid Fire Protection
 - AFK Protection
 - Friendly Fire Protection
 
-To register a guard law follow the steps described in [this tutorial](https://youtu.be/4a7rFfUTUrI?list=PLMIGIFMfKUAv4AQHvnv4PzSvmd9dsYk0p&t=88)
+To register a guard law, follow the steps described in [this tutorial](https://youtu.be/4a7rFfUTUrI?list=PLMIGIFMfKUAv4AQHvnv4PzSvmd9dsYk0p&t=88).
 
+## Understand and Set Up Your First Filter
 
-## Understand and set up your first filter
+Filters in the Getgud platform are essential for managing and controlling the flow of data from your title to the Getgud platform. They serve several critical functions, each tailored to specific needs and use cases.
 
-Filters in the Getgud platform are essential to manage and control the flow of data from your title to the Getgud platform. They serve several critical functions, each tailored to specific needs and use cases. 
+Getgud supports three types of filters:
+- **Stream Filters**: Control which matches are streamed from your game server to the Getgud platform. You might use stream filters to limit the amount of data being sent, ensuring only a representative sample of matches is streamed, helping in managing bandwidth.
+- **Store Filters**: Decide which matches will be stored on the platform for replay and future analysis.
+- **Analyze Filters**: Determine which matches will be analyzed by specific guard laws.
 
-Getgud supports 3 types of filters:
-- Stream Filters: Control which matches are streamed from your game server to the Getgud platform. You might use stream filters to limit the amount of data being sent, ensuring only a representative sample of matches is streamed. This helps in managing bandwidth.
-- Store Filters: Decide which matches will be stored on the platform for replay and future analysis.
-- Analyze Filters: Determine which matches will be analyzed by specific Guard laws.
+Note: Only streamed matches can be analyzed and stored, and only stored matches can be analyzed!
 
-Note: Only streamed matches can be analyzed and stored and only stored matches can be analyzed!
+To set up a filter, follow the steps described in [this tutorial](https://youtu.be/4a7rFfUTUrI?list=PLMIGIFMfKUAv4AQHvnv4PzSvmd9dsYk0p&t=122).
 
-To set up the filter follow the steps described in [this tutorial](https://youtu.be/4a7rFfUTUrI?list=PLMIGIFMfKUAv4AQHvnv4PzSvmd9dsYk0p&t=122).
+## Understand and Set Up Your First Query
 
-## Understand and set up your first query
+In the Getgud platform, a query is a powerful tool that allows you to extract and analyze specific subsets of data from your matches, players, reports, and insights. Queries help you identify patterns, detect toxic behaviors, and make data-driven decisions.
 
+Example query:
+Suppose you want to monitor new players who exhibit toxic behavior within their first few matches. You can set up a query to filter players who have played less than five hours and have a high toxicity score in at least one match. By saving this query, you can regularly monitor and take necessary actions to address any issues early on.
 
-## Understand and set up your first rule
+To understand and set up your first query, follow [this tutorial](https://youtu.be/PhsRuc5qNHY?list=PLMIGIFMfKUAv4AQHvnv4PzSvmd9dsYk0p).
 
-Rules in the Getgud platform allow you to take specific actions based on the behaviors and conditions identified by your Guard Laws and filters. By defining rules, you can proactively manage player behavior, enforce game policies, and maintain a healthy gaming environment.
+## Understand and Set Up Your First Rule
 
-Rules allow you to transmit insights generated by Getgud to external systems like databases and CRMs via webhooks. 
+Rules in the Getgud platform allow you to take specific actions based on the behaviors and conditions identified by your guard laws and filters. By defining rules, you can proactively manage player behavior, enforce game policies, and maintain a healthy gaming environment.
+
+Rules allow you to transmit insights generated by Getgud to external systems like databases and CRMs via webhooks.
 
 A few examples of rules include:
 - Ban all toxic players in your system
 - Notify all AFK players via email
 - Promote all players who played more than 100 hours
 
-Note: you need to set up a query to create a rule!
+Note: You need to set up a query to create a rule!
 
-To set up your first rule follow the steps described in [this tutorial](https://youtu.be/4a7rFfUTUrI?list=PLMIGIFMfKUAv4AQHvnv4PzSvmd9dsYk0p&t=194)
-
-
-
-
-
+To set up your first rule, follow the steps described in [this tutorial](https://youtu.be/4a7rFfUTUrI?list=PLMIGIFMfKUAv4AQHvnv4PzSvmd9dsYk0p&t=194).
