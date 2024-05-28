@@ -5,9 +5,9 @@
 If you are using our release files:
 - Download the SDK release files for UE5 from the [releases](https://github.com/getgud-io/cpp-getgud-sdk-dev/releases/)
 - Unzip a release to your project's root folder as specified in step 2. You should end up with the following file structure:
-    - YourProject/ThirdParty/GetGudSDK/bin/GetGudSDK.dll
-    - YourProject/ThirdParty/GetGudSDK/lib/GetGudSDK.lib
-    - YourProject/ThirdParty/GetGudSDK/include/GetgudSDK_C.h
+    - `YourProject/ThirdParty/GetGudSDK/bin/GetGudSDK.dll`
+    - `YourProject/ThirdParty/GetGudSDK/lib/GetGudSDK.lib`
+    - `YourProject/ThirdParty/GetGudSDK/include/GetgudSDK_C.h`
 
 If you are building from source follow [this tutorial](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/cpp-build-instructions.md). Make sure to use our C header! 
 
