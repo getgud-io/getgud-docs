@@ -1,6 +1,17 @@
 # Integrate Unreal Engine Server with Getgud.io
 
-## 1. Create Folder Structure
+## 1. Download SDK release files or build from source
+
+If you are using our release files:
+- Download the SDK release files for UE5 from the [releases](https://github.com/getgud-io/cpp-getgud-sdk-dev/releases/)
+- Unzip a release to your project's root folder as specified in step 2. You should end up with the following file structure:
+    - YourProject/ThirdParty/GetGudSDK/bin/GetGudSDK.dll
+    - YourProject/ThirdParty/GetGudSDK/lib/GetGudSDK.lib
+    - YourProject/ThirdParty/GetGudSDK/include/GetgudSDK_C.h
+
+If you are building from source follow [this tutorial](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/cpp-build-instructions.md). Make sure to use our C header! 
+
+## 2. Create Folder Structure
 
 Add the following folder structure to your UE5 Project. Ensure you create the `ThirdParty` folder if it doesn't already exist.
 
@@ -20,7 +31,7 @@ YourProject/
 - **include folder**: Place all public headers here. You can find the headers [here](https://github.com/getgud-io/cpp-getgud-sdk/tree/main/include).
 - **lib folder**: Place the `.lib` file here if you are on Windows or if you use a static library. (You get the `.lib` file during the build process if you are on Windows or if you build a static library).
 
-## 2. Add SDK Initialization to `<PROJECT_NAME>.Build.cs`
+## 3. Add SDK Initialization to `<PROJECT_NAME>.Build.cs`
 
 Locate the `Build.cs` file in your project structure:
 
@@ -62,7 +73,7 @@ public class MyProject : ModuleRules
 }
 ```
 
-## 3. Initialize SDK in Your Code
+## 4. Initialize SDK in Your Code
 
 It is recommended to initialize the SDK when your server starts and dispose it when your server stops.
 
@@ -108,10 +119,10 @@ UMyGameInstance::~UMyGameInstance()
 }
 ```
 
-## 4. Add your first game
+## 5. Add your first game
 
 Follow [this tutorial](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/C/c-integration.md#getting-started) to integrate sending events into your code.
 
-## 5. Follow Further Tutorials
+## 6. Follow Further Tutorials
 
 Follow [this tutorial](https://github.com/getgud-io/cpp-getgud-sdk/blob/main/README.md) for calling actions during events on your server.
