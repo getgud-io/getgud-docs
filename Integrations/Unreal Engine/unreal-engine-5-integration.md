@@ -108,6 +108,10 @@ UMyGameInstance::~UMyGameInstance()
 }
 ```
 
-## 4. Follow Further Tutorials
+## 4. Add your first game
+
+Follow [this tutorial](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/C/c-integration.md#getting-started) to integrate sending events into your code.
+
+## 5. Follow Further Tutorials
 
 Follow [this tutorial](https://github.com/getgud-io/cpp-getgud-sdk/blob/main/README.md) for calling actions during events on your server.
