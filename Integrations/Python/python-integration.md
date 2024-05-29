@@ -244,12 +244,12 @@ Example of configuration file `config.json`:
 
 ```json
 {
-  "throttleCheckUrl": "https://www.getgud.io/api/game_stream/throttle_match_check",
-  "streamGameURL": "https://www.getgud.io/api/game_stream/send_game_packet",
-  "updatePlayersURL": "https://www.getgud.io/api/player_data/update_players",
-  "sendReportsURL": "https://www.getgud.io/api/report_data/send_reports",
+  "streamGameURL": "https://api.staging.getgud.io/api/game_stream/send_game_packet",
+  "updatePlayersURL": "https://api.staging.getgud.io/api/player_data/update_players_via_sdk",
+  "sendReportsURL": "https://api.staging.getgud.io/api/report_data/send_reports",
+  "throttleCheckUrl": "https://api.staging.getgud.io/api/game_stream/throttle_match_check",
   "logToFile": true,
-  "logFileSizeInBytes": 2000000,
+  "logFileSizeInBytes": 10000000,
   "circularLogFile": true,
   "reportsMaxBufferSizeInBytes": 100000,
   "maxReportsToSendAtOnce": 100,
@@ -257,23 +257,23 @@ Example of configuration file `config.json`:
   "playersMaxBufferSizeInBytes": 100000,
   "maxPlayerUpdatesToSendAtOnce": 100,
   "gameSenderSleepIntervalMilliseconds": 100,
-  "apiTimeoutMilliseconds": 600,
-  "apiWaitTimeMilliseconds": 100,
+  "apiTimeoutMilliseconds": 5000,
+  "apiWaitTimeMilliseconds": 5000,
   "packetMaxSizeInBytes": 2000000,
-  "actionsBufferMaxSizeInBytes": 10000000,
-  "gameContainerMaxSizeInBytes": 50000000,
-  "maxConcurrentGames": 100,
-  "maxMatchesPerGame": 30,
+  "actionsBufferMaxSizeInBytes": 50000000,
+  "gameContainerMaxSizeInBytes": 100000000,
+  "maxGames": 25,
+  "maxMatchesPerGame": 50,
   "minPacketSizeForSendingInBytes": 1000000,
   "packetTimeoutInMilliseconds": 100000,
   "gameCloseGraceAfterMarkEndInMilliseconds": 20000,
   "liveGameTimeoutInMilliseconds": 100000,
-  "hyperModeFeatureEnabled": true,
+  "hyperModeFeatureEnabled": false,
   "hyperModeMaxThreads": 10,
   "hyperModeAtBufferPercentage": 10,
   "hyperModeUpperPercentageBound": 90,
   "hyperModeThreadCreationStaggerMilliseconds": 100,
-  "logLevel": "warn"
+  "logLevel": "FULL"
 }
 ```
 
