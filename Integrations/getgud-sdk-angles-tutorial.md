@@ -6,6 +6,8 @@ In the GetGud C++ SDK, understanding angles and how to work with the Position ac
 
 When working with the Position action, it's essential to understand how angles are represented in the SDK. The SDK follows a standardized approach for representing angles, which includes the concepts of yaw, pitch, and roll.
 
+Note: Some engine switch Pitch and Yaw. for example, Unreal Engine 5 Pitch and Yaw are revered to the way Counter Stike works (the way we implemented it) so you should send Pitch instead of Yaw and vise verse. 
+
 ### Yaw
 
 **Definition:** Yaw represents the horizontal rotation or left/right movement of the player's view.  
