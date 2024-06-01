@@ -7,7 +7,7 @@ The Position action should be sent on a 32 to 128 tick rate.
 
 When working with the Position action, it's essential to understand how angles are represented in the SDK. The SDK follows a standardized approach for representing angles, which includes the concepts of yaw, pitch, and roll.
 
-Note: Some engine switch Pitch and Yaw. for example, Unreal Engine 5 Pitch and Yaw are revered to the way Counter Stike works (the way we implemented it) so you should send Pitch instead of Yaw and vise verse. 
+Note: Some engine switch Pitch and Yaw. for example, Unreal Engine 5 Pitch and Yaw are revered from the way Counter Stike works (the way we implemented it) so you should send Pitch instead of Yaw and vise verse. 
 
 ### Yaw
 
