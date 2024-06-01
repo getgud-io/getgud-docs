@@ -1,6 +1,7 @@
 # Understanding Angles: Quick Tutorial
 
 In the GetGud C++ SDK, understanding angles and how to work with the Position action is crucial for accurately representing player movements and interactions within your game. This document aims to provide clarity on these concepts.
+The Position action should be sent on a 32 to 128 tick rate.
 
 ## Angles Representation
 
