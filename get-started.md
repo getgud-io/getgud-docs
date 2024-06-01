@@ -73,9 +73,9 @@ Now, we need to understand the basic structure GetGud uses to describe a video g
 
 Getgud's C++ SDK allows you to integrate your game with the GetGud platform. Once integrated, you will be able to:
 
-Stream live game data to GetGud's cloud, including in-match actions, in-match reports, and in-match chat messages.
-Send Reports about historical matches to Getgud.
-Send (and update) player information to Getgud.
+1. Stream live game data to GetGud's cloud, including in-match actions, in-match reports, and in-match chat messages.\
+2. Send Reports about historical matches to Getgud.
+3. Send (and update) player information to Getgud.
 
 ## How to start the integration process
 
