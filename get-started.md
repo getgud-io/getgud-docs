@@ -63,7 +63,7 @@ Now, we need to understand the basic structure GetGud uses to describe a video g
 - `Action` represents an in-match activity associated with a player. We collect seven different action types common to all first-person shooter games:
   1. `Spawn` - Whenever a player appears or reappears in-match, on the map.
   2. `Death` - A death of a player, either by another player, the environment, or the player themselves.
-  3. `Position` - Player position change (including looking direction).
+  3. `Position` - Player position change (including looking direction). This action should be sent every X Ticks (minimum of 32 tick rate).
   4. `Attack` - Whenever a player initiates any action that might cause damage, now or in the future. Examples: shooting, throwing a grenade, planting a bomb, swinging a sword, punching, firing a photon torpedo, etc.
   5. `Damage` - Whenever a player receives any damage, either from another player, the environment, or the player themselves.
   6. `Heal` - Whenever a player is healed, no matter by whom or how.
