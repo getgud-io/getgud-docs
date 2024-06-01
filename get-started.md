@@ -36,7 +36,15 @@ Once you create an account, you can start adding members of your organization to
 - The invited user will receive further instructions via email.
 - Note: You can manage user roles and permissions by clicking the `Actions` button and then pressing `Manage User Roles`.
 
-## Prerequisites to integration
+## What Can You Do With Getgud's SDK:
+
+Getgud's C++ SDK allows you to integrate your game with the GetGud platform. Once integrated, you will be able to:
+
+1. Stream live game data to GetGud's cloud, including in-match actions, in-match reports, and in-match chat messages.\
+2. Send Reports about historical matches to Getgud.
+3. Send (and update) player information to Getgud.
+
+## What Data Does The SDK Collect 
 
 Now, we need to understand the basic structure GetGud uses to describe a video game:
 
@@ -68,14 +76,6 @@ Now, we need to understand the basic structure GetGud uses to describe a video g
   5. `Damage` - Whenever a player receives any damage, either from another player, the environment, or the player themselves.
   6. `Heal` - Whenever a player is healed, no matter by whom or how.
   7. `Affect` - Whenever an in-match effect of any kind is applied to the player. Examples: crouch, prone, jump, fly, use special ability, boost speed/ammo/shield/health, etc.
-
-## What Can You Do With Getgud's SDK:
-
-Getgud's C++ SDK allows you to integrate your game with the GetGud platform. Once integrated, you will be able to:
-
-1. Stream live game data to GetGud's cloud, including in-match actions, in-match reports, and in-match chat messages.\
-2. Send Reports about historical matches to Getgud.
-3. Send (and update) player information to Getgud.
 
 ## How to start the integration process
 
