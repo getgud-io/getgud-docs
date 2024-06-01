@@ -38,7 +38,7 @@ Once you create an account, you can start adding members of your organization to
 
 ## What Can You Do With Getgud's SDK:
 
-Getgud's C++ SDK allows you to integrate your game with the GetGud platform. Once integrated, you will be able to:
+Getgud's SDK allows you to integrate your game with the GetGud platform. Once integrated, you will be able to:
 
 1. Stream live game data to GetGud's cloud, including in-match actions, in-match reports, and in-match chat messages.\
 2. Send Reports about historical matches to Getgud.
