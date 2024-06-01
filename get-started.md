@@ -69,6 +69,13 @@ Now, we need to understand the basic structure GetGud uses to describe a video g
   6. `Heal` - Whenever a player is healed, no matter by whom or how.
   7. `Affect` - Whenever an in-match effect of any kind is applied to the player. Examples: crouch, prone, jump, fly, use special ability, boost speed/ammo/shield/health, etc.
 
+## What Can You Do With Getgud's SDK:
+
+Getgud's C++ SDK allows you to integrate your game with the GetGud platform. Once integrated, you will be able to:
+
+Stream live game data to GetGud's cloud, including in-match actions, in-match reports, and in-match chat messages.
+Send Reports about historical matches to Getgud.
+Send (and update) player information to Getgud.
 
 ## How to start the integration process
 
