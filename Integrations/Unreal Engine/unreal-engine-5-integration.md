@@ -123,8 +123,4 @@ UMyGameInstance::~UMyGameInstance()
 
 Follow [this tutorial](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/C/c-integration.md#getting-started) to integrate sending events into your code.
 
-## 6. Follow Further Tutorials
-
-Follow [this tutorial](https://github.com/getgud-io/cpp-getgud-sdk/blob/main/README.md) for calling actions during events on your server.
-
 We created an [Unreal Engine 5 Example Project](https://github.com/getgud-io/getgud-unreal-engine-5-example), so it is easier for you to integrate
