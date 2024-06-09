@@ -8,25 +8,6 @@ Getgud's C SDK allows you to integrate your game with the GetGud platform. Once 
 - Send Reports about historical matches to Getgud.
 - Send (and update) player information to Getgud.
 
-## Build requirements:
-The shared and static libraries are different. The shared library can be linked directly to a project because it only requires the binaries and headers.
-However, here is the way to link the static library correctly:
-### Linux:
-Dependencies:
-- libcurl development kit.
-- zlib development kit.
-- openssl development kit.
-- libssl development kit.
-- libcrypto development kit.
-- gcc packages.
-- pthread library.
-
-### Windows:
-- libcurl library package.
-- zlib library package.
-
-A test project with completed setup is included in each release folder.
-
 ## Getting Started
 
 Insert the Title Id and Private Key you recieved from Getgud.io to the `GETGUD_TITLE_ID ` and `GETGUD_PRIVATE_KEY` environment variables, or use them as arguments for StartGame. (multiple title support available below)
