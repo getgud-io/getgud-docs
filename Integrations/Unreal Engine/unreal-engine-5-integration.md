@@ -1,37 +1,42 @@
-# Integrate Unreal Engine Server with Getgud.io
+# Getgud Unreal Engine 5 Integration Tutorial
 
-## 1. Download SDK release files or build from source
+## Introduction
 
-If you are using our release files:
-- Download the SDK release files for UE5 from the [releases](https://github.com/getgud-io/cpp-getgud-sdk-dev/releases/)
-- Unzip a release to your project's root folder as specified in step 2. You should end up with the following file structure:
-    - `YourProject/ThirdParty/GetGudSDK/bin/GetGudSDK.dll`
-    - `YourProject/ThirdParty/GetGudSDK/lib/GetGudSDK.lib`
-    - `YourProject/ThirdParty/GetGudSDK/include/GetGudSDK_C.h`
+The `Client_Server_GetGud` project demonstrates how to integrate the GetGudSDK with Unreal Engine 5 (UE5) using a C++ based API. The project consists of two parts: a server and a client. The client sends spawn and position actions to the server, which then forwards these actions to Getgud.io's cloud.
 
-If you are building from source follow [this tutorial](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/cpp-build-instructions.md). Make sure to use our C header! 
+## Prerequisites
 
-## 2. Create Folder Structure
+- Unreal Engine 5 installed
+- Visual Studio installed
+- GetGudSDK (Ensure you have the required credentials: `titleId` and `privateKey`)
 
-Add the following folder structure to your UE5 Project. Ensure you create the `ThirdParty` folder if it doesn't already exist.
+## Project Setup
 
-```
-YourProject/
-├── Source/
-├── Content/
-├── Binaries/
-├── ThirdParty/
-    ├── GetGudSDK/
-        ├── bin/
-        ├── include/
-        ├── lib/
-```
+### 1. Create a New UE5 Project
 
-- **bin folder**: Place the `.dll` / `.so` files here. These represent the compiled library of GetGudSDK (available from our releases or build the SDK yourself from the source).
-- **include folder**: Place all public headers here. You can find the headers [here](https://github.com/getgud-io/cpp-getgud-sdk/tree/main/include).
-- **lib folder**: Place the `.lib` file here if you are on Windows or if you use a static library. (You get the `.lib` file during the build process if you are on Windows or if you build a static library).
+1. Open Unreal Engine 5.
+2. Create a new FirstPerson project with C++ and Starter Content enabled.
+3. Name the project `Client_Server_GetGud`.
 
-## 3. Configuration File Setup
+### 2. Integrate GetGudSDK Files
+
+1. Upload the provided repository files to the root folder of the `Client_Server_GetGud` project.
+2. Replace any existing files when prompted.
+
+### 3. Build the Project
+
+1. Open the project in Visual Studio.
+2. Build the project to ensure all dependencies and files are correctly integrated.
+
+### 4. Update Project Properties
+
+1. In Visual Studio, navigate to `Project -> Properties -> Debugging`.
+2. Update the `Command Arguments` field with the following:
+   ```
+   "$(SolutionDir)Client_Server_GetGud.uproject" -log -server -NoGraphics -port=7777
+   ```
+
+### 5. Add Config and Log file paths
 
 Create a `config.json` file in your project directory with the following content:
 
@@ -76,107 +81,235 @@ export GETGUD_CONFIG_PATH=/path/to/your/config.json
 export GETGUD_LOG_FILE_PATH=/path/to/your/logs.txt
 ```
 
-## 4. Add SDK Initialization to `<PROJECT_NAME>.Build.cs`
 
-Locate the `Build.cs` file in your project structure:
+### 6. Run the Project
 
+1. Run the project in debug mode using Visual Studio.
+2. Open another instance of UE5 and load the `Client_Server_GetGud` project.
+3. Run the project.
+
+### 7. Connect to the Server
+
+1. In the new UE5 instance, open the console command (`~` key).
+2. Connect to the server using the command:
+   ```
+   open 127.0.0.1:7777
+   ```
+
+### 8. Test the Integration
+
+1. Observe the logs to ensure that the client and server are communicating correctly.
+2. Verify that actions are being sent to and from the server, and ultimately to Getgud.io's cloud.
+
+## Detailed Code Explanation
+
+### Configuration
+
+In your code, configure the GetGudSDK with your credentials:
+
+```cpp
+	// Start a Game:
+	g_gameGuid = GetgudSDK::StartGame(your_title_id,
+		your_private_key,
+		serverGuid,  // serverGuid
+		gameMode,     // gameMode
+		serverLocation
+	);
 ```
-YourProject/
-├── Source/
-│   ├── YourProject/
-│   │   ├── YourProject.Build.cs
-│   │   ├── YourProject.cpp
-│   │   └── YourProject.h
+
+### Server RPC Functions
+
+The server handles movement and spawn actions through RPC functions.
+
+#### Movement Handling
+
+In `Client_Server_GetGudCharacter.h`, declare the server RPC functions:
+
+```cpp
+// Server RPC for handling movement
+UFUNCTION(Server, Reliable, WithValidation)
+void ServerRemoteMove(const FInputActionValue& Value);
+
+// Server RPC for handling movement
+UFUNCTION(Server, Reliable, WithValidation)
+void ServerRemoteSpawn(const FInputActionValue& Value);
 ```
 
-Example of adding SDK initialization code to the `Build.cs` file:
+Implement these functions in `Client_Server_GetGudCharacter.cpp`:
 
-```csharp
-using System.IO;
-using UnrealBuildTool;
-
-public class MyProject : ModuleRules
+```cpp
+void AClient_Server_GetGudCharacter::ServerRemoteMove_Implementation(const FInputActionValue& Value)
 {
-    public MyProject(ReadOnlyTargetRules Target) : base(Target)
-    {
-        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+	// Handle the movement on the server
+	//Move(Value); // Call the local move function
 
-        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput" });
+	FRotator CameraRotation = Controller->GetControlRotation();
+	FVector position = GetActorLocation();
 
-        // Setup the path to the directory containing the .lib and .dll files
-        string ThirdPartyPath = Path.Combine(ModuleDirectory, "../../ThirdParty/GetGudSDK");
+	UE_LOG(LogTemp, Warning, TEXT("Character Position: %s"), *position.ToString());
 
-        PublicIncludePaths.Add(Path.Combine(ThirdPartyPath, "include"));
+	FDateTime Now = FDateTime::UtcNow();
 
-        // Add the .lib file for linking
-        PublicAdditionalLibraries.Add(Path.Combine(ThirdPartyPath, "lib", "GetGudSDK.lib"));
+	// Calculate the Unix timestamp in milliseconds
+	int64 UnixTimestampMillis = (Now.GetTicks() - FDateTime(1970, 1, 1, 0, 0, 0, 0).GetTicks()) / ETimespan::TicksPerMillisecond;
 
-        // Ensure the .dll file is copied to the Binaries/Win64 directory at runtime
-        string BinariesPath = Path.Combine(ModuleDirectory, "../../Binaries/Win64", "GetGudSDK.dll");
-        RuntimeDependencies.Add(BinariesPath, Path.Combine(ThirdPartyPath, "bin", "GetGudSDK.dll"));
-    }
+	GetgudSDK::BaseActionData* outAction = nullptr;
+	outAction = new GetgudSDK::PositionActionData(
+		g_matchGuid, UnixTimestampMillis, g_playerGuid,
+		GetgudSDK::PositionF{(float)position.X, (float)position.Y, (float)position.Z},
+		GetgudSDK::RotationF{(float)CameraRotation.Pitch, (float)CameraRotation.Yaw, (float)CameraRotation.Roll});
+
+	GetgudSDK::SendAction(outAction);
+
+	delete outAction;
+}
+
+bool AClient_Server_GetGudCharacter::ServerRemoteMove_Validate(const FInputActionValue& Value)
+{
+	// Add any necessary validation here
+	return true; // Assume validation passes
 }
 ```
 
-## 5. Initialize SDK in Your Code
-
-It is recommended to initialize the SDK when your server starts and dispose it when your server stops.
-
-Example header file:
+#### Spawn Handling
 
 ```cpp
-#pragma once
-
-#include "GetGudSDK_C.h"
-
-#include "CoreMinimal.h"
-#include "Engine/GameInstance.h"
-#include "MyGameInstance.generated.h"
-
-/**
- *
- */
-UCLASS()
-class MYPROJECT_API UMyGameInstance : public UGameInstance
+void AClient_Server_GetGudCharacter::ServerRemoteSpawn_Implementation(const FInputActionValue& Value)
 {
-    GENERATED_BODY()
-    
-public:
-    virtual void Init() override;
-    virtual ~UMyGameInstance() noexcept;
-};
+	// Handle the movement on the server
+
+	FVector position = GetActorLocation();
+	FRotator CameraRotation = Controller->GetControlRotation();
+	UE_LOG(LogTemp, Warning, TEXT("Character Position: %s"), *position.ToString());
+
+	FDateTime Now = FDateTime::UtcNow();
+
+	// Calculate the Unix timestamp in milliseconds
+	int64 UnixTimestampMillis = (Now.GetTicks() - FDateTime(1970, 1, 1, 0, 0, 0, 0).GetTicks()) / ETimespan::TicksPerMillisecond;
+
+	GetgudSDK::BaseActionData* outAction = nullptr;
+
+	outAction = new GetgudSDK::SpawnActionData(
+		g_matchGuid, UnixTimestampMillis, g_playerGuid, "halls_green", 0, 100.f,
+		GetgudSDK::PositionF{(float)position.X, (float)position.Y, (float)position.Z},
+		GetgudSDK::RotationF{(float)CameraRotation.Pitch, (float)CameraRotation.Yaw, (float)CameraRotation.Roll});
+
+	delete outAction;
+}
+
+bool AClient_Server_GetGudCharacter::ServerRemoteSpawn_Validate(const FInputActionValue& Value)
+{
+	// Add any necessary validation here
+	return true; // Assume validation passes
+}
 ```
 
-Example cpp file:
+### Initialization of SDK and clean up
+
+The `UGetGudInstance` class handles the SDK initialization. In `UGetGudInstance.cpp`:
 
 ```cpp
-#include "MyGameInstance.h"
-
-void UMyGameInstance::Init()
+void UGetGudInstance::Init()
 {
     Super::Init();
-    init();
+
+    if (GetWorld()->IsNetMode(NM_DedicatedServer) || GetWorld()->IsNetMode(NM_ListenServer))
+    {
+        UE_LOG(LogTemp, Warning, TEXT("GetGud SDK initialized."));
+        GetgudSDK::Init();
+    }
 }
 
-UMyGameInstance::~UMyGameInstance()
+UGetGudInstance::~UGetGudInstance()
 {
-    dispose();
+    if (GetWorld() && (GetWorld()->IsNetMode(NM_DedicatedServer) || GetWorld()->IsNetMode(NM_ListenServer)))
+    {
+        UE_LOG(LogTemp, Warning, TEXT("GetGud SDK disposed."));
+        GetgudSDK::Dispose();
+    }
 }
+
 ```
 
-## 6. Add Your First Game
+### Create a game and match
 
-Follow [this tutorial](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/C/c-integration.md#getting-started) to integrate sending events into your code.
-
-Ensure to call `MarkEndGame` at the end of the game session, and `Dispose` only after all actions have been sent.
-
-Example:
+The `Client_Server_GetGudPlayerController` class manages the games and matches.
+For example, each player has its own game and match.
+In this case, a game and match are starting once a character connected:
 
 ```cpp
-void EndGame()
+void AClient_Server_GetGudPlayerController::ServerRemoteGameAndMapStart_Implementation()
 {
-    MarkEndGame();
+
+	std::string serverGuid = "us-west-1";
+	std::string gameMode = "deathmatch";
+	std::string serverLocation = "UK";
+
+	// Start a Game:
+	g_gameGuid = GetgudSDK::StartGame(132,
+		"41e99370-b12f-11ee-89f0-4b4e9fccc950",
+		serverGuid,  // serverGuid
+		gameMode,     // gameMode
+		serverLocation
+	);
+
+	g_matchGuid = GetgudSDK::StartMatch(g_gameGuid,
+		"Knives-only",  // matchMode
+		"de-dust"       // mapName
+	);
+
+
+	UE_LOG(LogTemp, Warning, TEXT("GetGud SDK Match started."));
+}
+
+bool AClient_Server_GetGudPlayerController::ServerRemoteGameAndMapStart_Validate()
+{
+	// Add any necessary validation here
+	return true; // Assume validation passes
 }
 ```
 
-We created an [Unreal Engine 5 Example Project](https://github.com/getgud-io/getgud-unreal-engine-5-example), so it is easier for you to integrate.
+And the Game is finishing completely once the character finish the match:
+
+```cpp
+void AClient_Server_GetGudPlayerController::ServerRemoteGameEnd_Implementation()
+{
+	//int martResult = MarkEndGame(g_gameGuid, 36);
+	GetgudSDK::MarkEndGame(g_gameGuid);
+
+	UE_LOG(LogTemp, Warning, TEXT("GetGud SDK Game finish."));
+}
+
+bool AClient_Server_GetGudPlayerController::ServerRemoteGameEnd_Validate()
+{
+	// Add any necessary validation here
+	return true; // Assume validation passes
+}
+```
+
+
+### Calling RPC Functions
+
+The RPC functions are called when the character moves or spawns. For movement:
+
+```cpp
+if (IsLocallyControlled()) // Ensure this is the local client
+{
+    ServerRemoteMove(Value);
+}
+```
+
+For spawning:
+
+```cpp
+if (IsLocallyControlled()) // Ensure this is the local client
+{
+    ServerRemoteSpawn(Mesh1P->GetPosition());
+}
+```
+
+## Conclusion
+
+Following this guide, you should have successfully integrated the GetGudSDK into your UE5 project. By setting up the server-client architecture and implementing the necessary RPC functions, you can efficiently handle and test actions like movement and spawning within the UE5 environment.
+
+For more detailed information, refer to the official documentation of GetGudSDK and Unreal Engine 5.
