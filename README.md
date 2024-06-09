@@ -5,7 +5,7 @@ This repository contains docs & tutorials for everything related to Getgud.io pl
 
 - <b>[Get started](https://github.com/getgud-io/getgud-docs/blob/main/get-started.md)</b>
 - <b>Integration tutorials</b>
-  * [Build from source](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/cpp-build-instructions.md)
+  * [Build SDK](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/cpp-build-instructions.md)
   * [C++ server-side integration](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/C%2B%2B/cpp-integration.md)
   * [C server-side integration](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/C/c-integration.md)
   * [Python server-side integration](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/Python/python-integration.md)
