@@ -79,11 +79,10 @@ Now, we need to understand the basic structure GetGud uses to describe a video g
 
 ## How to start the integration process
 
-Getgud is integrated **server-side** into your game. Our SDK is built in C++, and we provide both source code and build files for popular systems like Windows and Linux. We offer header files in the most popular languages so you can integrate our code with C++, C#, C, and Python servers. If you are using Unreal Engine 4, Unreal Engine 5, or Unity, we provide separate instructions for integrating with those engines.
+Getgud is integrated **server-side** into your game. Our SDK is built in C++, and we provide source code so you can build specifically for your system. We offer header files in the most popular languages so you can integrate our code with C++, C#, C, and Python servers. If you are using Unreal Engine 4, Unreal Engine 5, or Unity, we provide separate instructions for integrating with those engines.
 
 To get started:
 
-1. Decide if you are going to build the SDK from source or use our build files.
-2. If you are building from scratch, clone our [development repo](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/cpp-build-instructions.md) and follow the [build instructions](https://github.com/getgud-io/cpp-getgud-sdk-dev).
-3. Use the build files and appropriate header files to start integrating into your server.
-4. Ensure you understand the Getgud SDK [lifecycle and events](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/C%2B%2B/cpp-integration.md) you can send.
+1. To build SDK for your system, clone our [development repo](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/cpp-build-instructions.md) and follow the [build instructions](https://github.com/getgud-io/cpp-getgud-sdk-dev).
+2. Use the build files and header files to start integration into your server.
+3. Ensure you understand the Getgud SDK [lifecycle and events](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/C%2B%2B/cpp-integration.md) you can send.
