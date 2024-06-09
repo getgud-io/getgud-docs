@@ -7,26 +7,6 @@ Getgud Python SDK allows you to integrate your game with the GetGud platform. On
 - Send Reports about historical matches to GetGud.
 - Send (and update) player information to GetGud.
 
-## Build requirements:
-The deployment folder contains everything needed to build and link the SDK into a Python project.
-However, for the Python version of the SDK, dependencies are hidden from the user:
-### Linux:
-Dependencies:
-- libcurl development kit.
-- zlib development kit.
-- openssl development kit.
-- libssl development kit.
-- libcrypto development kit.
-- g++ and gcc packages.
-- pthread library.
-
-### Windows:
-- libcurl library package.
-- zlib library package.
-
-Depending on the local machine's environment, some additional library linking might be required. 
-A test project with a complete setup is included in the root folder.
-
 ## Getting Started
 
 First, you need to build the SDK for your system. Follow these steps:
