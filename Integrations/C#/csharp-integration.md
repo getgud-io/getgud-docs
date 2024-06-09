@@ -8,12 +8,6 @@ GetGud's C# SDK allows you to integrate your game with the GetGud platform. Once
 - Send reports about historical matches to GetGud.
 - Send (and update) player information to GetGud.
 
-## Build Requirements:
-The C# SDK requires the following build requirements:
-
-- Visual Studio or any other C# development environment.
-- .NET Framework or .NET Core installed.
-
 ## Getting Started
 
 To get started with the GetGud C# SDK, follow the steps below:
