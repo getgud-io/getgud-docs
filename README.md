@@ -1,3 +1,7 @@
+<div align="center">
+  <img style="width: 512px" src="https://getgud-public-content.s3.amazonaws.com/gg-cover.png">
+</div>
+
 # Getgud.io documentation
 
 This repository contains docs & tutorials for everything related to Getgud.io platform usage.
