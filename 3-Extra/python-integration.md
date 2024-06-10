@@ -270,3 +270,14 @@ To control logging, use the following configuration parameters:
 - `circularLogFile`: true/false - Whether to remove the first lines of the log file when it exceeds the size limit.
 
 Please make sure to set the `LOG_FILE_PATH` and `CONFIG_PATH` environment variables correctly to use logging.
+
+
+
+## Additional SDK Methods
+
+The GetGud Python SDK provides several other methods for sending chat messages, reports, updating player information, and more. Refer to the [SDK Events documentation](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/sdk-commands.md) and examples for detailed usage instructions of these methods.
+
+
+## Examples
+
+An example of how to use the GetGud Python SDK can be found in the [examples](https://github.com/getgud-io/cpp-getgud-sdk-dev/tree/main/examples) directory.
