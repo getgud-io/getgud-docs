@@ -3,8 +3,8 @@
 Same commands are available for C++, C#, C and Python languages.
 
 * [C++ header file](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/include/GetgudSDK.h)
-* [C header file](https://github.com/getgud-io/c-getgud-sdk/blob/main/include/GetGudSdk_C.h)
-* [Python wrapper around C header](https://github.com/getgud-io/python-getgud-sdk/blob/main/getgudsdk_wrapper.py)
+* [C header file](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/include/GetgudSDK_C.h)
+* [Python wrapper around C header](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/python/getgudsdk_wrapper.py)
 
 ## What Can You Do With Getgud's SDK:
 
@@ -497,4 +497,4 @@ Example of configuration file `config.json`:
 
 ## Examples
 
-An example of how to use the GetGud C++ SDK can be found in the [examples](https://github.com/getgud-io/cpp-getgud-sdk/tree/main/examples) directory.
+An example of how to use the GetGud C++ SDK can be found in the [examples](https://github.com/getgud-io/cpp-getgud-sdk-dev/tree/main/examples) directory.
