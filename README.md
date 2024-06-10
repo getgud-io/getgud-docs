@@ -11,7 +11,7 @@ This repository contains docs & tutorials for everything related to Getgud.io pl
   * [How to integrate angles](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/getgud-sdk-angles-tutorial.md)
     
 - <b>Platform tutorials</b>
-  * [Get started with Getgud.io dashboard](https://github.com/getgud-io/getgud-docs/blob/main/Platform/get-started-with-dashboard.md)
+  * [Get started with Getgud.io dashboard](https://github.com/getgud-io/getgud-docs/blob/main/2-Platform/get-started-with-dashboard.md)
   * [Video tutorials](https://www.youtube.com/playlist?list=PLMIGIFMfKUAv4AQHvnv4PzSvmd9dsYk0p)
  
 - <b> [SDK Integration Examples](https://github.com/getgud-io/cpp-getgud-sdk-dev/tree/main/examples) </b>
