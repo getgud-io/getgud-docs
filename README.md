@@ -14,6 +14,5 @@ This repository contains docs & tutorials for everything related to Getgud.io pl
   * [Get started with Getgud.io dashboard](https://github.com/getgud-io/getgud-docs/blob/main/Platform/get-started-with-dashboard.md)
   * [Video tutorials](https://www.youtube.com/playlist?list=PLMIGIFMfKUAv4AQHvnv4PzSvmd9dsYk0p)
  
-- <b> Examples </b>
-  * [Unreal Engine 5 example project](https://github.com/getgud-io/getgud-unreal-engine-5-example) 
+- <b> [SDK Integration Examples](https://github.com/getgud-io/cpp-getgud-sdk-dev/tree/main/examples) </b>
 
