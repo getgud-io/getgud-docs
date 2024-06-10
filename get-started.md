@@ -83,6 +83,6 @@ Getgud is integrated **server-side** into your game. Our SDK is built in C++, an
 
 To get started:
 
-1. To build SDK for your system, clone our [development repo](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/cpp-build-instructions.md) and follow the [build instructions](https://github.com/getgud-io/cpp-getgud-sdk-dev).
+1. To build SDK for your system, clone our [development repo](https://github.com/getgud-io/cpp-getgud-sdk-dev) and follow the [build instructions](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/cpp-build-instructions.md).
 2. Use the build files and header files to start integration into your server.
-3. Ensure you understand the Getgud SDK [lifecycle and events](https://github.com/getgud-io/getgud-docs/blob/main/Integrations/C%2B%2B/cpp-integration.md) you can send.
+3. Ensure you understand the Getgud SDK [lifecycle and events](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/sdk-commands.md) you can send.
