@@ -1,20 +1,20 @@
-# Getgud Unreal Engine 5 Integration Tutorial
+# Getgud Unreal Engine Integration Tutorial
 
 ## Introduction
 
-The `Client_Server_GetGud` project demonstrates how to integrate the GetGudSDK with Unreal Engine 5 (UE5) using a C++ based API. The project consists of two parts: a server and a client. The client sends spawn and position actions to the server, which then forwards these actions to Getgud.io's cloud.
+The `Client_Server_GetGud` project demonstrates how to integrate the GetGudSDK with Unreal Engine (UE) using a C++ based API. The project consists of two parts: a server and a client. The client sends spawn and position actions to the server, which then forwards these actions to Getgud.io's cloud.
 
 ## Prerequisites
 
-- Unreal Engine 5 installed
+- Unreal Engine installed
 - Visual Studio installed
 - GetGudSDK (Ensure you have the required credentials: `titleId` and `privateKey`)
 
 ## Project Setup
 
-### 1. Create a New UE5 Project
+### 1. Create a New UE Project
 
-1. Open Unreal Engine 5.
+1. Open Unreal Engine.
 2. Create a new FirstPerson project with C++ and Starter Content enabled.
 3. Name the project `Client_Server_GetGud`.
 
@@ -85,12 +85,12 @@ export GETGUD_LOG_FILE_PATH=/path/to/your/logs.txt
 ### 6. Run the Project
 
 1. Run the project in debug mode using Visual Studio.
-2. Open another instance of UE5 and load the `Client_Server_GetGud` project.
+2. Open another instance of UE and load the `Client_Server_GetGud` project.
 3. Run the project.
 
 ### 7. Connect to the Server
 
-1. In the new UE5 instance, open the console command (`~` key).
+1. In the new UE instance, open the console command (`~` key).
 2. Connect to the server using the command:
    ```
    open 127.0.0.1:7777
@@ -310,6 +310,6 @@ if (IsLocallyControlled()) // Ensure this is the local client
 
 ## Conclusion
 
-Following this guide, you should have successfully integrated the GetGudSDK into your UE5 project. By setting up the server-client architecture and implementing the necessary RPC functions, you can efficiently handle and test actions like movement and spawning within the UE5 environment.
+Following this guide, you should have successfully integrated the GetGudSDK into your UE project. By setting up the server-client architecture and implementing the necessary RPC functions, you can efficiently handle and test actions like movement and spawning within the UE environment.
 
 For more detailed information, refer to the official documentation of GetGudSDK and Unreal Engine 5.
