@@ -311,5 +311,3 @@ if (IsLocallyControlled()) // Ensure this is the local client
 ## Conclusion
 
 Following this guide, you should have successfully integrated the GetGudSDK into your UE project. By setting up the server-client architecture and implementing the necessary RPC functions, you can efficiently handle and test actions like movement and spawning within the UE environment.
-
-For more detailed information, refer to the official documentation of GetGudSDK and Unreal Engine 5.
