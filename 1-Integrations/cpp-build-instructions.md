@@ -7,6 +7,7 @@ Getgud C++ SDK allows you to integrate your game with the GetGud platform. Once 
 - [Build for Linux](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/cpp-build-instructions.md#build-for-linux)
 - [Build for Windows](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/cpp-build-instructions.md#build-for-windows)
 - [Build for Unreal Engine](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/cpp-build-instructions.md#build-for-unreal-engine)
+- [Build for Unity](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/cpp-build-instructions.md#build-for-unity)
 
 ## Build for Linux
 
@@ -121,5 +122,11 @@ Congrats, SDK is built! You will mostly need `getgudsdk.a` and `getguddsk.so` fi
 ## Build for Unreal Engine
 
 To build and integrate for UE follow [this tutorial](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/Unreal%20Engine/unreal-engine-integration.md)
+
+
+## Build for Unity
+
+1. To build and integrate for Unity you should build SDK for your Windows/Linux server as described in our tutorials.
+2. Integrate SDK build files into Unity as described in [this tutorial](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/Unity/unity-integration.md)
 
 
