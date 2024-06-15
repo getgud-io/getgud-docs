@@ -16,11 +16,15 @@ Before continuing with this tutorial, we recommend reading the [Get Started](htt
 
 Guard laws are a crucial component of the Getgud platform, designed to monitor and analyze your game's streamed matches for specific toxic behaviors. A guard law is essentially a piece of code that scans the data from your matches, detecting unwanted or harmful activities performed by players. 
 
-We are constantly working on improving our Guard Laws. Currently, we support the following laws on our platform:
+We are constantly working on improving our Guard Laws. Currently, we support the following basic laws on our platform:
 - Basic Aimbot Protection
 - Rapid Fire Protection
 - AFK Protection
 - Friendly Fire Protection
+
+We are now working on:
+- Speedhack protection
+- Wallhack protection
 
 To register a guard law, follow the steps described in [this tutorial](https://youtu.be/4a7rFfUTUrI?list=PLMIGIFMfKUAv4AQHvnv4PzSvmd9dsYk0p&t=88).
 
