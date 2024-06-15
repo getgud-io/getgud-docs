@@ -31,25 +31,13 @@ To integrate GetGudSDK with Unity, you'll first need to compile the SDK. Follow 
 ### 3. Integrate GetGudSDK Files
 
 1. **Copy Example Files:**
-   - Navigate to the `examples/unity` folder within the SDK repository and copy its contents.
+   - Navigate to the `examples/unity` folder within [the SDK repository](https://github.com/getgud-io/cpp-getgud-sdk-dev/tree/main/examples) and copy its contents.
 
 2. **Paste into Project:**
    - Replace the contents of the project folder with the copied files. The Unity project should now include `Assets/GetGudSDK` among other folders.
 
-### 4. Update GetGudSDK Configuration
 
-1. **Modify Path to SDK:**
-   - Open the `GetgudSDK_calls.cs` file located in `Assets/GetGudSDK/Plugins` and locate line 199.
-   - Update the path to point to the location of the GetGudSDK precompiled shared library.
-
-2. **Set Environment Variables:**
-   - Ensure the necessary environment variables are set on your system for SDK configuration:
-     ```bash
-     export GETGUD_CONFIG_PATH=/path/to/your/config.json
-     export GETGUD_LOG_FILE_PATH=/path/to/your/logs.txt
-     ```
-
-### 5. Set Up Configuration File
+### 4. Set Up Configuration File
 
 1. **Create `config.json` File:**
    - In your Unity project directory, create a `config.json` file with the following content:
@@ -95,6 +83,13 @@ To integrate GetGudSDK with Unity, you'll first need to compile the SDK. Follow 
      export GETGUD_CONFIG_PATH=/path/to/your/config.json
      export GETGUD_LOG_FILE_PATH=/path/to/your/logs.txt
      ```
+
+### 5. Update GetGudSDK Configuration
+
+1. **Modify Path to SDK:**
+   - Open the `GetgudSDK_calls.cs` file located in `Assets/GetGudSDK/Plugins` and locate line 199.
+   - Update the path to point to the location of the GetGudSDK precompiled shared library.
+
 
 ### 6. Open and Configure Unity Project
 
@@ -243,7 +238,3 @@ void Update()
     }
 }
 ```
-
-## Conclusion
-
-By following this tutorial, you should have successfully integrated the GetGudSDK into your Unity project. This setup enables effective client-server interactions for handling game actions and ensures proper communication with Getgud.io's cloud infrastructure. Make sure to test thoroughly to verify that the integration functions as expected.
