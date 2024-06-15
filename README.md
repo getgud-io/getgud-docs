@@ -15,10 +15,9 @@ This repository contains docs & tutorials for everything related to Getgud.io pl
   * [Unreal Engine server integration](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/Unreal%20Engine/unreal-engine-integration.md)
   * [Unity server integration](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/Unity/unity-integration.md)
   * [How to integrate angles](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/getgud-sdk-angles-tutorial.md)
+  * [SDK Integration Examples](https://github.com/getgud-io/cpp-getgud-sdk-dev/tree/main/examples)
     
 - <b>Platform tutorials</b>
   * [Get started with Getgud.io dashboard](https://github.com/getgud-io/getgud-docs/blob/main/2-Platform/get-started-with-dashboard.md)
   * [Video tutorials](https://www.youtube.com/playlist?list=PLMIGIFMfKUAv4AQHvnv4PzSvmd9dsYk0p)
- 
-- <b> [SDK Integration Examples](https://github.com/getgud-io/cpp-getgud-sdk-dev/tree/main/examples) </b>
 
