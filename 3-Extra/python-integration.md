@@ -275,7 +275,7 @@ Please make sure to set the `LOG_FILE_PATH` and `CONFIG_PATH` environment variab
 
 ## Additional SDK Methods
 
-The GetGud Python SDK provides several other methods for sending chat messages, reports, updating player information, and more. Refer to the [SDK Events documentation](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/sdk-commands.md) and examples for detailed usage instructions of these methods.
+The GetGud Python SDK provides several other methods for sending chat messages, reports, updating player information, and more. Refer to the [SDK Events documentation](https://github.com/getgud-io/getgud-docs/blob/main/sdk-commands.md) and examples for detailed usage instructions of these methods.
 
 
 ## Examples
