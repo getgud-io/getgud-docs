@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The `Client_Server_GetGud` project demonstrates how to integrate the GetGudSDK with Unity using a C# based API. The project is structured to handle server-client interactions, where the client sends actions like spawn and position to the server, which then communicates these actions to Getgud.io's cloud.
+The `Client_Server_GetGud` example project demonstrates how to integrate the GetGudSDK with Unity using a C# based API. This project is a simplified simulation designed to showcase how to send actions like spawn and position to Getgud.io. In a real-world scenario, these actions should be handled server-side, where they are forwarded to the SDK. Note that the tick rate for sending actions should not be too frequent to avoid impacting server performance.
 
 ## Prerequisites
 
@@ -35,7 +35,6 @@ To integrate GetGudSDK with Unity, you'll first need to compile the SDK. Follow 
 
 2. **Paste into Project:**
    - Replace the contents of the project folder with the copied files. The Unity project should now include `Assets/GetGudSDK` among other folders.
-
 
 ### 4. Set Up Configuration File
 
@@ -79,6 +78,7 @@ To integrate GetGudSDK with Unity, you'll first need to compile the SDK. Follow 
 
 2. **Set Up Configuration Environment:**
    - Ensure your system environment variables point to the configuration file:
+
      ```bash
      export GETGUD_CONFIG_PATH=/path/to/your/config.json
      export GETGUD_LOG_FILE_PATH=/path/to/your/logs.txt
@@ -86,10 +86,9 @@ To integrate GetGudSDK with Unity, you'll first need to compile the SDK. Follow 
 
 ### 5. Update GetGudSDK Configuration
 
-1. **Modify Path to SDK:**
+1. **Update SDK Library Path:**
    - Open the `GetgudSDK_calls.cs` file located in `Assets/GetGudSDK/Plugins` and locate line 199.
-   - Update the path to point to the location of the GetGudSDK precompiled shared library.
-
+   - Update the name of the GetGudSDK shared library according to your operating system (`.so`, `.dylib`, or `.dll`). The actual path might not be required, just ensure the name matches the library available on your system.
 
 ### 6. Open and Configure Unity Project
 
@@ -107,6 +106,7 @@ To integrate GetGudSDK with Unity, you'll first need to compile the SDK. Follow 
 1. **Build the Project:**
    - Go to `File -> Build Settings` and configure the build settings for your platform (e.g., Windows, macOS).
    - Click "Build and Run" to compile the project.
+   - You can also compile the SDK using Visual Studio for a more detailed build process.
 
 2. **Check for Errors:**
    - After the build completes, check the Unity console for any errors or warnings. Ensure there are no critical issues that would prevent the project from running.
@@ -122,7 +122,7 @@ To integrate GetGudSDK with Unity, you'll first need to compile the SDK. Follow 
 3. **Verify on Getgud.io:**
    - Log into your Getgud.io account and verify that the actions are recorded correctly.
 
-### Detailed Code Explanation
+## Detailed Code Explanation
 
 ### Configuration
 
@@ -139,7 +139,7 @@ public void InitializeSDK()
 
 ### Client-Server Communication
 
-Implement the client-server communication for handling actions such as movement and spawn. These are typically handled through RPC functions in Unity's scripting.
+The client-server communication for handling actions such as movement and spawn is typically managed through RPC functions in Unity's scripting.
 
 #### Movement Handling
 
@@ -238,3 +238,5 @@ void Update()
     }
 }
 ```
+
+With these updates and configurations, you should be able to integrate and test the GetGudSDK within your Unity project successfully.
