@@ -2,13 +2,13 @@
 
 ## Introduction
 
-The `Client_Server_GetGud` project demonstrates how to integrate the GetGudSDK with Unreal Engine (UE) using a C++ based API. The project consists of two parts: a server and a client. The client sends spawn and position actions to the server, which then forwards these actions to Getgud.io's cloud.
+The `Client_Server_Getgud` project demonstrates how to integrate the GetgudSDK with Unreal Engine (UE) using a C++ based API. The project consists of two parts: a server and a client. The client sends spawn and position actions to the server, which then forwards these actions to Getgud.io's cloud.
 
 ## Prerequisites
 
 - Unreal Engine installed
 - Visual Studio installed
-- GetGudSDK (Ensure you have the required credentials: `titleId` and `privateKey`)
+- GetgudSDK (Ensure you have the required credentials: `titleId` and `privateKey`)
 
 ## Project Setup
 
@@ -16,25 +16,26 @@ The `Client_Server_GetGud` project demonstrates how to integrate the GetGudSDK w
 
 1. Open Unreal Engine.
 2. Create a new FirstPerson project with C++ and Starter Content enabled.
-3. Name the project `Client_Server_GetGud`.
+3. Name the project `Client_Server_Getgud`.
 
-### 2. Integrate GetGudSDK Files
+### 2. Integrate GetgudSDK Files
 
-1. Upload the provided repository files to the root folder of the `Client_Server_GetGud` project.
+1. Upload the provided repository files to the root folder of the `Client_Server_Getgud` project.
 2. Replace any existing files when prompted.
-3. You will end up with the following file structure, notice `include` and `src` folders in ThirdParty folder:
+3. Delete GetgudSDK_C.cpp and GetgudSDK_C.h from `include` and `src` folders.
+4. You will end up with the following file structure, notice `include` and `src` folders in ThirdParty folder:
 
 ```
-Client_Server_GetGud
+Client_Server_Getgud
 +---Plugins
-|   \---GetGudSDK
-|       |   GetGudSDK.uplugin
+|   \---GetgudSDK
+|       |   GetgudSDK.uplugin
 |       |
 |       \---Source
-|           \---GetGudSDKModule
-|               |   GetGudSDKModule.Build.cs
-|               |   GetGudSDKModule.cpp
-|               |   GetGudSDKModule.h
+|           \---GetgudSDKModule
+|               |   GetgudSDKModule.Build.cs
+|               |   GetgudSDKModule.cpp
+|               |   GetgudSDKModule.h
 |               |
 |               \---ThirdParty
 |                   +---include
@@ -42,31 +43,31 @@ Client_Server_GetGud
 |                   \---src
 |
 +---Source
-|   |   Client_Server_GetGud.Target.cs
-|   |   Client_Server_GetGudEditor.Target.cs
-|   |   Client_Server_GetGudServer.Target.cs
+|   |   Client_Server_Getgud.Target.cs
+|   |   Client_Server_GetgudEditor.Target.cs
+|   |   Client_Server_GetgudServer.Target.cs
 |   |
-|   \---Client_Server_GetGud
-|           Client_Server_GetGud.Build.cs
-|           Client_Server_GetGud.cpp
-|           Client_Server_GetGud.h
-|           Client_Server_GetGudCharacter.cpp
-|           Client_Server_GetGudCharacter.h
-|           Client_Server_GetGudGameMode.cpp
-|           Client_Server_GetGudGameMode.h
-|           Client_Server_GetGudPlayerController.cpp
-|           Client_Server_GetGudPlayerController.h
-|           Client_Server_GetGudProjectile.cpp
-|           Client_Server_GetGudProjectile.h
-|           GetGudInstance.cpp
-|           GetGudInstance.h
+|   \---Client_Server_Getgud
+|           Client_Server_Getgud.Build.cs
+|           Client_Server_Getgud.cpp
+|           Client_Server_Getgud.h
+|           Client_Server_GetgudCharacter.cpp
+|           Client_Server_GetgudCharacter.h
+|           Client_Server_GetgudGameMode.cpp
+|           Client_Server_GetgudGameMode.h
+|           Client_Server_GetgudPlayerController.cpp
+|           Client_Server_GetgudPlayerController.h
+|           Client_Server_GetgudProjectile.cpp
+|           Client_Server_GetgudProjectile.h
+|           GetgudInstance.cpp
+|           GetgudInstance.h
 |           TP_PickUpComponent.cpp
 |           TP_PickUpComponent.h
 |           TP_WeaponComponent.cpp
 |           TP_WeaponComponent.h
 |
 \---ThirdParty
-    \---GetGudSDK
+    \---GetgudSDK
         \---include <----------------
 ```
 
@@ -80,7 +81,7 @@ Client_Server_GetGud
 1. In Visual Studio, navigate to `Project -> Properties -> Debugging`.
 2. Update the `Command Arguments` field with the following:
    ```
-   "$(SolutionDir)Client_Server_GetGud.uproject" -log -server -NoGraphics -port=7777
+   "$(SolutionDir)Client_Server_Getgud.uproject" -log -server -NoGraphics -port=7777
    ```
 
 ### 5. Add Config and Log file paths
@@ -132,7 +133,7 @@ export GETGUD_LOG_FILE_PATH=/path/to/your/logs.txt
 ### 6. Run the Project
 
 1. Run the project in debug mode using Visual Studio.
-2. Open another instance of UE and load the `Client_Server_GetGud` project.
+2. Open another instance of UE and load the `Client_Server_Getgud` project.
 3. Run the project.
 
 ### 7. Connect to the Server
@@ -152,7 +153,7 @@ export GETGUD_LOG_FILE_PATH=/path/to/your/logs.txt
 
 ### Configuration
 
-In your code, configure the GetGudSDK with your credentials:
+In your code, configure the GetgudSDK with your credentials:
 
 ```cpp
 	// Start a Game:
@@ -170,7 +171,7 @@ The server handles movement and spawn actions through RPC functions.
 
 #### Movement Handling
 
-In `Client_Server_GetGudCharacter.h`, declare the server RPC functions:
+In `Client_Server_GetgudCharacter.h`, declare the server RPC functions:
 
 ```cpp
 // Server RPC for handling movement
@@ -182,10 +183,10 @@ UFUNCTION(Server, Reliable, WithValidation)
 void ServerRemoteSpawn(const FInputActionValue& Value);
 ```
 
-Implement these functions in `Client_Server_GetGudCharacter.cpp`:
+Implement these functions in `Client_Server_GetgudCharacter.cpp`:
 
 ```cpp
-void AClient_Server_GetGudCharacter::ServerRemoteMove_Implementation(const FInputActionValue& Value)
+void AClient_Server_GetgudCharacter::ServerRemoteMove_Implementation(const FInputActionValue& Value)
 {
 	// Handle the movement on the server
 	//Move(Value); // Call the local move function
@@ -211,7 +212,7 @@ void AClient_Server_GetGudCharacter::ServerRemoteMove_Implementation(const FInpu
 	delete outAction;
 }
 
-bool AClient_Server_GetGudCharacter::ServerRemoteMove_Validate(const FInputActionValue& Value)
+bool AClient_Server_GetgudCharacter::ServerRemoteMove_Validate(const FInputActionValue& Value)
 {
 	// Add any necessary validation here
 	return true; // Assume validation passes
@@ -221,7 +222,7 @@ bool AClient_Server_GetGudCharacter::ServerRemoteMove_Validate(const FInputActio
 #### Spawn Handling
 
 ```cpp
-void AClient_Server_GetGudCharacter::ServerRemoteSpawn_Implementation(const FInputActionValue& Value)
+void AClient_Server_GetgudCharacter::ServerRemoteSpawn_Implementation(const FInputActionValue& Value)
 {
 	// Handle the movement on the server
 
@@ -244,7 +245,7 @@ void AClient_Server_GetGudCharacter::ServerRemoteSpawn_Implementation(const FInp
 	delete outAction;
 }
 
-bool AClient_Server_GetGudCharacter::ServerRemoteSpawn_Validate(const FInputActionValue& Value)
+bool AClient_Server_GetgudCharacter::ServerRemoteSpawn_Validate(const FInputActionValue& Value)
 {
 	// Add any necessary validation here
 	return true; // Assume validation passes
@@ -253,25 +254,25 @@ bool AClient_Server_GetGudCharacter::ServerRemoteSpawn_Validate(const FInputActi
 
 ### Initialization of SDK and clean up
 
-The `UGetGudInstance` class handles the SDK initialization. In `UGetGudInstance.cpp`:
+The `UGetgudInstance` class handles the SDK initialization. In `UGetgudInstance.cpp`:
 
 ```cpp
-void UGetGudInstance::Init()
+void UGetgudInstance::Init()
 {
     Super::Init();
 
     if (GetWorld()->IsNetMode(NM_DedicatedServer) || GetWorld()->IsNetMode(NM_ListenServer))
     {
-        UE_LOG(LogTemp, Warning, TEXT("GetGud SDK initialized."));
+        UE_LOG(LogTemp, Warning, TEXT("Getgud SDK initialized."));
         GetgudSDK::Init();
     }
 }
 
-UGetGudInstance::~UGetGudInstance()
+UGetgudInstance::~UGetgudInstance()
 {
     if (GetWorld() && (GetWorld()->IsNetMode(NM_DedicatedServer) || GetWorld()->IsNetMode(NM_ListenServer)))
     {
-        UE_LOG(LogTemp, Warning, TEXT("GetGud SDK disposed."));
+        UE_LOG(LogTemp, Warning, TEXT("Getgud SDK disposed."));
         GetgudSDK::Dispose();
     }
 }
@@ -280,12 +281,12 @@ UGetGudInstance::~UGetGudInstance()
 
 ### Create a game and match
 
-The `Client_Server_GetGudPlayerController` class manages the games and matches.
+The `Client_Server_GetgudPlayerController` class manages the games and matches.
 For example, each player has its own game and match.
 In this case, a game and match are starting once a character connected:
 
 ```cpp
-void AClient_Server_GetGudPlayerController::ServerRemoteGameAndMapStart_Implementation()
+void AClient_Server_GetgudPlayerController::ServerRemoteGameAndMapStart_Implementation()
 {
 
 	std::string serverGuid = "us-west-1";
@@ -306,10 +307,10 @@ void AClient_Server_GetGudPlayerController::ServerRemoteGameAndMapStart_Implemen
 	);
 
 
-	UE_LOG(LogTemp, Warning, TEXT("GetGud SDK Match started."));
+	UE_LOG(LogTemp, Warning, TEXT("Getgud SDK Match started."));
 }
 
-bool AClient_Server_GetGudPlayerController::ServerRemoteGameAndMapStart_Validate()
+bool AClient_Server_GetgudPlayerController::ServerRemoteGameAndMapStart_Validate()
 {
 	// Add any necessary validation here
 	return true; // Assume validation passes
@@ -319,15 +320,15 @@ bool AClient_Server_GetGudPlayerController::ServerRemoteGameAndMapStart_Validate
 And the Game is finishing completely once the character finish the match:
 
 ```cpp
-void AClient_Server_GetGudPlayerController::ServerRemoteGameEnd_Implementation()
+void AClient_Server_GetgudPlayerController::ServerRemoteGameEnd_Implementation()
 {
 	//int martResult = MarkEndGame(g_gameGuid, 36);
 	GetgudSDK::MarkEndGame(g_gameGuid);
 
-	UE_LOG(LogTemp, Warning, TEXT("GetGud SDK Game finish."));
+	UE_LOG(LogTemp, Warning, TEXT("Getgud SDK Game finish."));
 }
 
-bool AClient_Server_GetGudPlayerController::ServerRemoteGameEnd_Validate()
+bool AClient_Server_GetgudPlayerController::ServerRemoteGameEnd_Validate()
 {
 	// Add any necessary validation here
 	return true; // Assume validation passes
@@ -357,4 +358,4 @@ if (IsLocallyControlled()) // Ensure this is the local client
 
 ## Conclusion
 
-Following this guide, you should have successfully integrated the GetGudSDK into your UE project. By setting up the server-client architecture and implementing the necessary RPC functions, you can efficiently handle and test actions like movement and spawning within the UE environment.
+Following this guide, you should have successfully integrated the GetgudSDK into your UE project. By setting up the server-client architecture and implementing the necessary RPC functions, you can efficiently handle and test actions like movement and spawning within the UE environment.
