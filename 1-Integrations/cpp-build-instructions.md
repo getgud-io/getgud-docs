@@ -48,10 +48,19 @@ Congrats, SDK is built! You will mostly need `getgudsdk.a` and `getguddsk.so` fi
 - [make, available through Visual Studio](https://visualstudio.microsoft.com/downloads/)
 - x64 Native Tools Command Prompt, available through Visual Studio
 
+<b>[IMPORTANT]</b> All commands should run in **x64 Native Tools Command Prompt**
+
 First we need to build libcurl and zlib which are used inside SDK
 
 ### libcurl
-From the root directroty of libcurl
+
+Go to libcurl directory
+
+```bash
+cd cpp-getgud-sdk-dev\libs\libcurl
+```
+
+Build libcurl
 ```bash
 set RTLIBCFG=static
 call .\buildconf.bat
@@ -61,21 +70,33 @@ call nmake /f Makefile.vc mode=static vc=17 debug=no
 ```
 
 ### zlib
-From the root directroty of zlib
+
+Go to zlib directory
+
 ```bash
-	call nmake /f win32/Makefile.msc
+cd cpp-getgud-sdk-dev\libs\zlib
+```
+
+Build zlib
+```bash
+call nmake /f win32/Makefile.msc
 ```
 
 Now that we have build libraries that we need, let's build SDK itself.
-This build sdk .lib file
+Go to SDK root folder:
+```bash
+cd cpp-getgud-sdk-dev
+```
+
+Build SDK DLL file:
+
 ```bash
 cmake -DDLL_BUILD:STRING=False ..
 cmake --build .
 cmake --build . --config Release
 ```
 
-And this builds sdk .dll file
-Rm all from build folder except _build
+Remove all from `cpp-getgud-sdk-dev/build` folder except _build
 
 ```bash
 cmake -DDLL_BUILD:STRING=True ..
@@ -83,7 +104,7 @@ cmake --build .
 cmake --build . --config Release
 ```
 
-Congrats, SDK is built! You will mostly need `getgudsdk.a` and `getguddsk.so` files for Linux. Sometime you will also need to use build files for zlib and libcurl that we created
+Congrats, SDK is built! 
 
 ## Build for Unreal Engine
 
