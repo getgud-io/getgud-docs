@@ -45,7 +45,8 @@ Congrats, SDK is built! You will mostly need `getgudsdk.a` and `getguddsk.so` fi
 
 ### Requirements:
 - [CMake](https://cmake.org/download/)
-- [nmake,through Visual Studio](https://visualstudio.microsoft.com/downloads/)
+- [make, available through Visual Studio](https://visualstudio.microsoft.com/downloads/)
+- x64 Native Tools Command Prompt, available through Visual Studio
 
 First we need to build libcurl and zlib which are used inside SDK
 
