@@ -43,7 +43,7 @@ cd libs/libcurl/
 ```
 If you do not need release build you can remove the last ./configure command
 
-Next do from the each building folder
+Next do
 ```bash
 make
 make install
