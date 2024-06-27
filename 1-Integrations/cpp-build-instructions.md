@@ -30,7 +30,7 @@ cd cpp-getgud-sdk-dev
 Before building install all required libraries
 ```
 sudo apt update
-sudo apt-get install binutils make csh g++ sed gawk autoconf automake autotools-dev shtool libtool curl cmake libssl-dev libpsl-dev
+sudo apt-get install git binutils make csh g++ sed gawk autoconf automake autotools-dev shtool libtool curl cmake libssl-dev libpsl-dev
 ```
 
 To start the build process run our predefined script
