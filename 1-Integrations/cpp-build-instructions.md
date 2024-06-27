@@ -31,15 +31,17 @@ cd cpp-getgud-sdk-dev
 First we need to build libcurl and zlib which are used inside SDK
 
 ### libcurl
+
+! Replace <FULL_PATH_TO_SDK> with path to your cpp sdk folder.
+
 ```bash *Debian*
 sudo apt-get install binutils make csh g++ sed gawk autoconf automake autotools-dev shtool libtool curl cmake
 cd libs/libcurl/
 ./buildconf
-./configure --disable-shared --with-openssl --prefix=FULL_PATH_TO_SDK/libs/libcurl/builds/libcurl-x64-debug-static --enable-debug
-./configure --disable-shared --with-openssl --prefix=FULL_PATH_TO_SDK/libs/libcurl/builds/libcurl-x64-release-static
+./configure --disable-shared --with-openssl --prefix=<FULL_PATH_TO_SDK>/libs/libcurl/builds/libcurl-x64-debug-static --enable-debug
+./configure --disable-shared --with-openssl --prefix=<FULL_PATH_TO_SDK>/libs/libcurl/builds/libcurl-x64-release-static
 ```
 If you do not need release build you can remove the last ./configure command
-Replace `FULL_PATH_TO_SDK` to your full system path to `cpp-getgud-sdk-dev` folder!
 
 Next do from the each building folder
 ```bash
@@ -62,23 +64,26 @@ The build files will appear in the root folder of zlib folder, you will need mos
 
 ### Build SDK
 
+! Replace <FULL_PATH_TO_SDK> with path to your cpp sdk folder.
+
+
 Now that we have build libraries that we need, let's build SDK itself.
 This build sdk .a file
 ```bash
-cmake --no-warn-unused-cli -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++ -SFULL_PATH_TO_SDK -BFULL_PATH_TO_SDK/build -G "Unix Makefiles"
+cmake --no-warn-unused-cli -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++ -SFULL_PATH_TO_SDK -B<FULL_PATH_TO_SDK>/build -G "Unix Makefiles"
 cd build 
-cmake --build FULL_PATH_TO_SDK/build --config Release --target all -j 4 --
+cmake --build <FULL_PATH_TO_SDK>/build --config Release --target all -j 4 --
 ```
 
 And this builds sdk .so file
 Rm all from build folder except _build
 
 ```bash
-cmake --no-warn-unused-cli -DSO_BUILD:BOOL=TRUE -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++ -SFULL_PATH_TO_SDK -BFULL_PATH_TO_SDK/build -G "Unix Makefiles"
-cmake --build FULL_PATH_TO_SDK/build --config Release --target all -j 4 --
+cmake --no-warn-unused-cli -DSO_BUILD:BOOL=TRUE -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++ -SFULL_PATH_TO_SDK -B<FULL_PATH_TO_SDK>/build -G "Unix Makefiles"
+cmake --build <FULL_PATH_TO_SDK>/build --config Release --target all -j 4 --
 ```
 
-Replace `FULL_PATH_TO_SDK` with your full system path to SDK. Example: `/home/admin/cpp-getgud-sdk-dev`
+! Replace `<FULL_PATH_TO_SDK>` with your full system path to SDK. Example: `/home/admin/cpp-getgud-sdk-dev`
 
 Congrats, SDK is built! You will mostly need `getgudsdk.a` and `getguddsk.so` files for Linux. Sometime you will also need to use build files for zlib and libcurl that we created
  
