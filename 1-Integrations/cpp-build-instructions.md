@@ -80,7 +80,7 @@ And this builds sdk .so file
 Rm all from build folder except _build
 
 ```bash
-cmake --no-warn-unused-cli -DSO_BUILD:BOOL=TRUE -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++ -SFULL_PATH_TO_SDK -B<FULL_PATH_TO_SDK>/build -G "Unix Makefiles"
+cmake --no-warn-unused-cli -DSO_BUILD:BOOL=TRUE -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=Release -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++ -S<FULL_PATH_TO_SDK> -B<FULL_PATH_TO_SDK>/build -G "Unix Makefiles"
 cmake --build <FULL_PATH_TO_SDK>/build --config Release --target all -j 4 --
 ```
 
