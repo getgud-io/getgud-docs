@@ -49,6 +49,7 @@ make
 make install
 ```
 The build files will appear in the build folder, you will need mostly `libcurl.a` and `libcurl.so` for Linux!
+Example path to build files is: `libcurl/builds/libcurl-x64-release-static/lib`
 
 
 ### zlib
