@@ -48,7 +48,7 @@ Next do
 make
 make install
 ```
-The build files will appear in the build folder, you will need mostly `libcurl.a` and `libcurl.so` for Linux!
+The build files will appear in the build folder.
 Example path to build files is: `libcurl/builds/libcurl-x64-release-static/lib`
 
 
@@ -60,7 +60,7 @@ make
 make install 
 ```
 
-The build files will appear in the root folder of zlib folder, you will need mostly `zlib.a` and `zlib.so` for Linux! 
+The build files will appear in the root folder of zlib folder.
 
 
 ### Build SDK
