@@ -2,6 +2,13 @@
 
 Getgud C++ SDK allows you to integrate your game with the GetGud platform. Once integrated, you will be able to stream your matches to Getgud's cloud, as well as to send reports and update player's data. This is a development repository which contains all our private code for SDK development. This README will include all possible build instructions for different systems. To check all SDK functions and how it works you can visit one of the client repos with the docs.
 
+
+Before you start clone Getgud SDK repo **recursively**
+```
+git clone https://github.com/getgud-io/cpp-getgud-sdk-dev --recursive
+cd cpp-getgud-sdk-dev
+```
+
 ## Table of Contents
 
 - [Build for Linux](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/cpp-build-instructions.md#build-for-linux)
@@ -26,8 +33,7 @@ First we need to build libcurl and zlib which are used inside SDK
 ### libcurl
 ```bash *Debian*
 sudo apt-get install binutils make csh g++ sed gawk autoconf automake autotools-dev shtool libtool curl cmake
-git clone https://github.com/getgud-io/cpp-getgud-sdk-dev --recursive
-cd cpp-getgud-sdk-dev/libs/libcurl/
+cd libs/libcurl/
 ./buildconf
 ./configure --disable-shared --with-openssl --prefix=FULL_PATH_TO_SDK/libs/libcurl/builds/libcurl-x64-debug-static --enable-debug
 ./configure --disable-shared --with-openssl --prefix=FULL_PATH_TO_SDK/libs/libcurl/builds/libcurl-x64-release-static
