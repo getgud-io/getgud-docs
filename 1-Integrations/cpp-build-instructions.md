@@ -25,7 +25,6 @@ cd cpp-getgud-sdk-dev
 - libcurl development tools
 - libssl
 - libcrypto
-- zlib
 - openssl development tools
 
 Before building make sure you have all required libraries installed
@@ -46,8 +45,6 @@ Congrats, SDK is built! You will mostly need `getgudsdk.a` and `getguddsk.so` fi
 
 ### Requirements:
 - CMake 3.18
-- libcurl
-- zlib
 
 First we need to build libcurl and zlib which are used inside SDK
 
