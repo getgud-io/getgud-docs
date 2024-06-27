@@ -28,6 +28,12 @@ cd cpp-getgud-sdk-dev
 - zlib
 - openssl development tools
 
+Before building make sure you have all required libraries installed
+```
+sudo apt update
+sudo apt-get install binutils make csh g++ sed gawk autoconf automake autotools-dev shtool libtool curl cmake libssl-dev libpsl-dev
+```
+
 To start the build process run our predefined script
 ```
 cd cpp-getgud-sdk-dev
