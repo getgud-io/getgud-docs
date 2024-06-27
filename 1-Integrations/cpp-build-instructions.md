@@ -88,23 +88,15 @@ Go to SDK root folder:
 cd cpp-getgud-sdk-dev
 ```
 
-Build SDK DLL file:
+Build SDK:
 
 ```bash
-cmake -DDLL_BUILD:STRING=False ..
+cmake -DDLL_BUILD:STRING=True .
 cmake --build .
 cmake --build . --config Release
 ```
 
-Remove all from `cpp-getgud-sdk-dev/build` folder except _build
-
-```bash
-cmake -DDLL_BUILD:STRING=True ..
-cmake --build .
-cmake --build . --config Release
-```
-
-Congrats, SDK is built! 
+Congrats, SDK is built! Your build files should be located in `_build` folder.
 
 ## Build for Unreal Engine
 
