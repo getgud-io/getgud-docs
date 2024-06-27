@@ -35,7 +35,7 @@ First we need to build libcurl and zlib which are used inside SDK
 ! Replace <FULL_PATH_TO_SDK> with path to your cpp sdk folder.
 
 ```bash *Debian*
-sudo apt-get install binutils make csh g++ sed gawk autoconf automake autotools-dev shtool libtool curl cmake
+sudo apt-get install binutils make csh g++ sed gawk autoconf automake autotools-dev shtool libtool curl cmake libssl-dev
 cd libs/libcurl/
 ./buildconf
 ./configure --disable-shared --with-openssl --prefix=<FULL_PATH_TO_SDK>/libs/libcurl/builds/libcurl-x64-debug-static --enable-debug
