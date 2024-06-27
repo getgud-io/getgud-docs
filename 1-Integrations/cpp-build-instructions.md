@@ -19,7 +19,7 @@ cd cpp-getgud-sdk-dev
 ## Build for Linux
 
 ### Requirements:
-- CMake 3.18
+- CMake
 - make
 - gcc and g++
 - libcurl development tools
