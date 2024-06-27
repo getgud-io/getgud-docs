@@ -35,8 +35,8 @@ sudo apt-get install git binutils make csh g++ sed gawk autoconf automake autoto
 
 To start the build process run our predefined script
 ```
-cd cpp-getgud-sdk-dev
-sh tools/linuxbuild_so.sh
+cd ./cpp-getgud-sdk-dev/tools
+sh linuxbuild_so.sh
 ```
 
 Congrats, SDK is built! You will mostly need `getgudsdk.a` and `getguddsk.so` files for Linux.
