@@ -27,7 +27,7 @@ First we need to build libcurl and zlib which are used inside SDK
 ```bash *Debian*
 sudo apt-get install binutils make csh g++ sed gawk autoconf automake autotools-dev shtool libtool curl cmake
 git clone https://github.com/getgud-io/cpp-getgud-sdk-dev --recursive
-cd /cpp-getgud-sdk-dev/libs/libcurl/
+cd cpp-getgud-sdk-dev/libs/libcurl/
 ./buildconf
 ./configure --disable-shared --with-openssl --prefix=FULL_PATH_TO_SDK/libs/libcurl/builds/libcurl-x64-debug-static --enable-debug
 ./configure --disable-shared --with-openssl --prefix=FULL_PATH_TO_SDK/libs/libcurl/builds/libcurl-x64-release-static
