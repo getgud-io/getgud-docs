@@ -50,50 +50,10 @@ Congrats, SDK is built! You will mostly need `getgudsdk.a` and `getguddsk.so` fi
 
 <b>[IMPORTANT]</b> All commands should run in **x64 Native Tools Command Prompt**
 
-First we need to build libcurl and zlib which are used inside SDK
-
-### libcurl
-
-Go to libcurl directory
-
-```bash
-cd cpp-getgud-sdk-dev\libs\libcurl
+To start the build process run our predefined script
 ```
-
-Build libcurl
-```bash
-set RTLIBCFG=static
-call .\buildconf.bat
-cd .\winbuild
-call nmake /f Makefile.vc mode=static vc=17 debug=yes
-call nmake /f Makefile.vc mode=static vc=17 debug=no
-```
-
-### zlib
-
-Go to zlib directory
-
-```bash
-cd cpp-getgud-sdk-dev\libs\zlib
-```
-
-Build zlib
-```bash
-call nmake /f win32/Makefile.msc
-```
-
-Now that we have build libraries that we need, let's build SDK itself.
-Go to SDK root folder:
-```bash
-cd cpp-getgud-sdk-dev
-```
-
-Build SDK:
-
-```bash
-cmake -DDLL_BUILD:STRING=True .
-cmake --build .
-cmake --build . --config Release
+cd ./cpp-getgud-sdk-dev/tools
+winbuild_dll.bat
 ```
 
 Congrats, SDK is built! Your build files should be located in `_build` folder.
