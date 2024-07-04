@@ -56,7 +56,7 @@ cd ./cpp-getgud-sdk-dev/tools
 winbuild_dll.bat
 ```
 
-Congrats, SDK is built! Your build files should be located in `_build` folder.
+Congrats, SDK is built! Your build files should be located in `build/_buid/Release` folder.
 
 ## Build for Unreal Engine
 
