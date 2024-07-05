@@ -65,7 +65,7 @@ To build and integrate for UE follow [this tutorial](https://github.com/getgud-i
 
 ## Build for Unity
 
-<b>Windows</b>: If you are planning to use Getgud SDK Windows follow our [Windows Build](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/cpp-build-instructions.md#build-for-windows) instructions.
+<b>Windows</b>: If you are planning to use Getgud SDK on Windows follow our [Windows Build](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/cpp-build-instructions.md#build-for-windows) instructions.
 
 <b>Linux</b>: If you are planning to use Getgud SDK on Linux:
 
