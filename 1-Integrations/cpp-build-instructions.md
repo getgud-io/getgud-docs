@@ -65,7 +65,21 @@ To build and integrate for UE follow [this tutorial](https://github.com/getgud-i
 
 ## Build for Unity
 
-1. To build and integrate for Unity you should build SDK for your Windows/Linux server as described in our tutorials.
-2. Integrate SDK build files into Unity as described in [this tutorial](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/Unity/unity-integration.md)
+<b>Windows</b>: If you are planning to use Getgud SDK Windows follow our [Windows Build](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/cpp-build-instructions.md#build-for-windows) instructions.
 
+<b>Linux</b>: If you are planning to use Getgud SDK on Linux:
+
+Before building install all required libraries
+```
+sudo apt update
+sudo apt-get install git binutils make csh g++ sed gawk autoconf automake autotools-dev shtool libtool curl cmake libssl-dev libpsl-dev
+```
+
+To start the build process run our predefined script
+```
+cd ./cpp-getgud-sdk-dev/tools
+sh linux_so_Unity_UE.sh
+```
+
+Once you have built SDK follow this [Unity integration](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/Unity/unity-integration.md) tutorial.
 
