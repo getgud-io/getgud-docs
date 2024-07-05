@@ -9,8 +9,11 @@ We will create Client and Server Unity projects using SimpleFPS, focusing on int
 ## Integration
 
 1. Create "Client" and "Server" Unity projects in Unity Hub using the `Universal 3D Sample` template.
+   
 2. After creating the projects, delete the `Assets`, `Packages`, and `ProjectSettings` folders in each project. Replace them with folders from the [Getgud Unity example](https://github.com/getgud-io/cpp-getgud-sdk-dev/tree/main/examples/unity).
+
 3. Place your Getgud SDK build file into the `Server/Assets/Plugins/GetgudSDK/` folder.
+
 4. Create a Getgud `config.json` file in the `Server/` folder. Paste the following default configuration into `config.json`:
 
 ```json
@@ -47,7 +50,13 @@ We will create Client and Server Unity projects using SimpleFPS, focusing on int
   "logLevel": "FULL"
 }
 ```
+
 5. Find the list of supported actions in C# in the `Assets/Plugins/GetgudSDK/GetgudSDK_calls.cs` file.
+
 6. Initialize GetgudSDK using `GetgudSDK.Methods.Init()`. Call this method at server start in `Assets/Scripts/Multiplayer/NetworkManager.cs`.
+
 7. When the game and match start, call `GetgudSDK.Methods.StartGame()` and `GetgudSDK.Methods.StartMatch()` with the appropriate parameters. In this example, these methods are called when the server starts in `Assets/Scripts/Multiplayer/NetworkManager.cs`.
+
 8. To send player actions, use the appropriate GetgudSDK commands. In this example, we call `GetgudSDK.Methods.SendSpawnAction` and `GetgudSDK.Methods.SendPositionAction`. The spawn action is called [here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/Player.cs#L157C30-L157C45), and the position action is called [here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/PlayerMovement.cs#L165).
+
+9. Send [other SDK commands](https://github.com/getgud-io/getgud-docs/blob/main/sdk-commands.md) in a similar way according to your needs. 
