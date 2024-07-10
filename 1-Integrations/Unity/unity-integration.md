@@ -59,4 +59,22 @@ We will create Client and Server Unity projects using SimpleFPS, focusing on int
 
 8. To send player actions, use the appropriate GetgudSDK commands. In this example, we call `GetgudSDK.Methods.SendSpawnAction` and `GetgudSDK.Methods.SendPositionAction`. The spawn action is called [here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/Player.cs#L157C30-L157C45), and the position action is called [here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/PlayerMovement.cs#L165).
 
-9. Send [other SDK commands](https://github.com/getgud-io/getgud-docs/blob/main/sdk-commands.md) in a similar way according to your needs. 
+9. Getgud requires you to send your angle coordinates in a [specific way](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/getgud-sdk-angles-tutorial.md). We integrated required transformations to send angles to Getgud, [see here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/PlayerMovement.cs#L151).
+
+    ```
+     // Neccessary adjustments for GetgudSDK around angles
+     // See getgud docs
+     // Swap pitch and yaw as required by the SDK
+     float temp = pitch;
+     pitch = yaw;
+     yaw = temp;
+
+     // Getgud most upward yaw angle is -89, most down yaw angle is 89.
+     // we need to change sign in unity
+     yaw = -yaw;
+
+     // same with pitch. we need to reverse unity pitch to match Getgud format
+     pitch = -pitch;
+    ```
+
+11. Send [other SDK commands](https://github.com/getgud-io/getgud-docs/blob/main/sdk-commands.md) in a similar way according to your needs. 
