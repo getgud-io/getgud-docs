@@ -23,7 +23,9 @@ The `Client_Server_Getgud` project demonstrates how to integrate the GetgudSDK w
 1. Clone Getgud repository `git clone https://github.com/getgud-io/cpp-getgud-sdk-dev.git`
 2. Copy `cpp-getgud-sdk-dev/examples/unreal-engine-5/Client_Server_Getgud/*` to your project folder.
 3. After copy operation you should have `Plugins`, `ThirdParty` folders, content of `Source` folder will be rewritten after copy.
-4. Delete GetgudSDK_C.cpp and GetgudSDK_C.h from `include` and `src` folders.
+4. Copy `cpp-getgud-sdk-dev/include` into `Client_Server_Getgud/ThirdParty/GetgudSDK/include` folder.
+5. Copy `cpp-getgud-sdk-dev/include` and `cpp-getgud-sdk-dev/source` into `GetgudSDK/Source/GetgudSDKModule/ThirdParty` folder.
+6. Delete GetgudSDK_C.cpp and GetgudSDK_C.h from `include` and `src` folders.
 
 
 ### 3. Build the Project
