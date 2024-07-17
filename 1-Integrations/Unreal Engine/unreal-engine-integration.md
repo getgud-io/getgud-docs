@@ -28,6 +28,7 @@ The `Client_Server_Getgud` project demonstrates how to integrate the GetgudSDK w
 6. Delete the following files as they will prevent UE5 from building the code.
    - `Client_Server_Getgud/ThirdParty/GetgudSDK/include/include/GetgudSDK_C.h`
    - `Client_Server_Getgud/Plugins/GetgudSDK/Source/GetgudSDKModule/ThirdParty/include/GetgudSDK_C.h`
+   - `Client_Server_Getgud/Plugins/GetgudSDK/Source/GetgudSDKModule/ThirdParty/src/GetgudSDK_C.cpp`
 
 
 ### 3. Build the Project
