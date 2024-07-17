@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The `Client_Server_Getgud` project demonstrates how to integrate the GetgudSDK with Unreal Engine (UE) using a C++ based API. The project consists of two parts: a server and a client. The client sends spawn and position actions to the server, which then forwards these actions to Getgud.io's cloud.
+The `Client_Server_Getgud` project demonstrates how to integrate the GetgudSDK with Unreal Engine 5 (UE5) using a C++ based API. The project consists of two parts: a server and a client. The client sends spawn and position actions to the server, which then forwards these actions to Getgud.io's cloud.
 
 ## Prerequisites
 
@@ -17,15 +17,13 @@ The `Client_Server_Getgud` project demonstrates how to integrate the GetgudSDK w
 1. Open Unreal Engine.
 2. Create a new FirstPerson project with C++ and Starter Content enabled.
 3. Name the project `Client_Server_Getgud`. It is important to keep the project name **as is**!
-4. Create folders `Client_Server_Getgud/Plugins` and `Client_Server_Getgud/ThirdParty`
 
 ### 2. Integrate GetgudSDK Files
 
 1. Clone Getgud repository `git clone https://github.com/getgud-io/cpp-getgud-sdk-dev.git`
-
-1. Upload the provided repository files to the root folder of the `Client_Server_Getgud` project. It is important to keep project name **as is**!
-2. Replace any existing files when prompted.
-3. Delete GetgudSDK_C.cpp and GetgudSDK_C.h from `include` and `src` folders.
+2. Copy `cpp-getgud-sdk-dev/examples/unreal-engine-5/Client_Server_Getgud/*` to your project folder.
+3. After copy operation you should have `Plugins`, `ThirdParty` folders, content of `Source` folder will be rewritten after copy.
+4. Delete GetgudSDK_C.cpp and GetgudSDK_C.h from `include` and `src` folders.
 
 
 ### 3. Build the Project
