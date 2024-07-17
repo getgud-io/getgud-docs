@@ -33,7 +33,7 @@ The `Client_Server_Getgud` project demonstrates how to integrate the GetgudSDK w
 
 ### 3. Build the Project
 
-1. Open the project in Visual Studio.
+1. Open the project sln file `Client_Server_Getgud.sln` in Visual Studio.
 2. Build the project to ensure all dependencies and files are correctly integrated.
 
 ### 4. Update Project Properties
