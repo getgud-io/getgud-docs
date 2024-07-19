@@ -34,7 +34,7 @@ The `Client_Server_Getgud` project demonstrates how to integrate the GetgudSDK w
 ### 3. Build the Project
 
 1. Open the project sln file `Client_Server_Getgud.sln` in Visual Studio.
-2. Make sure you set up `title_id` and `private_key` variables.
+2. Make sure you set up `title_id` and `private_key` variables [here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unreal-engine-5/Client_Server_Getgud/Source/Client_Server_GetGud/Client_Server_GetgudPlayerController.cpp#L51)
 3. Build the project to ensure all dependencies and files are correctly integrated.
 
 ### 4. Update Project Properties
@@ -94,12 +94,12 @@ export GETGUD_LOG_FILE_PATH=/path/to/your/logs.txt
 ### 6. Run the Project
 
 1. Run the project in debug mode using Visual Studio.
-2. Open another instance of UE and load the `Client_Server_Getgud` project.
+2. Open UE5 and load the `Client_Server_Getgud` project.
 3. Run the project.
 
 ### 7. Connect to the Server
 
-1. In the new UE instance, open the console command (`~` key).
+1. In the UE5, open the console command (`~` key).
 2. Connect to the server using the command:
    ```
    open 127.0.0.1:7777
