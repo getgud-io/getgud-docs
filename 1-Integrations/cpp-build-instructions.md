@@ -9,6 +9,7 @@ git clone https://github.com/getgud-io/cpp-getgud-sdk-dev --recursive
 cd cpp-getgud-sdk-dev
 ```
 
+<b>[IMPORTANT]</b> When Getgud SDK is running it depends on libcurl and zlib, make sure they are installed on the system.
 ## Table of Contents
 
 - [Build for Linux](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/cpp-build-instructions.md#build-for-linux)
