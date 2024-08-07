@@ -53,13 +53,27 @@ We will create Client and Server Unity projects using SimpleFPS, focusing on int
 
 5. Find the list of supported actions in C# in the `Assets/Plugins/GetgudSDK/GetgudSDK_calls.cs` file.
 
-6. Initialize GetgudSDK using `GetgudSDK.Methods.Init()`. Call this method at server start in `Assets/Scripts/Multiplayer/NetworkManager.cs`.
+6. Initialize GetgudSDK using `GetgudSDK.Methods.InitConfPath(configFullPath)`. Call this method at server start in `Assets/Scripts/Multiplayer/NetworkManager.cs`. Make sure you specify full file path to config file.
 
 7. When the game and match start, call `GetgudSDK.Methods.StartGame()` and `GetgudSDK.Methods.StartMatch()` with the appropriate parameters. In this example, these methods are called when the server starts in `Assets/Scripts/Multiplayer/NetworkManager.cs`.
 
-8. To send player actions, use the appropriate GetgudSDK commands. In this example, we call `GetgudSDK.Methods.SendSpawnAction` and `GetgudSDK.Methods.SendPositionAction`. The spawn action is called [here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/Player.cs#L157C30-L157C45), and the position action is called [here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/PlayerMovement.cs#L165).
+Make sure to provide your `TITLE_ID` and `PRIVATE_KEY` which you received from Getgud.io dashboard on StartGame method.
+```
+  StartGameInfo gameInfo = new StartGameInfo
+        {
+            TitleId = 219, // Use your actual TitleId
+            PrivateKey = "private-key", // Use your actual private key
+            ServerGuid = "example-server-guid",
+            GameMode = "example-game-mode",
+            ServerLocation = "example-server-location"
+        };
 
-9. Getgud requires you to send your angle coordinates in a [specific way](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/getgud-sdk-angles-tutorial.md). We integrated required transformations to send angles to Getgud, [see here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/PlayerMovement.cs#L151).
+        int gameResult = GetgudSDK.Methods.StartGame(gameInfo, out string gameGuid);
+```
+
+9. To send player actions, use the appropriate GetgudSDK commands. In this example, we call `GetgudSDK.Methods.SendSpawnAction` and `GetgudSDK.Methods.SendPositionAction`. The spawn action is called [here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/Player.cs#L157C30-L157C45), and the position action is called [here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/PlayerMovement.cs#L165).
+
+10. Getgud requires you to send your angle coordinates in a [specific way](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/getgud-sdk-angles-tutorial.md). We integrated required transformations to send angles to Getgud, [see here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/PlayerMovement.cs#L151).
 
     ```
      // Neccessary adjustments for GetgudSDK around angles
