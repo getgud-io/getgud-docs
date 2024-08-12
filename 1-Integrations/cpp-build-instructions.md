@@ -20,7 +20,7 @@ cd cpp-getgud-sdk-dev
 ## Build for Linux
 
 ### Requirements:
-- CMake
+- CMake version >= 3.22.1
 - make
 - gcc and g++
 - libcurl development tools
@@ -32,6 +32,11 @@ Before building install all required libraries
 ```
 sudo apt update
 sudo apt-get install git binutils make csh g++ sed gawk autoconf automake autotools-dev shtool libtool curl cmake libssl-dev libpsl-dev
+```
+
+Please make sure that the version of your cmake is >= 3.22.1 by using
+```
+cmake --version
 ```
 
 To start the build process run our predefined script
@@ -74,6 +79,11 @@ Before building install all required libraries
 ```
 sudo apt update
 sudo apt-get install git binutils make csh g++ sed gawk autoconf automake autotools-dev shtool libtool curl cmake libssl-dev libpsl-dev
+```
+
+Please make sure that the version of your cmake is >= 3.22.1 by using
+```
+cmake --version
 ```
 
 To start the build process run our predefined script
