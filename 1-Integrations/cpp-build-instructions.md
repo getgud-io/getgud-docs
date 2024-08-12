@@ -38,7 +38,7 @@ Please make sure that the version of your CMake is >= 3.22.1 by using
 ```
 cmake --version
 ```
-If your CMake version is older than >= 3.22.1, update it to a newer version.
+If your CMake version is less than 3.22.1, update it to a newer version.
 
 To start the build process run our predefined script
 ```
@@ -82,11 +82,11 @@ sudo apt update
 sudo apt-get install git binutils make csh g++ sed gawk autoconf automake autotools-dev shtool libtool curl cmake libssl-dev libpsl-dev
 ```
 
-Please make sure that the version of your cmake is >= 3.22.1 by using
+Please make sure that the version of your CMake is >= 3.22.1 by using
 ```
 cmake --version
 ```
-If your CMake version is older than >= 3.22.1, update it to a newer version.
+If your CMake version is less than  3.22.1, update it to a newer version.
 
 To start the build process run our predefined script
 ```
