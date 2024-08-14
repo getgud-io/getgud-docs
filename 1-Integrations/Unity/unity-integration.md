@@ -6,6 +6,13 @@ In this tutorial, we will integrate the GetgudSDK using the [SimpleFPS project](
 
 We will create Client and Server Unity projects using SimpleFPS, focusing on integrating GetgudSDK into the Server Unity project. Before starting, ensure you have built the Getgud SDK by following [this tutorial](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/cpp-build-instructions.md#build-for-unity).
 
+
+[VIDEO: How To Run Unity Example On Windows With Getgud SDK
+](https://www.youtube.com/watch?v=tyX8Oml-ReE)
+
+[VIDEO: How To Run Unity Example On Linux With Getgud SDK
+](https://www.youtube.com/watch?v=LbeZ2FBOPTI)
+
 ## Integration
 
 1. Create "Client" and "Server" Unity projects in Unity Hub using the `Universal 3D Sample` template.
