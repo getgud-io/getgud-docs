@@ -58,9 +58,24 @@ We will create Client and Server Unity projects using SimpleFPS, focusing on int
 }
 ```
 
+You can also take config file from the root of SDK repository. 
+
+Now set the environment variables. 
+
+Use `export` command on Linux:
+```bash
+export GETGUD_CONFIG_PATH=/path/to/your/config.json
+export GETGUD_LOG_FILE_PATH=/path/to/your/logs.txt
+```
+
+Use `setx` /  Environment Variables menu on Windows.
+
 5. Find the list of supported actions in C# in the `Assets/Plugins/GetgudSDK/GetgudSDK_calls.cs` file.
 
-6. Initialize GetgudSDK using `GetgudSDK.Methods.InitConfPath(configFullPath)`. Call this method at server start in `Assets/Scripts/Multiplayer/NetworkManager.cs`. Make sure you specify full file path to config file.
+6. Initialize GetgudSDK.
+   - You can use `GetgudSDK.Methods.InitConfPath(configFullPath)`. Make sure you specify full file path to config file.
+   - You can use `GetgudSDK.Methods.Init()` if you set `GETGUD_CONFIG_PATH` env variable.
+   - Call one of these methods at server start in `Assets/Scripts/Multiplayer/NetworkManager.cs`. 
 
 7. When the game and match start, call `GetgudSDK.Methods.StartGame()` and `GetgudSDK.Methods.StartMatch()` with the appropriate parameters. In this example, these methods are called when the server starts in `Assets/Scripts/Multiplayer/NetworkManager.cs`.
 
@@ -98,4 +113,7 @@ Make sure to provide your `TITLE_ID` and `PRIVATE_KEY` which you received from G
      pitch = -pitch;
     ```
 
-11. Send [other SDK commands](https://github.com/getgud-io/getgud-docs/blob/main/sdk-commands.md) in a similar way according to your needs. 
+11. Send [other SDK commands](https://github.com/getgud-io/getgud-docs/blob/main/sdk-commands.md) in a similar way according to your needs.
+12. Test the integration
+   - Observe the `logs.txt` to ensure that the client and server are communicating correctly.
+   - Verify that actions are being sent to Getgud.io's cloud using dashboard.
