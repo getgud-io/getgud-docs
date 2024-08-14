@@ -37,7 +37,7 @@ The `Client_Server_Getgud` project demonstrates how to integrate the GetgudSDK w
 
 ### 3. Build the Project
 
-1. Open the project sln file `Client_Server_Getgud.sln` in Visual Studio.
+1. Open the project .sln file `Client_Server_Getgud.sln` in Visual Studio.
 2. Make sure you set up `title_id` and `private_key` variables [here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unreal-engine-5/Client_Server_Getgud/Source/Client_Server_GetGud/Client_Server_GetgudPlayerController.cpp#L51)
 3. Build the project to ensure all dependencies and files are correctly integrated.
 
@@ -87,21 +87,30 @@ Create a `config.json` file in your project directory with the following content
   "logLevel": "FULL"
 }
 ```
+You can also take config file from the root of SDK repository. 
 
-Set the environment variables:
+Now set the environment variables.
+
+Use `export` command on Linux:
 ```bash
 export GETGUD_CONFIG_PATH=/path/to/your/config.json
 export GETGUD_LOG_FILE_PATH=/path/to/your/logs.txt
 ```
 
+Use `setx` /  Environment Variables menu on Windows.
 
-### 6. Run the Project
+### 6. Run Visual Studio project by clicking `Local Windows Debugger` button.
 
-1. Run the project in debug mode using Visual Studio.
-2. Open UE5 and load the `Client_Server_Getgud` project.
-3. Run the project.
+### 7. Open UE5 and load the `Client_Server_Getgud` project.
 
-### 7. Connect to the Server
+### 8. Adjust settings in UE5.
+
+1. In Edit -> Project Settings -> Maps & Modes: Set <b>Game Instance Class</b> to `GetgudInstance`
+2. In Edit -> Project Settings -> Maps & Modes: Set <b>Server Default Map</b> to `FirstPersonMap`
+
+### 9. Start UE5 Project.
+
+### 10. Connect to the Server
 
 1. In the UE5, open the console command (`~` key).
 2. Connect to the server using the command:
@@ -111,9 +120,9 @@ export GETGUD_LOG_FILE_PATH=/path/to/your/logs.txt
 
 ### 8. Test the Integration
 
-1. Observe the logs to ensure that the client and server are communicating correctly.
-2. Verify that actions are being sent to and from the server, and ultimately to Getgud.io's cloud.
+1. Observe the `logs.txt` to ensure that the client and server are communicating correctly.
+2. Verify that actions are being sent to Getgud.io's cloud using dashboard.
 
 ## Conclusion
 
-Following this guide, you should have successfully integrated the GetgudSDK into your UE project. By setting up the server-client architecture and implementing the necessary RPC functions, you can efficiently handle and test actions like movement and spawning within the UE environment.
+Following this guide, you should have successfully integrated the GetgudSDK into UE5 example project.
