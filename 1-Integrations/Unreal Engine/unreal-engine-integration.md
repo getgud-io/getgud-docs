@@ -4,9 +4,7 @@
 
 The `Client_Server_Getgud` project demonstrates how to integrate the GetgudSDK with Unreal Engine 5 (UE5) using a C++ based API. The project consists of two parts: a server and a client. The client sends spawn and position actions to the server, which then forwards these actions to Getgud.io's cloud.
 
-
-[VIDEO: How To Run Unreal Engine 5 Example On Windows With Getgud SDK
-](https://www.youtube.com/watch?v=frgIatPr2yQ)
+[Video Tutorial: How To Run Unreal Engine 5 Example On Windows With Getgud SDK](https://www.youtube.com/watch?v=frgIatPr2yQ)
 
 ## Prerequisites
 
@@ -24,21 +22,20 @@ The `Client_Server_Getgud` project demonstrates how to integrate the GetgudSDK w
 
 ### 2. Integrate GetgudSDK Files
 
-1. Clone Getgud repository `git clone https://github.com/getgud-io/cpp-getgud-sdk-dev.git`
+1. Clone Getgud repository: `git clone https://github.com/getgud-io/cpp-getgud-sdk-dev.git`
 2. Copy `cpp-getgud-sdk-dev/examples/unreal-engine-5/Client_Server_Getgud/*` to your project folder.
-3. After copy operation you should have `Plugins`, `ThirdParty` folders, content of `Source` folder will be rewritten after copy.
+3. After copy operation, you should have `Plugins` and `ThirdParty` folders. The content of the `Source` folder will be rewritten after copy.
 4. Copy `cpp-getgud-sdk-dev/include` folder into `Client_Server_Getgud/ThirdParty/GetgudSDK/include` folder.
 5. Copy `cpp-getgud-sdk-dev/include` and `cpp-getgud-sdk-dev/src` folders into `Client_Server_Getgud/Plugins/GetgudSDK/Source/GetgudSDKModule/ThirdParty` folder.
-6. Delete the following files as they will prevent UE5 from building the code.
+6. Delete the following files as they will prevent UE5 from building the code:
    - `Client_Server_Getgud/ThirdParty/GetgudSDK/include/include/GetgudSDK_C.h`
    - `Client_Server_Getgud/Plugins/GetgudSDK/Source/GetgudSDKModule/ThirdParty/include/GetgudSDK_C.h`
    - `Client_Server_Getgud/Plugins/GetgudSDK/Source/GetgudSDKModule/ThirdParty/src/GetgudSDK_C.cpp`
 
-
 ### 3. Build the Project
 
 1. Open the project .sln file `Client_Server_Getgud.sln` in Visual Studio.
-2. Make sure you set up `title_id` and `private_key` variables [here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unreal-engine-5/Client_Server_Getgud/Source/Client_Server_GetGud/Client_Server_GetgudPlayerController.cpp#L51)
+2. Make sure you set up `title_id` and `private_key` variables [here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unreal-engine-5/Client_Server_Getgud/Source/Client_Server_GetGud/Client_Server_GetgudPlayerController.cpp#L51).
 3. Build the project to ensure all dependencies and files are correctly integrated.
 
 ### 4. Update Project Properties
@@ -49,9 +46,9 @@ The `Client_Server_Getgud` project demonstrates how to integrate the GetgudSDK w
    "$(SolutionDir)Client_Server_Getgud.uproject" -log -server -NoGraphics -port=7777
    ```
 
-### 5. Add Config and Log file paths
+### 5. Add Config and Log File Paths
 
-Create a `config.json` file in your project directory with the following content:
+1. Create a `config.json` file in your project directory with the following content:
 
 ```json
 {
@@ -87,42 +84,47 @@ Create a `config.json` file in your project directory with the following content
   "logLevel": "FULL"
 }
 ```
-You can also take config file from the root of SDK repository. 
 
-Now set the environment variables.
+You can also take the config file from the root of the SDK repository.
 
-Use `export` command on Linux:
+2. Set the environment variables:
+
+For Linux, use the `export` command:
 ```bash
 export GETGUD_CONFIG_PATH=/path/to/your/config.json
 export GETGUD_LOG_FILE_PATH=/path/to/your/logs.txt
 ```
 
-Use `setx` /  Environment Variables menu on Windows.
+For Windows, use `setx` or the Environment Variables menu.
 
-### 6. Run Visual Studio project by clicking `Local Windows Debugger` button.
+### 6. Run Visual Studio Project
 
-### 7. Open UE5 and load the `Client_Server_Getgud` project.
+Click the `Local Windows Debugger` button to run the project.
 
-### 8. Adjust settings in UE5.
+### 7. Open UE5 and Load the Project
 
-1. In Edit -> Project Settings -> Maps & Modes: Set <b>Game Instance Class</b> to `GetgudInstance`
-2. In Edit -> Project Settings -> Maps & Modes: Set <b>Server Default Map</b> to `FirstPersonMap`
+Open UE5 and load the `Client_Server_Getgud` project.
 
-### 9. Start UE5 Project.
+### 8. Adjust Settings in UE5
+
+1. In Edit -> Project Settings -> Maps & Modes: Set **Game Instance Class** to `GetgudInstance`
+2. In Edit -> Project Settings -> Maps & Modes: Set **Server Default Map** to `FirstPersonMap`
+
+### 9. Start UE5 Project
 
 ### 10. Connect to the Server
 
-1. In the UE5, open the console command (`~` key).
+1. In UE5, open the console command (`~` key).
 2. Connect to the server using the command:
    ```
    open 127.0.0.1:7777
    ```
 
-### 8. Test the Integration
+### 11. Test the Integration
 
 1. Observe the `logs.txt` to ensure that the client and server are communicating correctly.
-2. Verify that actions are being sent to Getgud.io's cloud using dashboard.
+2. Verify that actions are being sent to Getgud.io's cloud using the dashboard.
 
 ## Conclusion
 
-Following this guide, you should have successfully integrated the GetgudSDK into UE5 example project.
+Following this guide, you should have successfully integrated the GetgudSDK into the UE5 example project.
