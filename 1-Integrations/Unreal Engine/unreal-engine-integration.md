@@ -6,7 +6,7 @@ The `Client_Server_Getgud` project demonstrates how to integrate the GetgudSDK w
 
 
 [VIDEO: How To Run Unreal Engine 5 Example On Windows With Getgud SDK
-](https://www.youtube.com/embed/frgIatPr2yQ)
+](https://www.youtube.com/watch?v=frgIatPr2yQ)
 
 ## Prerequisites
 
