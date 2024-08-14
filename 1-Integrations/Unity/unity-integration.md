@@ -15,13 +15,16 @@ We will create Client and Server Unity projects using SimpleFPS, focusing on int
 
 ## Integration
 
-1. Create "Client" and "Server" Unity projects in Unity Hub using the `Universal 3D Sample` template.
+### 1. Create "Client" and "Server" Unity projects in Unity Hub using the `Universal 3D Sample` template.
    
-2. After creating the projects, delete the `Assets`, `Packages`, and `ProjectSettings` folders in each project. Replace them with folders from the [Getgud Unity example](https://github.com/getgud-io/cpp-getgud-sdk-dev/tree/main/examples/unity).
+### 2. After creating the projects, delete the `Assets`, `Packages`, and `ProjectSettings` folders in each project. 
+Replace those folders  with folders from the [Getgud Unity example](https://github.com/getgud-io/cpp-getgud-sdk-dev/tree/main/examples/unity).
 
-3. Place your Getgud SDK build file into the `Server/Assets/Plugins/GetgudSDK/` folder.
+### 3. Place your Getgud SDK build file into the `Server/Assets/Plugins/GetgudSDK/` folder.
 
-4. Create a Getgud `config.json` file in the `Server/` folder. Paste the following default configuration into `config.json`:
+### 4. Create a Getgud `config.json` file in the `Server/` folder. 
+
+Paste the following default configuration into `config.json`:
 
 ```json
 {
@@ -70,14 +73,16 @@ export GETGUD_LOG_FILE_PATH=/path/to/your/logs.txt
 
 Use `setx` /  Environment Variables menu on Windows.
 
-5. Find the list of supported actions in C# in the `Assets/Plugins/GetgudSDK/GetgudSDK_calls.cs` file.
+### 5. Find the list of supported actions in C# in the `Assets/Plugins/GetgudSDK/GetgudSDK_calls.cs` file.
 
-6. Initialize GetgudSDK.
-   - You can use `GetgudSDK.Methods.InitConfPath(configFullPath)`. Make sure you specify full file path to config file.
-   - You can use `GetgudSDK.Methods.Init()` if you set `GETGUD_CONFIG_PATH` env variable.
-   - Call one of these methods at server start in `Assets/Scripts/Multiplayer/NetworkManager.cs`. 
+### 6. Initialize GetgudSDK.
+1. You can use `GetgudSDK.Methods.InitConfPath(configFullPath)`. Make sure you specify full file path to config file.
+2. You can use `GetgudSDK.Methods.Init()` if you set `GETGUD_CONFIG_PATH` env variable.
+3.    Call one of these methods at server start in `Assets/Scripts/Multiplayer/NetworkManager.cs`. 
 
-7. When the game and match start, call `GetgudSDK.Methods.StartGame()` and `GetgudSDK.Methods.StartMatch()` with the appropriate parameters. In this example, these methods are called when the server starts in `Assets/Scripts/Multiplayer/NetworkManager.cs`.
+### 7. When the game and match start, call `GetgudSDK.Methods.StartGame()` and `GetgudSDK.Methods.StartMatch()` with the appropriate parameters.
+
+In this example, these methods are called when the server starts in `Assets/Scripts/Multiplayer/NetworkManager.cs`.
 
 Make sure to provide your `TITLE_ID` and `PRIVATE_KEY` which you received from Getgud.io dashboard on StartGame method.
 ```
@@ -93,9 +98,13 @@ Make sure to provide your `TITLE_ID` and `PRIVATE_KEY` which you received from G
         int gameResult = GetgudSDK.Methods.StartGame(gameInfo, out string gameGuid);
 ```
 
-9. To send player actions, use the appropriate GetgudSDK commands. In this example, we call `GetgudSDK.Methods.SendSpawnAction` and `GetgudSDK.Methods.SendPositionAction`. The spawn action is called [here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/Player.cs#L157C30-L157C45), and the position action is called [here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/PlayerMovement.cs#L165).
+### 9. To send player actions, use the appropriate GetgudSDK commands. 
 
-10. Getgud requires you to send your angle coordinates in a [specific way](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/getgud-sdk-angles-tutorial.md). We integrated required transformations to send angles to Getgud, [see here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/PlayerMovement.cs#L151).
+In this example, we call `GetgudSDK.Methods.SendSpawnAction` and `GetgudSDK.Methods.SendPositionAction`. The spawn action is called [here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/Player.cs#L157C30-L157C45), and the position action is called [here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/PlayerMovement.cs#L165).
+
+### 10. Integrate angle coordinates properly
+
+Getgud requires you to send your angle coordinates in a [specific way](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/getgud-sdk-angles-tutorial.md). We integrated required transformations to send angles to Getgud, [see here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/PlayerMovement.cs#L151).
 
     ```
      // Neccessary adjustments for GetgudSDK around angles
@@ -113,7 +122,8 @@ Make sure to provide your `TITLE_ID` and `PRIVATE_KEY` which you received from G
      pitch = -pitch;
     ```
 
-11. Send [other SDK commands](https://github.com/getgud-io/getgud-docs/blob/main/sdk-commands.md) in a similar way according to your needs.
-12. Test the integration
-   - Observe the `logs.txt` to ensure that the client and server are communicating correctly.
-   - Verify that actions are being sent to Getgud.io's cloud using dashboard.
+### 11. Send [other SDK commands](https://github.com/getgud-io/getgud-docs/blob/main/sdk-commands.md) in a similar way according to your needs.
+
+### 12. Test the integration.
+1. Observe the `logs.txt` to ensure that the client and server are communicating correctly.
+2. Verify that actions are being sent to Getgud.io's cloud using dashboard.
