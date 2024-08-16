@@ -123,7 +123,7 @@ Open UE5 and load the `Client_Server_Getgud` project.
 ### 11. Test the Integration
 
 1. Observe the `logs.txt` to ensure that the client and server are communicating correctly.
-2. Verify that actions are being sent to Getgud.io's cloud using the dashboard.
+2. Verify that actions are being sent to Getgud.io's cloud using the dashboard. [This tutorial](https://github.com/getgud-io/getgud-docs/blob/main/2-Platform/get-started-with-dashboard.md) can help you get started with Getgud.io Dashboard.
 
 ## Conclusion
 
