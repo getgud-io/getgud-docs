@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The `Client_Server_Getgud` project demonstrates how to integrate the GetgudSDK with Unreal Engine 5 (UE5) using a C++ based API. The project consists of two parts: a server and a client. The client sends spawn and position actions to the server, which then forwards these actions to Getgud.io's cloud.
+The `Client_Server_Getgud` project demonstrates how to integrate the GetgudSDK with Unreal Engine 5 (UE5) using a C++ based API. The project consists of a server and a client. The client sends spawn and position actions to the server, which then forwards these actions to Getgud.io's cloud.
 
 [Video Tutorial: How To Run Unreal Engine 5 Example On Windows With Getgud SDK](https://www.youtube.com/watch?v=frgIatPr2yQ)
 
