@@ -20,7 +20,7 @@ After creating the projects, delete the `Assets`, `Packages`, and `ProjectSettin
 
 ### 3. Add SDK Build File
 Place your Getgud SDK build file into the `Server/Assets/Plugins/GetgudSDK/` folder.
-To learn how to build Getgud.io SDK you can visit [the SDK build tutorial page](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/cpp-build-instructions.md)
+To learn how to build Getgud.io SDK you can visit [the SDK build tutorial page](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/cpp-build-instructions.md).
 
 ### 4. Create Configuration File
 Create a Getgud `config.json` file in the `Server/` folder with the following content:
