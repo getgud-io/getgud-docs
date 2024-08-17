@@ -1,112 +1,76 @@
-# GetGud Python SDK
+# Getgud.io Python SDK
 
-## What Can You Do With GetGud's SDK
+## What Can You Do With Getgud's SDK:
 
-Getgud Python SDK allows you to integrate your game with the GetGud platform. Once integrated, you will be able to:
-- Stream live game data to GetGud's cloud, including in-match actions, in-match reports, and in-match chat messages.
-- Send Reports about historical matches to GetGud.
-- Send (and update) player information to GetGud.
+Getgud's Python SDK allows you to integrate your game with the Getgud platform. Once integrated, you will be able to:
+
+- Stream live game data to Getgud's cloud, including in-match actions, in-match reports, and in-match chat messages.
+- Send Reports about historical matches to Getgud.
+- Send (and update) player information to Getgud.
 
 ## Getting Started
 
-First, you need to build the SDK for your system. Follow these steps:
+Set the environment variables `GETGUD_TITLE_ID` and `GETGUD_PRIVATE_KEY` with the Title Id and Private Key you received from Getgud.io, or use them as arguments for StartGame. 
 
-1. Install Miniconda by executing the following commands:
-
-   ```bash
-   wget https://repo.anaconda.com/miniconda/Miniconda3-py39_23.3.1-0-Linux-x86_64.sh
-   bash Miniconda3-py39_23.3.1-0-Linux-x86_64.sh
-   source miniconda3/bin/activate
-   conda create -n getgudsdk python=3.11 anaconda
-   conda activate getgudsdk
-   pip install -r requirements.txt
-   ```
-
-   For Windows, you can download Miniconda from [here](https://docs.conda.io/en/latest/miniconda.html).
-
-2. Download the latest Windows or Linux library build files from GetGud's S3 bucket.
-
-3. Run the following command in your terminal to build the library:
-
-   ```bash
-   ln -s libGetGudSdk.so.0 libGetGudSdk.so
-   invoke build-sdk
-   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/path/to/your/python-getgud-sdk
-   ```
-
-   On Windows, add the path to the SDK .pyd file to PYTHONPATH.
-
-4. Set the `LOG_FILE_PATH` and `CONFIG_PATH` environment variables to use the SDK.
-
-Now let's get started with the SDK!
-
-To use the GetGud Python SDK, you need to import the `GetGudSdk` class and other necessary modules:
+First, import the SDK:
 
 ```python
-from getgudsdk_wrapper import GetGudSdk
+from getgudsdk_wrapper import GetgudSDK
 import time
-import random
 ```
 
 Initialize the SDK:
 
 ```python
-sdk = GetGudSdk()
+sdk = GetgudSDK()
 ```
 
 Start a Game:
 
 ```python
-game_guid = sdk.start_game(1, "private_key", "server_guid", "game_mode")
+game_guid = sdk.start_game(
+    title_id=28,
+    private_key="your_private_key",
+    server_guid="cs2-server-1",  # max 36 chars
+    game_mode="deathmatch",  # max 36 chars
+    server_location="203.0.113.42"  # max 36 chars
+)
 ```
 
-Once the Game starts, you can start a Match:
+Once the Game starts, you'll receive the Game's guid, now you can start a Match:
 
 ```python
-match_guid = sdk.start_match(game_guid, "match_mode", "map_name")
+match_guid = sdk.start_match(
+    game_guid=game_guid, 
+    match_mode="Knives-only",  # max 36 chars
+    map_name="de-dust"  # max 36 chars
+)
 ```
 
-Now you can push Actions, Chat Data, and Reports to the Match. Let's push a Spawn Action to this match:
+Once you create a match, you can send Actions to it.
+Let's create a spawn action and send it to the match:
 
 ```python
 action_time_epoch = int(time.time() * 1000)
-player_guid = "player_1"
-character_guid = "ttr"
-position = (1, 2, 3)
-rotation = (10, 20, 30)
-team_id = 1
-initial_health = 100
-
-sdk.send_spawn_action(match_guid, action_time_epoch, player_guid, character_guid, team_id, initial_health, position, rotation)
+sdk.send_spawn_action(
+    match_guid=match_guid,
+    action_time_epoch=action_time_epoch,
+    player_guid="player-10",
+    character_guid="character-1",
+    team_guid="team-1",
+    initial_health=100.0,
+    position=(1.0, 2.0, 3.0),
+    rotation=(10.0, 20.0, 0.0)
+)
 ```
 
-Create one more match and push a report:
+End a game (All Game's Matches will close as well):
 
 ```python
-match_guid = sdk.start_match(game_guid, "deathmatch", "de-mirage")
-
-reporter_name = "player1"
-reporter_type = 0
-reporter_sub_type = 0
-suspected_player_guid = "player1"
-tb_type = 0
-tb_sub_type = 0
-tb_time_epoch = int(time.time() * 1000)
-suggested_toxicity_score = 100
-reported_time_epoch = int(time.time() * 1000)
-
-sdk.send_in_match_report(match_guid, reporter_name, reporter_type, reporter_sub_type, 
-                        suspected_player_guid, tb_type, tb_sub_type, 
-                        tb_time_epoch, suggested_toxicity_score, reported_time_epoch)
+result = sdk.mark_end_game(game_guid)
 ```
 
-Stop the Game:
-
-```python
-sdk.mark_end_game(game_guid)
-```
-
-Finally, dispose of the SDK when you no longer need it:
+Close and Dispose of the SDK:
 
 ```python
 sdk.dispose()
@@ -114,112 +78,233 @@ sdk.dispose()
 
 ## SDK Methods
 
-### start_game
+### __init__()
 
-Starts a new game and returns the `gameGuid`, a unique identifier for the game.
+Initializes the SDK. You can call this method in three ways:
+
+```python
+sdk = GetgudSDK()
+sdk.__init_conf_path__(config_file_path)
+sdk.__init_conf__(config_file, passAsContent)
+```
+
+- The first version uses default configuration.
+- The second version allows you to specify a path to a configuration file.
+- The third version allows you to pass the configuration content directly (if `passAsContent` is True) or as a file path (if `passAsContent` is False).
+
+### start_game(title_id, private_key, server_guid, game_mode, server_location)
+
+Starts a new game and returns the `game_guid`, a unique identifier for the game.
 
 Parameters:
-- `title_id` - The title ID provided by GetGud.io.
+- `title_id` (int) - The title ID provided by Getgud.io.
 - `private_key` (str) - The private key associated with the title ID.
-- `server_name` (str) - A unique name for your game server.
-- `game_mode` (str) - The mode of the game.
+- `server_guid` (str) - A unique name for your game server. Max 36 chars.
+- `game_mode` (str) - The mode of the game. Max 36 chars.
+- `server_location` (str) - The location of the server. Max 36 chars.
 
 Returns:
 - `game_guid` (str) - The unique identifier for the game.
 
-### start_match
+### start_match(game_guid, match_mode, map_name)
 
-Starts a new match within a game and returns the `matchGuid`, a unique identifier for the match.
+Starts a new match within a game and returns the `match_guid`, a unique identifier for the match.
 
 Parameters:
 - `game_guid` (str) - The unique identifier for the game.
-- `match_mode` (str) - The mode of the match.
-- `map_name` (str) - The name of the map for the match.
+- `match_mode` (str) - The mode of the match. Max 36 chars.
+- `map_name` (str) - The name of the map for the match. Max 36 chars.
 
 Returns:
 - `match_guid` (str) - The unique identifier for the match.
 
-### send_action
+### mark_end_game(game_guid)
 
-Sends an action to a match. Actions can include spawn, position, attack, damage, heal, and death.
-
-Parameters:
-- `match_guid` (str) - The unique identifier for the match.
-- `action` (dict) - The action data.
-
-### mark_end_game
-
-Marks a game as ended. This will close the game on the GetGud platform.
+Marks a game as ended. This will close the game on the Getgud platform.
 
 Parameters:
 - `game_guid` (str) - The unique identifier for the game.
 
 Returns:
-- `game_ended` (bool) - Whether the game was successfully closed or not.
+- `result` (int) - The result of the operation (0 for success).
 
-### send_chat_message
-
-Sends a chat message to a match.
-
-Parameters:
-- `match_guid` (str) - The unique identifier for the match.
-- `message_data` (dict) - The chat message data.
-
-### send_in_match_report
+### send_in_match_report(match_guid, reporter_name, reporter_type, reporter_sub_type, suspected_player_guid, tb_type, tb_time_epoch, suggested_toxicity_score, reported_time_epoch)
 
 Sends a report for a match.
 
 Parameters:
-- `match_guid` (str) - The unique identifier for the match.
-- `reported_time_epoch` (int) - epoch time of when the report was created
-- `reporter_name` (str) - the name of the entity that created the report
-- `reporter_type` (int) - the type of the entity that created the report
-- `reporter_sub_type` (int) -   the subtype of the entity that created the report
-- `suggested_toxicity_score` (int) - 0-100 toxicity score, ie: how much do you suspect the player
-- `suspected_player_id` (int) - the player Id of the suspected player
-- `tb_type` (int) - id of the toxic behavior type, for example, Aimbot
-- `tb_time_epoch` (int) - epoch time of when the toxic behavior event occured
-
-### send_report
-
-Send report which are outside of the live match.
-
-Parameters:
-- `match_guid` (str) - The unique identifier for the match.
-- `reported_time_epoch` (int) - epoch time of when the report was created
-- `reporter_name` (str) - the name of the entity that created the report
-- `reporter_type` (int) - the type of the entity that created the report
-- `reporter_sub_type` (int) -   the subtype of the entity that created the report
-- `suggested_toxicity_score` (int) - 0-100 toxicity score, ie: how much do you suspect the player
-- `suspected_player_id` (int) - the player Id of the suspected player
-- `tb_type` (int) - id of the toxic behavior type, for example, Aimbot
-- `tb_time_epoch` (int) - epoch time of when the toxic behavior event occured
-
-### update_player
-
-Update player info outside of the live match.
-
-Parameters:
-- `title_id` (int) - The title ID provided by GetGud.io (optional if using environment variables).
-- `private_key` (str) - The private key associated with the title ID (optional if using environment variables).
-- `player_guid` (str) - Your player Id - String, 36 chars max.
-- `player_nickname` (str) - Nickname of the player.
-- `player_email` (str) - Email of the player.
-- `player_rank` (int) - Rank of the player.
-- `player_join_date_epoch` (int) - Date when the player joined.
+- `match_guid` (str) - The unique identifier for the match. Max 36 chars.
+- `reporter_name` (str) - The name of the entity that created the report. Max 36 chars.
+- `reporter_type` (int) - The type of the entity that created the report.
+- `reporter_sub_type` (int) - The subtype of the entity that created the report.
+- `suspected_player_guid` (str) - The player Id of the suspected player. Max 36 chars.
+- `tb_type` (int) - Id of the toxic behavior type, for example, Aimbot.
+- `tb_time_epoch` (int) - Epoch time of when the toxic behavior event occurred.
+- `suggested_toxicity_score` (int) - 0-100 toxicity score, i.e., how much you suspect the player.
+- `reported_time_epoch` (int) - Epoch time of when the report was created.
 
 Returns:
-- `players_updated` (bool) - Whether the player information was successfully updated or not.
+- `result` (int) - The result of the operation (0 for success).
 
-### dispose
+### send_chat_message(match_guid, message_time_epoch, player_guid, message)
 
-Disposes of the SDK when no longer needed.
+Sends a chat message to a match.
 
+Parameters:
+- `match_guid` (str) - The unique identifier for the match. Max 36 chars.
+- `message_time_epoch` (int) - Epoch time of when the message was sent.
+- `player_guid` (str) - The unique identifier of the player sending the message. Max 36 chars.
+- `message` (str) - The content of the chat message. Max 256 chars.
 
+Returns:
+- `result` (int) - The result of the operation (0 for success).
 
-## Configuration
+### send_attack_action(match_guid, action_time_epoch, player_guid, weapon_guid)
 
-The Config JSON file is loaded during initialization using the `CONFIG_PATH` environment variable.
+Sends an attack action to a match.
+
+Parameters:
+- `match_guid` (str) - The unique identifier for the match. Max 36 chars.
+- `action_time_epoch` (int) - Epoch time of when the action occurred.
+- `player_guid` (str) - The unique identifier of the player performing the action. Max 36 chars.
+- `weapon_guid` (str) - The unique identifier of the weapon used. Max 36 chars.
+
+Returns:
+- `result` (int) - The result of the operation (0 for success).
+
+### send_damage_action(match_guid, action_time_epoch, player_guid, victim_player_guid, damage_done, weapon_guid)
+
+Sends a damage action to a match.
+
+Parameters:
+- `match_guid` (str) - The unique identifier for the match. Max 36 chars.
+- `action_time_epoch` (int) - Epoch time of when the action occurred.
+- `player_guid` (str) - The unique identifier of the player performing the action. Max 36 chars.
+- `victim_player_guid` (str) - The unique identifier of the player receiving the damage. Max 36 chars.
+- `damage_done` (float) - The amount of damage dealt.
+- `weapon_guid` (str) - The unique identifier of the weapon used. Max 36 chars.
+
+Returns:
+- `result` (int) - The result of the operation (0 for success).
+
+### send_heal_action(match_guid, action_time_epoch, player_guid, health_gained)
+
+Sends a heal action to a match.
+
+Parameters:
+- `match_guid` (str) - The unique identifier for the match. Max 36 chars.
+- `action_time_epoch` (int) - Epoch time of when the action occurred.
+- `player_guid` (str) - The unique identifier of the player being healed. Max 36 chars.
+- `health_gained` (float) - The amount of health gained.
+
+Returns:
+- `result` (int) - The result of the operation (0 for success).
+
+### send_spawn_action(match_guid, action_time_epoch, player_guid, character_guid, team_guid, initial_health, position, rotation)
+
+Sends a spawn action to a match.
+
+Parameters:
+- `match_guid` (str) - The unique identifier for the match. Max 36 chars.
+- `action_time_epoch` (int) - Epoch time of when the action occurred.
+- `player_guid` (str) - The unique identifier of the player spawning. Max 36 chars.
+- `character_guid` (str) - The unique identifier of the character being spawned. Max 36 chars.
+- `team_guid` (str) - The unique identifier of the team. Max 36 chars.
+- `initial_health` (float) - The initial health of the spawned character.
+- `position` (tuple) - The spawn position as (X, Y, Z).
+- `rotation` (tuple) - The spawn rotation as (Yaw, Pitch, Roll).
+
+Returns:
+- `result` (int) - The result of the operation (0 for success).
+
+### send_death_action(match_guid, action_time_epoch, player_guid, attacker_guid)
+
+Sends a death action to a match.
+
+Parameters:
+- `match_guid` (str) - The unique identifier for the match. Max 36 chars.
+- `action_time_epoch` (int) - Epoch time of when the action occurred.
+- `player_guid` (str) - The unique identifier of the player who died. Max 36 chars.
+- `attacker_guid` (str) - The unique identifier of the attacker. Max 36 chars.
+
+Returns:
+- `result` (int) - The result of the operation (0 for success).
+
+### send_position_action(match_guid, action_time_epoch, player_guid, position, rotation)
+
+Sends a position action to a match.
+
+Parameters:
+- `match_guid` (str) - The unique identifier for the match. Max 36 chars.
+- `action_time_epoch` (int) - Epoch time of when the action occurred.
+- `player_guid` (str) - The unique identifier of the player. Max 36 chars.
+- `position` (tuple) - The new position as (X, Y, Z).
+- `rotation` (tuple) - The new rotation as (Yaw, Pitch, Roll).
+
+Returns:
+- `result` (int) - The result of the operation (0 for success).
+
+### send_report(title_id, private_key, match_guid, reporter_name, reporter_type, reporter_sub_type, suspected_player_guid, tb_type, tb_time_epoch, suggested_toxicity_score, reported_time_epoch)
+
+Sends a report for a historical match (a match which is not live and has ended).
+
+Parameters:
+- `title_id` (int) - The title ID provided by Getgud.io.
+- `private_key` (str) - The private key associated with the title ID.
+- Other parameters are the same as `send_in_match_report`.
+
+Returns:
+- `result` (int) - The result of the operation (0 for success).
+
+### send_affect_action(match_guid, action_time_epoch, player_guid, affect_guid, affect_state)
+
+Sends an affect action to a match.
+
+Parameters:
+- `match_guid` (str) - The unique identifier for the match. Max 36 chars.
+- `action_time_epoch` (int) - Epoch time of when the action occurred.
+- `player_guid` (str) - The unique identifier of the player. Max 36 chars.
+- `affect_guid` (str) - The unique identifier of the affect. Max 36 chars.
+- `affect_state` (GetgudSDK.AffectState or str) - The state of the affect (Attach, Activate, Deactivate, Detach).
+
+Returns:
+- `result` (int) - The result of the operation (0 for success).
+
+### update_player(title_id, private_key, player_guid, player_nickname, player_email, player_rank, player_join_date_epoch, player_suspect_score, player_reputation, player_status, player_campaign, player_notes, player_device, player_os, player_age, player_gender, player_location, transactions)
+
+Updates player information.
+
+Parameters:
+- `title_id` (int) - The title ID provided by Getgud.io.
+- `private_key` (str) - The private key associated with the title ID.
+- `player_guid` (str) - The unique identifier of the player. Max 36 chars. **(Mandatory field)**
+- `player_nickname` (str) - The nickname of the player. Max 36 chars.
+- `player_email` (str) - The email of the player. Max 36 chars.
+- `player_rank` (int) - The rank of the player.
+- `player_join_date_epoch` (int) - The join date of the player in epoch time.
+- `player_suspect_score` (str) - The suspect score of the player.
+- `player_reputation` (str) - The reputation of the player. Max 36 chars.
+- `player_status` (str) - The status of the player. Max 36 chars.
+- `player_campaign` (str) - The campaign of the player. Max 128 chars.
+- `player_notes` (str) - Notes about the player. Max 128 chars.
+- `player_device` (str) - The device of the player. Max 8 chars.
+- `player_os` (str) - The OS of the player. Max 8 chars.
+- `player_age` (int) - The age of the player.
+- `player_gender` (str) - The gender of the player. Max 8 chars.
+- `player_location` (str) - The location of the player. Max 36 chars.
+- `transactions` (list) - A list of player transactions.
+
+Returns:
+- `result` (int) - The result of the operation (0 for success).
+
+### dispose()
+
+Disposes of the SDK when it's no longer needed.
+
+## Configuration and Logging
+
+The default Config file is loaded during initialization. You can specify a custom configuration file path or pass the configuration content directly using the `__init_conf_path__` or `__init_conf__` methods.
+
 Example of configuration file `config.json`:
 
 ```json
@@ -233,9 +318,9 @@ Example of configuration file `config.json`:
   "circularLogFile": true,
   "reportsMaxBufferSizeInBytes": 100000,
   "maxReportsToSendAtOnce": 100,
-  "maxChatMessagesToSendAtOnce": 100,
   "playersMaxBufferSizeInBytes": 100000,
   "maxPlayerUpdatesToSendAtOnce": 100,
+  "maxChatMessagesToSendAtOnce": 100,
   "gameSenderSleepIntervalMilliseconds": 100,
   "apiTimeoutMilliseconds": 5000,
   "apiWaitTimeMilliseconds": 5000,
@@ -245,9 +330,9 @@ Example of configuration file `config.json`:
   "maxGames": 25,
   "maxMatchesPerGame": 50,
   "minPacketSizeForSendingInBytes": 1000000,
-  "packetTimeoutInMilliseconds": 100000,
+  "packetTimeoutInMilliseconds": 10000,
   "gameCloseGraceAfterMarkEndInMilliseconds": 20000,
-  "liveGameTimeoutInMilliseconds": 100000,
+  "liveGameTimeoutInMilliseconds": 60000,
   "hyperModeFeatureEnabled": false,
   "hyperModeMaxThreads": 10,
   "hyperModeAtBufferPercentage": 10,
@@ -257,27 +342,159 @@ Example of configuration file `config.json`:
 }
 ```
 
-Please note that the SDK will not start if `CONFIG_PATH` is not set. Adjust the values in the configuration file according to your application's requirements.
+### Logging
 
-## Logging
+The SDK logs its operations based on the `logLevel` setting in the configuration file. To control logging, use the following configuration parameters:
 
-The SDK logs its actions based on the `logLevel` setting in the configuration file. Logging will only work if the `LOG_FILE_PATH` environment variable is set.
+- `logToFile`: Set to `true` to enable logging to file, `false` to disable.
+- `logFileSizeInBytes`: Maximum size of the log file before it's rotated (default: 10 MB).
+- `circularLogFile`: If `true`, the log file will be overwritten from the beginning when it reaches the maximum size. If `false`, a new log file will be created.
+- `logLevel`: Controls the verbosity of logging. Options are "FULL", "DEBUG", "INFO", "WARNING", "ERROR", and "FATAL".
 
-To control logging, use the following configuration parameters:
-
-- `logToFile`: true/false - Whether to log to a file or not.
-- `logFileSizeInBytes`: Maximum log file size in bytes (0-100000000).
-- `circularLogFile`: true/false - Whether to remove the first lines of the log file when it exceeds the size limit.
-
-Please make sure to set the `LOG_FILE_PATH` and `CONFIG_PATH` environment variables correctly to use logging.
-
-
-
-## Additional SDK Methods
-
-The GetGud Python SDK provides several other methods for sending chat messages, reports, updating player information, and more. Refer to the [SDK Events documentation](https://github.com/getgud-io/getgud-docs/blob/main/sdk-commands.md) and examples for detailed usage instructions of these methods.
-
+To change the location of the log file, you can set the `GETGUD_LOG_FILE_PATH` environment variable to the desired file path.
 
 ## Examples
 
-An example of how to use the GetGud Python SDK can be found in the [examples](https://github.com/getgud-io/cpp-getgud-sdk-dev/tree/main/examples) directory.
+Here's a more comprehensive example of using the Getgud Python SDK:
+
+```python
+from getgudsdk_wrapper import GetgudSDK
+import time
+
+# Initialize the SDK
+sdk = GetgudSDK()
+
+# Start a game
+game_guid = sdk.start_game(
+    title_id=28,
+    private_key="your_private_key",
+    server_guid="cs2-server-1",
+    game_mode="deathmatch",
+    server_location="203.0.113.42"
+)
+
+# Start a match
+match_guid = sdk.start_match(
+    game_guid=game_guid,
+    match_mode="Knives-only",
+    map_name="de-dust"
+)
+
+# Send a spawn action
+action_time_epoch = int(time.time() * 1000)
+sdk.send_spawn_action(
+    match_guid=match_guid,
+    action_time_epoch=action_time_epoch,
+    player_guid="player-10",
+    character_guid="character-1",
+    team_guid="team-1",
+    initial_health=100.0,
+    position=(1.0, 2.0, 3.0),
+    rotation=(10.0, 20.0, 0.0)
+)
+
+# Send a position action
+sdk.send_position_action(
+    match_guid=match_guid,
+    action_time_epoch=int(time.time() * 1000),
+    player_guid="player-10",
+    position=(2.0, 3.0, 4.0),
+    rotation=(15.0, 25.0, 5.0)
+)
+
+# Send an attack action
+sdk.send_attack_action(
+    match_guid=match_guid,
+    action_time_epoch=int(time.time() * 1000),
+    player_guid="player-10",
+    weapon_guid="weapon-1"
+)
+
+# Send a damage action
+sdk.send_damage_action(
+    match_guid=match_guid,
+    action_time_epoch=int(time.time() * 1000),
+    player_guid="player-10",
+    victim_player_guid="player-11",
+    damage_done=25.0,
+    weapon_guid="weapon-1"
+)
+
+# Send a heal action
+sdk.send_heal_action(
+    match_guid=match_guid,
+    action_time_epoch=int(time.time() * 1000),
+    player_guid="player-10",
+    health_gained=50.0
+)
+
+# Send a death action
+sdk.send_death_action(
+    match_guid=match_guid,
+    action_time_epoch=int(time.time() * 1000),
+    player_guid="player-11",
+    attacker_guid="player-10"
+)
+
+# Send a chat message
+sdk.send_chat_message(
+    match_guid=match_guid,
+    message_time_epoch=int(time.time() * 1000),
+    player_guid="player-10",
+    message="Hello, world!"
+)
+
+# Send an in-match report
+sdk.send_in_match_report(
+    match_guid=match_guid,
+    reporter_name="player-10",
+    reporter_type=1,
+    reporter_sub_type=1,
+    suspected_player_guid="player-11",
+    tb_type=1,
+    tb_time_epoch=int(time.time() * 1000),
+    suggested_toxicity_score=75,
+    reported_time_epoch=int(time.time() * 1000)
+)
+
+# Update player information
+sdk.update_player(
+    title_id=28,
+    private_key="your_private_key",
+    player_guid="player-10",
+    player_nickname="John Doe",
+    player_email="john@example.com",
+    player_rank=10,
+    player_join_date_epoch=int(time.time() * 1000),
+    player_suspect_score="50",
+    player_reputation="Good",
+    player_status="Active",
+    player_campaign="Summer2023",
+    player_notes="Skilled player",
+    player_device="PC",
+    player_os="Windows",
+    player_age=25,
+    player_gender="Male",
+    player_location="New York",
+    transactions=[
+        {
+            "TransactionGuid": "trans-001",
+            "TransactionName": "In-Game Purchase",
+            "TransactionDateEpoch": int(time.time() * 1000),
+            "TransactionValueUSD": 9.99
+        }
+    ]
+)
+
+# End the game
+sdk.mark_end_game(game_guid)
+
+# Dispose of the SDK
+sdk.dispose()
+```
+
+This example demonstrates how to use various methods of the Getgud Python SDK, including starting a game and match, sending different types of actions, sending chat messages and reports, updating player information, and ending the game.
+
+Remember to replace "your_private_key" with your actual private key provided by Getgud.io, and adjust other parameters as needed for your specific game implementation.
+
+For more detailed examples and use cases, refer to the [examples](https://github.com/getgud-io/cpp-getgud-sdk-dev/tree/main/examples) directory in the Getgud SDK repository.
