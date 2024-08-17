@@ -4,6 +4,7 @@ Same commands are available for C++, C#, C and Python languages.
 
 * [C++ header file](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/include/GetgudSDK.h)
 * [C header file](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/include/GetgudSDK_C.h)
+* [C# header file](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/csharp/GetGudSdk.cs)
 * [Python wrapper around C header](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/python/getgudsdk_wrapper.py)
 
 ## What Can You Do With Getgud's SDK:
