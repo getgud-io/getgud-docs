@@ -379,7 +379,7 @@ reportInfo.TbType = GetgudSDK::TbType::Wallhack;
 GetgudSDK::SendInMatchReport(reportInfo);
 ```
 * `MatchGuid`- guid of the live Match you are sending a report to. Max 36 chars. **(Mandatory field)**
-* `ReportedTimeEpoch`- epoch time of when the report was created **(Mandatory field)**
+* `ReportedTimeEpoch`- epoch time in milliseconds of when the report was created **(Mandatory field)**
 * `ReporterName`- the name of the entity that created the report. Max 36 chars. **(optional field)**
 * `ReporterType`- the type of the entity that created the report **(optional field)**
 * `ReporterSubType`- the subtype of the entity that created the report **(optional field)**
