@@ -16,7 +16,7 @@ Getgud's C++ SDK allows you to integrate your game with the GetGud platform. Onc
 
 ## Getting Started
 
-Set the environment variables `GETGUD_TITLE_ID` and `GETGUD_PRIVATE_KEY` with the Title Id and Private Key you received from Getgud.io, or use them as arguments for StartGame. (multiple title support available below)
+Set the environment variables `GETGUD_TITLE_ID` and `GETGUD_PRIVATE_KEY` with the Title Id and Private Key you received from Getgud.io, or use them as arguments for StartGame. 
 
 Include the following header file:
 
