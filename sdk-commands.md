@@ -34,9 +34,9 @@ Start a Game:
 
 ```cpp
 std::string gameGuid = GetgudSDK::StartGame(
-  "cs2-server-1", // serverGuid
-  "deathmatch", // gameMode
-  "203.0.113.42" // serverLocation
+  "cs2-server-1", // serverGuid (max 36 chars)
+  "deathmatch", // gameMode (max 36 chars)
+  "203.0.113.42" // serverLocation (max 36 chars)
 );
 ```
 
@@ -45,8 +45,8 @@ Once the Game starts, you'll receive the Game's guid, now you can start a Match:
 ```cpp
 std::string matchGuid = GetgudSDK::StartMatch(
   gameGuid, 
-  "Knives-only", // matchMode
-  "de-dust" // mapName
+  "Knives-only", // matchMode (max 36 chars)
+  "de-dust" // mapName (max 36 chars)
 );
 ```
 
@@ -111,9 +111,9 @@ To start a new game, call `StartGame()`, this will use the environment variables
 ```cpp
 std::string gameGuid = GetgudSDK::StartGame(serverGuid, gameMode, serverLocation);
 ```
-* `serverGuid` - a unique name of your game server - String, Alphanumeric, 36 chars max.
-* `gameMode` - the mode of the game (each mode has a separate AI learning processes) - String, Alphanumeric, 36 chars max.
-* `serverLocation` - a name/ip of your game server's location - String, Alphanumeric, 36 chars max.
+* `serverGuid` - a unique name of your game server - String, Alphanumeric, max 36 chars.
+* `gameMode` - the mode of the game (each mode has a separate AI learning processes) - String, Alphanumeric, max 36 chars.
+* `serverLocation` - a name/ip of your game server's location - String, Alphanumeric, max 36 chars.
 
 #### StartGame(titleId, privateKey, serverGuid, gameMode, serverLocation)
 
@@ -124,9 +124,9 @@ std::string gameGuid = GetgudSDK::StartGame(titleId, privateKey, serverGuid, gam
 ```
 * `titleId` - The title Id you received from Getgud.io
 * `privateKey` - The Private Key for the above title you received together with its Title Id
-* `serverGuid` - a unique name of your game server - String, Alphanumeric, 36 chars max.
-* `gameMode` - the mode of the game (each mode has an additional AI learning processes) - String, Alphanumeric, 36 chars max.
-* `serverLocation` - a name/ip of your game server's location - String, Alphanumeric, 36 chars max.
+* `serverGuid` - a unique name of your game server - String, Alphanumeric, max 36 chars.
+* `gameMode` - the mode of the game (each mode has an additional AI learning processes) - String, Alphanumeric, max 36 chars.
+* `serverLocation` - a name/ip of your game server's location - String, Alphanumeric, max 36 chars.
 
 ### StartMatch(gameGuid, matchMode, mapName)
 
@@ -138,8 +138,8 @@ To start a new match, call `StartMatch()`:
 std::string matchGuid = GetgudSDK::StartMatch(gameGuid, matchMode, mapName);
 ```
 * `gameGuid` - The Game guid you received when starting a new Game
-* `matchMode` - the mode of the match (each mode has an additional AI learning processes) - String, Alphanumeric, 36 chars max.
-* `mapName` - the unique name of the map - String, Alphanumeric, 36 chars max.
+* `matchMode` - the mode of the match (each mode has an additional AI learning processes) - String, Alphanumeric, max 36 chars.
+* `mapName` - the unique name of the map - String, Alphanumeric, max 36 chars.
 
 ### SendActions(std::deque<BaseActionData*> actions)
 
@@ -189,9 +189,9 @@ BaseAction(std::string matchGuid,
         long long actionTimeEpoch,
         std::string playerGuid);
 ```
-* `matchGuid` - guid of the live Match where the action happened, is given to you when `StartMatch` is called.
+* `matchGuid` - guid of the live Match where the action happened, is given to you when `StartMatch` is called. Max 36 chars.
 * `actionTimeEpoch` - epoch time in milliseconds when the action happened
-* `playerGuid` - your player Id (which will be called playerGuid on Getgud's side) 
+* `playerGuid` - your player Id (which will be called playerGuid on Getgud's side). Max 36 chars.
 
 ### Spawn Action
 
@@ -210,11 +210,11 @@ GetgudSDK::BaseActionData* action = new SpawnActionData(
         PositionF position,
         RotationF rotation);
 ```
-* `matchGuid` - guid of the live Match where the action happened
+* `matchGuid` - guid of the live Match where the action happened. Max 36 chars.
 * `actionTimeEpoch` - epoch time in milliseconds when the action happened
-* `playerGuid` - your player Id
-* `characterGuid` - Guid of the spawned character from your game, 36 max length.
-* `teamGuid` - The identifier of the player's team
+* `playerGuid` - your player Id. Max 36 chars.
+* `characterGuid` - Guid of the spawned character from your game. Max 36 chars.
+* `teamGuid` - The identifier of the player's team. Max 36 chars.
 * `initialHealth` - The initial health of the player
 * `position` - X,Y,Z coordinates of the player at the moment of action.
 * `rotation` - YAW, PITCH, ROLL rotation of player view at the moment of action.
@@ -234,9 +234,9 @@ GetgudSDK::BaseActionData* action = new GetgudSDK::PositionActionData(
                      RotationF rotation
 );
 ```
-* `matchGuid` - guid of the live Match where the action happened
+* `matchGuid` - guid of the live Match where the action happened. Max 36 chars.
 * `actionTimeEpoch` - epoch time in milliseconds when the action happened
-* `playerGuid` - your player Id
+* `playerGuid` - your player Id. Max 36 chars.
 * `Position` - X,Y,Z coordinates of the player at the moment of action.
 * `Rotation` - YAW, PITCH, ROLL rotation of player view at the moment of action.
 
@@ -254,10 +254,10 @@ GetgudSDK::BaseActionData* action = new GetgudSDK::AttackActionData(
                      std::string weaponGuid
 );
 ```
-* `matchGuid` - guid of the live Match where the action happened
+* `matchGuid` - guid of the live Match where the action happened. Max 36 chars.
 * `actionTimeEpoch` - epoch time in milliseconds when the action happened
-* `playerGuid` - your player Id
-* `weaponGuid` - A unique name of the weapon that the attack was performed with, max length is 36 chars.
+* `playerGuid` - your player Id. Max 36 chars.
+* `weaponGuid` - A unique name of the weapon that the attack was performed with. Max 36 chars.
 
 ### Affect Action
 
@@ -273,10 +273,10 @@ GetgudSDK::BaseActionData* action = new GetgudSDK::AffectActionData(
                      AffectState affectState
 );
 ```
-* `matchGuid` - guid of the live Match where the action happened
+* `matchGuid` - guid of the live Match where the action happened. Max 36 chars.
 * `actionTimeEpoch` - epoch time in milliseconds when the action happened
-* `playerGuid` - your player Id
-* `affectGuid` - A unique name of the affect, max length is 36 chars.
+* `playerGuid` - your player Id. Max 36 chars.
+* `affectGuid` - A unique name of the affect. Max 36 chars.
 * `affectState` - An enumeration unit that allows you to flag the state of the Affect:
   	Attach - indicate affect is attached to a player (not mandatory).
   	Detach - indicate affect is detached from a player (not mandatory).
@@ -298,12 +298,12 @@ GetgudSDK::BaseActionData* action = new GetgudSDK::DamageActionData(
                      std::string weaponGuid
 );
 ```
-* `matchGuid` - guid of the live Match where the action happened
+* `matchGuid` - guid of the live Match where the action happened. Max 36 chars.
 * `actionTimeEpoch` - epoch time in milliseconds when the action happened
-* `playerGuid` - your player Id
-* `victimPlayerGuid` - guid of the player who is the victim of the Damage action, max length is 36 chars.
+* `playerGuid` - your player Id. Max 36 chars.
+* `victimPlayerGuid` - guid of the player who is the victim of the Damage action. Max 36 chars.
 * `damageDone` - How much damage was given
-* `weaponGuid` - A unique name of the weapon that the attack was performed with, max length is 36 chars.
+* `weaponGuid` - A unique name of the weapon that the attack was performed with. Max 36 chars.
 
 ### Heal Action
 
@@ -317,9 +317,9 @@ GetgudSDK::BaseActionData* action = new GetgudSDK::HealActionData(
                      float healthGained
 );
 ```
-* `matchGuid` - guid of the live Match where the action happened
+* `matchGuid` - guid of the live Match where the action happened. Max 36 chars.
 * `actionTimeEpoch` - epoch time in milliseconds when the action happened
-* `playerGuid` - your player Id
+* `playerGuid` - your player Id. Max 36 chars.
 * `healthGained` - How much health the player gained.
 
 ### Death Action
@@ -335,10 +335,10 @@ GetgudSDK::BaseActionData* action = new GetgudSDK::DeathActionData(
                      std::string attackerGuid
 );
 ```
-* `matchGuid` - guid of the live Match where the action happened
+* `matchGuid` - guid of the live Match where the action happened. Max 36 chars.
 * `actionTimeEpoch` - epoch time in milliseconds when the action happened
-* `playerGuid` - your player Id
-* `attackerGuid` - guid of the player who killed the victim of the Damage action, max length is 36 chars. Use `GetgudSDK::Values::Environment` to indicate that PvE killed the player
+* `playerGuid` - your player Id. Max 36 chars.
+* `attackerGuid` - guid of the player who killed the victim of the Damage action. Max 36 chars. Use `GetgudSDK::Values::Environment` to indicate that PvE killed the player
 
 ## Adding Chat Messages
 To add a chat message to a live Match:
@@ -353,6 +353,10 @@ GetgudSDK::SendChatMessage(
   messageData
 );
 ```
+* `message` - The content of the chat message. Max 256 chars.
+* `messageTimeEpoch` - epoch time in milliseconds when the message was sent
+* `playerGuid` - The guid of the player who sent the message. Max 36 chars.
+* `matchGuid` - The guid of the match where the message was sent. Max 36 chars.
 
 ## Adding Reports
 
@@ -374,13 +378,13 @@ reportInfo.TbTimeEpoch = 1684059337532;
 reportInfo.TbType = GetgudSDK::TbType::Wallhack;
 GetgudSDK::SendInMatchReport(reportInfo);
 ```
-* `MatchGuid`- guid of the live Match you are sending a report to **(Mandatory field)**
+* `MatchGuid`- guid of the live Match you are sending a report to. Max 36 chars. **(Mandatory field)**
 * `ReportedTimeEpoch`- epoch time of when the report was created **(Mandatory field)**
-* `ReporterName`- the name of the entity that created the report **(optional field)**
+* `ReporterName`- the name of the entity that created the report. Max 36 chars. **(optional field)**
 * `ReporterType`- the type of the entity that created the report **(optional field)**
-* `ReporterSubType`-   the subtype of the entity that created the report **(optional field)**
+* `ReporterSubType`- the subtype of the entity that created the report **(optional field)**
 * `SuggestedToxicityScore`- 0-100 toxicity score, ie: how much do you suspect the player **(optional field)**
-* `SuspectedPlayerGuid`- the player Id of the suspected player as appears in your system **(Mandatory field)**
+* `SuspectedPlayerGuid`- the player Id of the suspected player as appears in your system. Max 36 chars. **(Mandatory field)**
 * `TbType` - id of the toxic behavior type, for example, Aimbot **(optional field)**
 * `TbTimeEpoch` - epoch time of when the toxic behavior event occurred **(optional field)**
 
@@ -457,30 +461,30 @@ bool playersUpdated = GetgudSDK::UpdatePlayers(
   playerInfos
 );
 ```
-* `PlayerGuid`- Your player Id - String, 36 chars max. **(Mandatory field)**
-* `PlayerNickname`- Nickname of the player - String, 36 chars max. **(optional field)**
-* `PlayerEmail`- Email of the player **(optional field)** - String, 36 chars max.
+* `PlayerGuid`- Your player Id. Max 36 chars. **(Mandatory field)**
+* `PlayerNickname`- Nickname of the player. Max 36 chars. **(optional field)**
+* `PlayerEmail`- Email of the player. Max 36 chars. **(optional field)**
 * `PlayerRank`- Integer rank of the player **(optional field)**
 * `PlayerSuspectScore`- A manually assigned number, between 0-100, that can be updated to trigger rules you define in Getgud. **(optional field)**
-* `PlayerReputation`- A field for you to use according to Rules you define, allowing you to set and continuously adjust Player Reputation to all your players - automatically. - String, 36 chars max.**(optional field)**
-* `PlayerStatus`- A field for you to use according to Rules you define, allowing you to set and continuously adjust Player Status to all your players - automatically. - String, 36 chars max.**(optional field)**
-* `PlayerCampaign`- The campaign to attribute this player to - String, 128 chars max.**(optional field)**
-* `PlayerDevice`-The device of the player - String, 8 chars max.**(optional field)**
-* `PlayerOS`- The OS of the player - String, 8 chars max. **(optional field)**
+* `PlayerReputation`- A field for you to use according to Rules you define, allowing you to set and continuously adjust Player Reputation to all your players - automatically. Max 36 chars. **(optional field)**
+* `PlayerStatus`- A field for you to use according to Rules you define, allowing you to set and continuously adjust Player Status to all your players - automatically. Max 36 chars. **(optional field)**
+* `PlayerCampaign`- The campaign to attribute this player to. Max 128 chars. **(optional field)**
+* `PlayerDevice`-The device of the player. Max 8 chars. **(optional field)**
+* `PlayerOS`- The OS of the player. Max 8 chars. **(optional field)**
 * `PlayerAge`- The age of the player 0-128 **(optional field)**
-* `PlayerGender`- The gender of the player - String, 8 chars max. **(optional field)**
-* `PlayerLocation`- The location of the player - String, 36 chars max. **(optional field)**
-* `PlayerNotes`- Any player notes you wish to save - String, 128 chars max. **(optional field)**
-* `PlayerJoinDateEpoch`:  Date when the player joined **(optional field)**
-* `Transactions`: Transactions of each player **(optional field)**
+* `PlayerGender`- The gender of the player. Max 8 chars. **(optional field)**
+* `PlayerLocation`- The location of the player. Max 36 chars. **(optional field)**
+* `PlayerNotes`- Any player notes you wish to save. Max 128 chars. **(optional field)**
+* `PlayerJoinDateEpoch`- Date when the player joined **(optional field)**
+* `Transactions`- Transactions of each player **(optional field)**
 
 
 Each item of `PlayerTransactions` has the following format:
 
 ```cpp
 struct PlayerTransactions {
-    const char* TransactionGuid; // Mandatory: Unique identifier for the transaction
-    const char* TransactionName; // Mandatory: Name or description of the transaction
+    const char* TransactionGuid; // Mandatory: Unique identifier for the transaction. Max 36 chars.
+    const char* TransactionName; // Mandatory: Name or description of the transaction. Max 36 chars.
     long long TransactionDateEpoch; // Optional: Date of the transaction in epoch time
     float TransactionValueUSD; // Optional: Value of the transaction in USD
 };
@@ -492,9 +496,10 @@ You can use the `UpdatePlayers` function without `titleId` and `privateKey` argu
 bool playersUpdated = GetgudSDK::UpdatePlayers(playerInfos);
 ```
 
-## Configuration
+## Configuration and Logging
 
-The default Config file is loaded during `GetgudSDK::Init();` and is located in the same dir as the SDK files.
+The default Config file is loaded during `GetgudSDK::Init();` and is located in the same directory as the SDK files. You can specify a custom configuration file path or pass the configuration content directly using the other `Init()` methods.
+
 Example of configuration file `config.json`:
 
 ```json
@@ -531,6 +536,17 @@ Example of configuration file `config.json`:
   "logLevel": "FULL"
 }
 ```
+
+### Logging
+
+The SDK logs its operations to a file named `logs.txt`. This file is created in the same directory as the SDK executable by default. You can control logging behavior through the following configuration parameters:
+
+- `logToFile`: Set to `true` to enable logging to file, `false` to disable.
+- `logFileSizeInBytes`: Maximum size of the log file before it's rotated (default: 10 MB).
+- `circularLogFile`: If `true`, the log file will be overwritten from the beginning when it reaches the maximum size. If `false`, a new log file will be created.
+- `logLevel`: Controls the verbosity of logging. Options are "FULL", "DEBUG", "INFO", "WARNING", "ERROR", and "FATAL".
+
+To change the location of the log file, you can set the `GETGUD_LOG_FILE_PATH` environment variable to the desired file path.
 
 ## Examples
 
