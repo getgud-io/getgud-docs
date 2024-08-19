@@ -43,8 +43,8 @@ The `Client_Server_Getgud` project demonstrates how to integrate the GetgudSDK w
 #### On Linux:
 
 1. Open UE5 `Client_Server_Getgud` project.
-2. In the bottom right of the screen find and click on the button representing a grid of white squares, which recompiles the C++ code.
-3. Make sure you set up `title_id` and `private_key` variables [here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unreal-engine-5/Client_Server_Getgud/Source/Client_Server_GetGud/Client_Server_GetgudPlayerController.cpp#L51).
+2. Make sure you set up `title_id` and `private_key` variables [here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unreal-engine-5/Client_Server_Getgud/Source/Client_Server_GetGud/Client_Server_GetgudPlayerController.cpp#L51).
+3. In the bottom right of the screen find and click on the button representing a grid of white squares, which recompiles the C++ code.
 
 ### 4. Add Config and Log File Paths
 
@@ -87,15 +87,23 @@ The `Client_Server_Getgud` project demonstrates how to integrate the GetgudSDK w
 
 You can also take the config file from the root of the SDK repository.
 
-2. Set the environment variables:
+#### Set the environment variables on Windows:
 
-For Linux, use the `export` command:
+For Windows, use `setx`.
+```
+setx GETGUD_CONFIG_PATH "/path/to/your/config.json"
+setx GETGUD_LOG_FILE_PATH "/path/to/your/logs.txt"
+```
+
+You can also use the Environment Variables menu to set the env variables.
+
+#### Set the environment variables on Linux:
+
+For linux set env variables using `export` command.
 ```bash
 export GETGUD_CONFIG_PATH=/path/to/your/config.json
 export GETGUD_LOG_FILE_PATH=/path/to/your/logs.txt
 ```
-
-For Windows, use `setx` or the Environment Variables menu.
 
 ### 5. Run C++ Server
 
