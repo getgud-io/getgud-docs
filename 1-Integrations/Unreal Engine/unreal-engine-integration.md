@@ -124,18 +124,14 @@ export GETGUD_LOG_FILE_PATH=/path/to/your/logs.txt
    <PATH_TO_UNREAL_EDITOR>/UnrealEditor <PATH_TO_CLIENT_SERVER_PROJECT>/Client_Server_Getgud.uproject -log -server -NoGraphics -port=7777
    ```
 
-### 6. Open UE5 and Load the Project
-
-Open UE5 and load the `Client_Server_Getgud` project.
-
-### 7. Adjust Settings in UE5
+### 6. Adjust Settings in UE5
 
 1. In Edit -> Project Settings -> Maps & Modes: Set **Game Instance Class** to `GetgudInstance`
 2. In Edit -> Project Settings -> Maps & Modes: Set **Server Default Map** to `FirstPersonMap`
 
-### 8. Start UE5 Project
+### 7. Start UE5 Project
 
-### 9. Connect to the Server
+### 8. Connect to the Server
 
 1. In UE5, open the console command (`~` key).
 2. Connect to the server using the command:
@@ -143,7 +139,7 @@ Open UE5 and load the `Client_Server_Getgud` project.
    open 127.0.0.1:7777
    ```
 
-### 10. Test the Integration
+### 9. Test the Integration
 
 1. Observe the `logs.txt` to ensure that the client and server are communicating correctly.
 2. Verify that actions are being sent to Getgud.io's cloud using the dashboard. [This tutorial](https://github.com/getgud-io/getgud-docs/blob/main/2-Platform/get-started-with-dashboard.md) can help you get started with Getgud.io Dashboard.
