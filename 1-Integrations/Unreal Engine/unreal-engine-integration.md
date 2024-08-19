@@ -85,7 +85,7 @@ The `Client_Server_Getgud` project demonstrates how to integrate the GetgudSDK w
 }
 ```
 
-You can also take the config file from the root of the SDK repository.
+You can also take the config file from the [root](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/config.json) of the SDK repository.
 
 #### Set the environment variables on Windows:
 
