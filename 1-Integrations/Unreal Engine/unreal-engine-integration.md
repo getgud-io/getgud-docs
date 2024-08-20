@@ -98,6 +98,8 @@ setx GETGUD_LOG_FILE_PATH "/path/to/your/logs.txt"
 ```
 
 You can also use the Environment Variables menu to set the env variables.
+<b>[IMPORTANT]</b> You may want to reload your Windows instance so that env variables will be seen in your system!
+
 
 #### Set the environment variables on Linux:
 
