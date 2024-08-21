@@ -107,7 +107,7 @@ Use the appropriate GetgudSDK commands to send player actions. In this example, 
 - `GetgudSDK.Methods.SendPositionAction` [here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/PlayerMovement.cs#L165)
 
 ### 9. Integrate Angle Coordinates and Position data
-Getgud requires you to send your angle and position coordinates in a [specific way](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/getgud-sdk-angles-tutorial.md). We integrated required transformations to send angles and positions to Getgud, [see here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/PlayerMovement.cs#L151):
+Getgud requires you to send your angle and position coordinates in a [specific way](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/getgud-sdk-angles-tutorial.md). We already integrated required transformations in this example project to send angles and positions to Getgud, [see here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/PlayerMovement.cs#L151):
 
 ```csharp
 // Neccessary adjustments for GetgudSDK around angles
