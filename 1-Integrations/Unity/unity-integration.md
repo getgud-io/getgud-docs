@@ -71,6 +71,7 @@ export GETGUD_LOG_FILE_PATH=/path/to/your/logs.txt
 ```
 
 For Windows, use `setx` or the Environment Variables menu.
+<b>[IMPORTANT]</b> You may want to reload your Windows instance so that env variables will be seen in your system!
 
 ### 5. Review Supported Actions
 Find the list of supported actions in C# in the `Assets/Plugins/GetgudSDK/GetgudSDK_calls.cs` file.
