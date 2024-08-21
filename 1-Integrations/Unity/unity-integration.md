@@ -106,50 +106,13 @@ Use the appropriate GetgudSDK commands to send player actions. In this example, 
 - `GetgudSDK.Methods.SendSpawnAction` [here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/Player.cs#L157C30-L157C45)
 - `GetgudSDK.Methods.SendPositionAction` [here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/PlayerMovement.cs#L165)
 
-### 9. Integrate Angle Coordinates and Position data
-Getgud requires you to send your angle and position coordinates in a [specific way](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/getgud-sdk-angles-tutorial.md). We integrated required transformations to send angles and positions to Getgud, [see here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/PlayerMovement.cs#L151):
+Getgud requires you to send your angle and position coordinates in a [specific way](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/getgud-sdk-angles-tutorial.md). We already integrated transformations needed in this example project to send angles and positions to Getgud, [see here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/PlayerMovement.cs#L151).
 
-```csharp
-// Neccessary adjustments for GetgudSDK around angles
-// See getgud docs
-// Swap pitch and yaw as required by the SDK
-float temp = pitch;
-pitch = yaw;
-yaw = temp;
 
-// Getgud most upward yaw angle is -89, most down yaw angle is 89.
-// we need to change sign in unity
-yaw = -yaw;
-
-// same with pitch. we need to reverse unity pitch to match Getgud format
-pitch = -pitch;
-
-// Create PositionF for position action
-PositionF currentPosition = new PositionF
-{
-    X = transform.position.z,   // Unity's forward maps to Getgud's forward
-    Y = -transform.position.x,  // Unity's right maps to Getgud's right (with negation)
-    Z = transform.position.y    // Unity's up maps to Getgud's up
-};
-// Create RotationF for position action
-RotationF currentRotation = new RotationF { Yaw = yaw, Pitch = pitch, Roll = roll };
-
-// Create SendPositionActionInfo
-SendPositionActionInfo positionInfo = new SendPositionActionInfo
-{
-    ...
-    position = currentPosition,
-    rotation = currentRotation
-};
-
-// Send the position action
-int positionResult = Methods.SendPositionAction(positionInfo);
-```
-
-### 10. Implement Other SDK Commands
+### 9. Implement Other SDK Commands
 Send [other SDK commands](https://github.com/getgud-io/getgud-docs/blob/main/sdk-commands.md) in a similar way according to your needs.
 
-### 11. Test the Integration
+### 10. Test the Integration
 1. Observe the `logs.txt` to ensure that the client and server are communicating correctly.
 2. Verify that actions are being sent to Getgud.io's cloud using the dashboard. [This tutorial](https://github.com/getgud-io/getgud-docs/blob/main/2-Platform/get-started-with-dashboard.md) can help you get started with Getgud.io Dashboard. 
 

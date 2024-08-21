@@ -109,7 +109,14 @@ export GETGUD_CONFIG_PATH=/path/to/your/config.json
 export GETGUD_LOG_FILE_PATH=/path/to/your/logs.txt
 ```
 
-### 5. Run C++ Server
+### 5. Integrate Angle Coordinates, Position data and other events correctly
+
+In this example project we have already integrated Init, StartGame, StartMatch, PositionActionData, SpawnActionData and other events. For full list of GetgudSDK commands please visit [this tutorial](https://github.com/getgud-io/getgud-docs/blob/main/sdk-commands.md)
+
+Getgud requires you to send your angle and position coordinates in a [specific way](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/getgud-sdk-angles-tutorial.md). We already integrated transformations needed in this example project to send angles and positions to Getgud, [see here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unreal-engine-5/Client_Server_Getgud/Source/Client_Server_GetGud/Client_Server_GetgudCharacter.cpp#L141):
+
+
+### 6. Run C++ Server
 
 #### On Windows:
 1. Open Visual Studio Community with `Client_Server_Getgud` project.
@@ -128,14 +135,14 @@ export GETGUD_LOG_FILE_PATH=/path/to/your/logs.txt
    <PATH_TO_UNREAL_EDITOR>/UnrealEditor <PATH_TO_CLIENT_SERVER_PROJECT>/Client_Server_Getgud.uproject -log -server -NoGraphics -port=7777
    ```
 
-### 6. Adjust Settings in UE5
+### 7. Adjust Settings in UE5
 
 1. In Edit -> Project Settings -> Maps & Modes: Set **Game Instance Class** to `GetgudInstance`
 2. In Edit -> Project Settings -> Maps & Modes: Set **Server Default Map** to `FirstPersonMap`
 
-### 7. Start UE5 Project
+### 8. Start UE5 Project
 
-### 8. Connect to the Server
+### 9. Connect to the Server
 
 1. In UE5, open the console command (`~` key).
 2. Connect to the server using the command:
@@ -143,7 +150,7 @@ export GETGUD_LOG_FILE_PATH=/path/to/your/logs.txt
    open 127.0.0.1:7777
    ```
 
-### 9. Test the Integration
+### 10. Test the Integration
 
 1. Observe the `logs.txt` to ensure that the client and server are communicating correctly.
 2. Verify that actions are being sent to Getgud.io's cloud using the dashboard. [This tutorial](https://github.com/getgud-io/getgud-docs/blob/main/2-Platform/get-started-with-dashboard.md) can help you get started with Getgud.io Dashboard.
