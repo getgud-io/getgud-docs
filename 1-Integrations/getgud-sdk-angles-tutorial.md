@@ -1,94 +1,152 @@
-# Understanding Angles: Quick Tutorial
+# Integrate Position Coordinate and Angles into Getgud SDK.
 
-In the GetGud SDK, understanding angles and how to work with the Position action is crucial for accurately representing player movements and interactions within your game. This document aims to provide clarity on these concepts.
-The Position action should be sent on a 32 to 128 tick rate.
+This tutorial explains how to integrate position and rotation data from Unity and Unreal Engine 5 with the Getgud SDK. It covers coordinate system differences, angle representations, and provides practical code examples for both engines.
 
-## Angles Representation
+## Coordinate Systems
 
-When working with the Position action, it's essential to understand how angles are represented in the SDK. The SDK follows a standardized approach for representing angles, which includes the concepts of yaw, pitch, and roll.
+### Getgud SDK
+- X: Forward/Backward (positive is forward)
+- Y: Right/Left (positive is right)
+- Z: Up/Down (positive is up)
 
-**Note**: Some engines switch Pitch and Yaw. for example, **Unreal Engine 5** Pitch and Yaw are revered from the way Counter Stike works (the way we implemented it) so you should send Pitch instead of Yaw and vise verse. 
+### Unreal Engine 5
+- X: Forward/Backward (positive is forward)
+- Y: Right/Left (positive is right)
+- Z: Up/Down (positive is up)
 
-### Yaw
+### Unity
+- X: Right/Left (positive is right)
+- Y: Up/Down (positive is up)
+- Z: Forward/Backward (positive is forward)
 
-**Definition:** Yaw represents the horizontal rotation or left/right movement of the player's view.  
-**Range:** In the context of the GetGud SDK, yaw typically ranges from -180 to 180 degrees.  
-**Orientation:**
-- Yaw of 0 corresponds to facing forward.
-- Positive yaw values denote a clockwise rotation (turning right).
-- Negative yaw values denote a counterclockwise rotation (turning left).
+Note: Unreal Engine 5's coordinate system matches the Getgud SDK, which simplifies the position integration process for UE5 projects.
 
-**Yaw Range: -180 to 180**  
-In Counter-Strike, yaw ranges from -180 to 180 degrees, where:
-- Yaw of 0 looks at the point directly to the east.
-- Yaw of -180 looks at the point directly to the west.
-- Yaw of 90 looks at the point directly to the south.
-- Yaw of -90 looks at the point directly to the north.
+## Angle Representation
 
-When transitioning from 0 to -180, the player turns right, and when transitioning from 0 to 180, the player turns left. It's essential to align the game's orientation with the correct coordinates on the map.
+### Getgud SDK
+Getgud SDK uses Yaw and Pitch for rotation:
 
-### Pitch
+- **Yaw** (horizontal rotation):
+  - Range: -180 to 180 degrees
+  - 0°: forward, 90°: right, -90°: left, 180°/-180°: backward
 
-**Definition:** Pitch represents the vertical rotation or up/down movement of the player's view.  
-**Range:** In the GetGud SDK, pitch typically ranges from 89 to -89 degrees.  
-**Orientation:**
-- Pitch of 0 corresponds to looking straight ahead.
-- Positive pitch values denote looking upward.
-- Negative pitch values denote looking downward.
+- **Pitch** (vertical rotation):
+  - Range: 89 to -89 degrees
+  - 0°: straight ahead, 89°: looking down, -89°: looking up
 
-**Pitch Range: 89 to -89**  
-In Counter-Strike, pitch ranges from 89 to -89 degrees, where:
-- A pitch of 89 degrees corresponds to looking downward (most down point).
-- A pitch of -89 degrees corresponds to looking upward (most up point).
+### Unreal Engine 5
+UE5 uses a different convention for angles:
 
-### Center View
+- **Yaw**: 0 to 360 degrees (clockwise)
+- **Pitch**: -90 to 90 degrees
+  - Positive pitch is looking up
+  - Negative pitch is looking down
 
-In Three.js, the center view is typically considered to be at 90 degrees, with below being 0 degrees and up being 180 degrees.
+### Unity
+Unity uses Euler angles, but for Getgud SDK integration, we calculate angles differently:
 
-### Roll
+- **Pitch**: Calculated using `Mathf.Asin(forward.y) * Mathf.Rad2Deg`
+- **Yaw**: Calculated using `Mathf.Atan2(forward.x, forward.z) * Mathf.Rad2Deg`
 
-**Definition:** Roll represents the rotation around the player's viewing axis.  
-**Range:** Roll is less commonly used in the context of the GetGud SDK but may be relevant for specific game mechanics.  
-**Orientation:**
-- Roll typically ranges from -180 to 180 degrees.
-- Positive values indicate a clockwise rotation.
-- Negative values indicate a counterclockwise rotation.
+## Position and Rotation Integration
 
-## Usage
+### Unity Integration
 
-To send a Position action to the SDK, follow these steps:
-1. Construct a `PositionActionData` object with relevant data.
-2. Add the action to a deque of actions.
-3. Send the deque of actions using the `SendActions` method.
+In Unity, use the following code to calculate angles, adjust coordinates, and send data to the Getgud SDK:
 
-```cpp
-// Example of creating and sending a Position action
-std::deque<GetGudSdk::BaseActionData*> actionsToSend {
- new GetGudSdk::PositionActionData(
- matchGuid, curTimeEpoch, "player-5",
- GetGudSdk::PositionF{20.32000f, 50.001421f, 0.30021f},
- GetGudSdk::RotationF{10, 20})
+```csharp
+// Calculate pitch, yaw, roll
+float pitch = Mathf.Asin(forward.y) * Mathf.Rad2Deg;
+float yaw = Mathf.Atan2(forward.x, forward.z) * Mathf.Rad2Deg;
+float roll = Mathf.Atan2(right.y, up.y) * Mathf.Rad2Deg;
+
+Debug.Log($"Getgud: Player {player.Username} moved {transform.position.ToString()} with pitch: {pitch}, yaw: {yaw}, roll: {roll}");
+
+BaseActionData positionBaseActionData = new BaseActionData
+{
+    actionTimeEpoch = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
+    matchGuid = NetworkManager.Singleton.MatchGuid,
+    playerGuid = "example-player-guid"
 };
 
-// Send the actions to the SDK
-GetGudSdk::SendActions(actionsToSend);
+// Necessary adjustments for GetgudSDK around angles
+// Swap pitch and yaw as required by the SDK
+float temp = pitch;
+pitch = yaw;
+yaw = temp;
 
-Our code comments when we implemented angles:
+// Getgud most upward yaw angle is -89, most down yaw angle is 89.
+// We need to change sign in Unity
+yaw = -yaw;
 
-Yaw
-// counter strike yaw is from -180 to 180. 0 corresponds to center.
-    // here is how angles work in cs
-    // Ang 0 looks at point (+inf, 0)
-    // Ang -180 looks at point (-inf, 0)
-    // Ang 90 looks at point (0, +inf)
-    // Ang - 90 looks at point (0, -inf)
-    // for us it means we should align our north point with correct coordinate on map
-    // when you go from 0 to -180 you turn right. when you go 0 to 180 you turn left.
-    // when you are at -180 and you continue to turn right, we switch to -180 and it starts to decrease.
-    // 0 right, 90 up, 180 left, 270 down, 360 right, 450 up
-    // 0 right, -90 down, -180 left ..
+// Same with pitch. We need to reverse Unity pitch to match Getgud format
+pitch = -pitch;
 
-Pitch
-// counter strike pitch is from 89 to -89.
-    // 89 corresponds to most down point, -89 corresponds to most up point
-    // three js center view is 90 degrees, below is 0, up is 180
+// Create PositionF for position action
+PositionF currentPosition = new PositionF
+{
+    X = transform.position.z,   // Unity's forward maps to Getgud's forward
+    Y = -transform.position.x,  // Unity's right maps to Getgud's right (with negation)
+    Z = transform.position.y    // Unity's up maps to Getgud's up
+};
+
+// Create RotationF for position action
+RotationF currentRotation = new RotationF { Yaw = yaw, Pitch = pitch, Roll = roll };
+
+// Create SendPositionActionInfo
+SendPositionActionInfo positionInfo = new SendPositionActionInfo
+{
+    baseData = positionBaseActionData,
+    position = currentPosition,
+    rotation = currentRotation
+};
+
+// Send the position action
+int positionResult = Methods.SendPositionAction(positionInfo);
+```
+
+### Unreal Engine 5 Integration
+
+In Unreal Engine 5, the position coordinates match Getgud SDK, but angles need adjustment:
+
+```cpp
+FVector position = GetActorLocation();
+FRotator CameraRotation = Controller->GetControlRotation();
+
+// Adjust pitch
+float pitch = 0;
+if (CameraRotation.Pitch >= 0 && CameraRotation.Pitch <= 90)
+{
+    pitch = CameraRotation.Pitch * -1;
+}
+else if (CameraRotation.Pitch >= 270 && CameraRotation.Pitch <= 360)
+{
+    pitch = 360 - CameraRotation.Pitch;
+}
+
+// Adjust yaw
+float yaw = 0;
+if (CameraRotation.Yaw >= 0 && CameraRotation.Yaw <= 180)
+{
+    yaw = CameraRotation.Yaw * -1;
+}
+else if (CameraRotation.Yaw >= 180 && CameraRotation.Yaw <= 360)
+{
+    yaw = 360 - CameraRotation.Yaw;
+}
+
+// Create and send position action
+GetgudSDK::BaseActionData* outAction = new GetgudSDK::PositionActionData(
+    g_matchGuid, UnixTimestampMillis, g_playerGuid,
+    GetgudSDK::PositionF{ (float)position.X, (float)position.Y, (float)position.Z },
+    GetgudSDK::RotationF{pitch, yaw, 0});
+GetgudSDK::SendAction(outAction);
+
+delete outAction;
+```
+
+## Best Practices
+
+1. Send position updates at 32 to 128 ticks per second for smooth gameplay representation.
+2. Ensure consistent coordinate system and angle conversions throughout your integration.
+3. Test thoroughly to verify that player movements and rotations are accurately represented in the Getgud SDK.
