@@ -138,12 +138,18 @@ else if (CameraRotation.Yaw >= 180 && CameraRotation.Yaw <= 360)
 // Create and send position action
 GetgudSDK::BaseActionData* outAction = new GetgudSDK::PositionActionData(
     g_matchGuid, UnixTimestampMillis, g_playerGuid,
-    GetgudSDK::PositionF{ (float)position.X, (float)position.Y, (float)position.Z },
+    GetgudSDK::PositionF{ 	
+			(float)position.X / 100.0f, 
+			(float)position.Y / 100.0f, 
+			(float)position.Z / 100.0f 
+		},
     GetgudSDK::RotationF{pitch, yaw, 0});
 GetgudSDK::SendAction(outAction);
 
 delete outAction;
 ```
+
+Notice that we are dividing position coordinates by 100. While not required for Getgud SDK functionality, this conversion to meters aids in debugging during integration and makes movement easier to visualize in the Getgud.io modeler, as the data is not initially normalized.
 
 ## Best Practices
 
