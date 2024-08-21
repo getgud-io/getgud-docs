@@ -1,4 +1,4 @@
-# Integrate Position Coordinate and Angles into Getgud SDK.
+# Integrate Position Coordinate and Angles into Getgud SDK
 
 This tutorial explains how to integrate position and rotation data from Unity and Unreal Engine 5 with the Getgud SDK. It covers coordinate system differences, angle representations, and provides practical code examples for both engines.
 
