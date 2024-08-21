@@ -106,14 +106,13 @@ Use the appropriate GetgudSDK commands to send player actions. In this example, 
 - `GetgudSDK.Methods.SendSpawnAction` [here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/Player.cs#L157C30-L157C45)
 - `GetgudSDK.Methods.SendPositionAction` [here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/PlayerMovement.cs#L165)
 
-### 9. Integrate Angle Coordinates and Position data
-Getgud requires you to send your angle and position coordinates in a [specific way](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/getgud-sdk-angles-tutorial.md). We already integrated transformations needed in this example project to send angles and positions to Getgud, [see here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/PlayerMovement.cs#L151):
+Getgud requires you to send your angle and position coordinates in a [specific way](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/getgud-sdk-angles-tutorial.md). We already integrated transformations needed in this example project to send angles and positions to Getgud, [see here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unity/Server/Assets/Scripts/PlayerMovement.cs#L151).
 
 
-### 10. Implement Other SDK Commands
+### 9. Implement Other SDK Commands
 Send [other SDK commands](https://github.com/getgud-io/getgud-docs/blob/main/sdk-commands.md) in a similar way according to your needs.
 
-### 11. Test the Integration
+### 10. Test the Integration
 1. Observe the `logs.txt` to ensure that the client and server are communicating correctly.
 2. Verify that actions are being sent to Getgud.io's cloud using the dashboard. [This tutorial](https://github.com/getgud-io/getgud-docs/blob/main/2-Platform/get-started-with-dashboard.md) can help you get started with Getgud.io Dashboard. 
 
