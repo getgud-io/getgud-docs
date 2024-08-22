@@ -14,12 +14,12 @@ This tutorial explains how to integrate position and rotation data from Unity an
 - Y: Right/Left (positive is right)
 - Z: Up/Down (positive is up)
 
+Note: Unreal Engine 5's coordinate system matches the Getgud SDK, which simplifies the position integration process for UE5 projects.
+
 ### Unity
 - X: Right/Left (positive is right)
 - Y: Up/Down (positive is up)
 - Z: Forward/Backward (positive is forward)
-
-Note: Unreal Engine 5's coordinate system matches the Getgud SDK, which simplifies the position integration process for UE5 projects.
 
 ## Angle Representation
 
