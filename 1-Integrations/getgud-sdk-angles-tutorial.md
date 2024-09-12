@@ -5,33 +5,33 @@ This tutorial explains how to integrate position and rotation data from Unity an
 ## Coordinate Systems
 
 ### Getgud SDK
+Getgud uses a left-handed coordinate system where the Z coordinate corresponds to up/down movement:
 - X: Forward/Backward (positive is forward)
-- Y: Right/Left (positive is right)
+- Y: Right/Left (positive is moving left)
 - Z: Up/Down (positive is up)
 
 ### Unreal Engine 5
+UE5 uses a right-handed coordinate system where the Z coordinate corresponds to up/down movement:
 - X: Forward/Backward (positive is forward)
 - Y: Right/Left (positive is right)
 - Z: Up/Down (positive is up)
 
-Note: Unreal Engine 5's coordinate system matches the Getgud SDK, which simplifies the position integration process for UE5 projects.
-
 ### Unity
+Unity uses a right-handed coordinate system where the Y coordinate corresponds to up/down movement:
 - X: Right/Left (positive is right)
 - Y: Up/Down (positive is up)
 - Z: Forward/Backward (positive is forward)
 
-
 ## Angle Representation
 
 ### Getgud SDK
-Getgud SDK uses Yaw and Pitch for rotation:
+Getgud SDK uses Pitch and Yaw for rotation, with an inverted naming convention compared to standard systems:
 
-- **Yaw** (horizontal rotation):
+- **Pitch** (horizontal rotation):
   - Range: -180 to 180 degrees
   - 0°: forward, 90°: right, -90°: left, 180°/-180°: backward
 
-- **Pitch** (vertical rotation):
+- **Yaw** (vertical rotation):
   - Range: 89 to -89 degrees
   - 0°: straight ahead, 89°: looking down, -89°: looking up
 
@@ -114,43 +114,36 @@ In Unreal Engine 5, the position coordinates match Getgud SDK, but angles need a
 FVector position = GetActorLocation();
 FRotator CameraRotation = Controller->GetControlRotation();
 
-// Adjust pitch
 float pitch = 0;
-if (CameraRotation.Pitch >= 0 && CameraRotation.Pitch <= 90)
+if (CameraRotation.Pitch > 180.0f)
 {
-    pitch = CameraRotation.Pitch * -1;
+    pitch = 360.0f - CameraRotation.Pitch;
 }
-else if (CameraRotation.Pitch >= 270 && CameraRotation.Pitch <= 360)
+else
 {
-    pitch = 360 - CameraRotation.Pitch;
-}
-
-// Adjust yaw
-float yaw = 0;
-if (CameraRotation.Yaw >= 0 && CameraRotation.Yaw <= 180)
-{
-    yaw = CameraRotation.Yaw * -1;
-}
-else if (CameraRotation.Yaw >= 180 && CameraRotation.Yaw <= 360)
-{
-    yaw = 360 - CameraRotation.Yaw;
+    pitch = -CameraRotation.Pitch;
 }
 
-// Create and send position action
-GetgudSDK::BaseActionData* outAction = new GetgudSDK::PositionActionData(
+float yaw = 360 - CameraRotation.Yaw;
+
+// Necessary adjustments for GetgudSDK around angles
+// Swap pitch and yaw as required by the SDK
+GetgudSDK::BaseActionData* outAction = nullptr;
+outAction = new GetgudSDK::PositionActionData(
     g_matchGuid, UnixTimestampMillis, g_playerGuid,
     GetgudSDK::PositionF{ 	
-			(float)position.X / 100.0f, 
-			(float)position.Y / 100.0f, 
-			(float)position.Z / 100.0f 
-		},
+        (float)position.X / 100.0f,  // divide position to transform from cm to meters
+        -(float)position.Y / 100.0f, 
+        (float)position.Z / 100.0f 
+    },
     GetgudSDK::RotationF{pitch, yaw, 0});
+
 GetgudSDK::SendAction(outAction);
 
 delete outAction;
 ```
 
-Notice that we are dividing position coordinates by 100. While not required for Getgud SDK functionality, this conversion to meters aids in debugging during integration and makes movement easier to visualize in the Getgud.io modeler, as the data is not initially normalized.
+Note that we are dividing position coordinates by 100. While not required for Getgud SDK functionality, this conversion to meters aids in debugging during integration and makes movement easier to visualize in the Getgud.io modeler, as the data is not initially normalized.
 
 ## Best Practices
 
