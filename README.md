@@ -23,5 +23,6 @@ This repository contains docs & tutorials for everything related to Getgud.io pl
     
 - <b>Platform tutorials</b>
   * [Get started with Getgud.io dashboard](https://github.com/getgud-io/getgud-docs/blob/main/2-Platform/get-started-with-dashboard.md)
+  * [Receiving Player Data Via Getgud.io](https://github.com/getgud-io/getgud-docs/blob/main/2-Platform/receiving-player-data-via-rules.md)
   * [Video tutorials](https://www.youtube.com/playlist?list=PLMIGIFMfKUAv4AQHvnv4PzSvmd9dsYk0p)
 
