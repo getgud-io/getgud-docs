@@ -109,11 +109,9 @@ export GETGUD_CONFIG_PATH=/path/to/your/config.json
 export GETGUD_LOG_FILE_PATH=/path/to/your/logs.txt
 ```
 
-### 5. Integrate Angle Coordinates, Position data and other events correctly
+### 5. Integrate Position data and other events correctly
 
 In this example project we have already integrated Init, StartGame, StartMatch, PositionActionData, SpawnActionData and other events. For full list of GetgudSDK commands please visit [this tutorial](https://github.com/getgud-io/getgud-docs/blob/main/sdk-commands.md)
-
-Getgud requires you to send your angle and position coordinates in a [specific way](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/getgud-sdk-angles-tutorial.md). We already integrated transformations needed in this example project to send angles and positions to Getgud, [see here](https://github.com/getgud-io/cpp-getgud-sdk-dev/blob/main/examples/unreal-engine-5/Client_Server_Getgud/Source/Client_Server_GetGud/Client_Server_GetgudCharacter.cpp#L141):
 
 
 ### 6. Run C++ Server
