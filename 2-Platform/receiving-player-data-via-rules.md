@@ -1,6 +1,6 @@
 # Receiving Player Data Via Getgud.io
 
-With Getgud.io's **Rules**, you can seamlessly receive player data in a structured JSON format via webhooks you define when certain rule conditions are met. The webhook sends the data to an endpoint of your choice, making it easy to manage and analyze players based on custom cohorts you build. One rule execution can send up to 1000 player results, and the fastest interval a rule can execute is once per hour, meaning each rule can potentially send up to 24K player results per day.
+With Getgud.io's **Rules**, you can seamlessly receive player data in a structured JSON format via webhooks you define when certain rule conditions are met. The webhook sends the data to an endpoint of your choice, making it easy to manage and analyze players based on custom cohorts you build. One rule execution can send up to 1000 player results, and the fastest interval a rule can execute is once per minute, meaning each rule can potentially send up to 1,440,000 player results per day.
 
 Here’s a breakdown of the JSON fields you’ll receive when a rule executes, queries player data, groups players into cohorts, and sends this data:
 
