@@ -16,7 +16,8 @@ This repository contains docs & tutorials for everything related to Getgud.io pl
 
 - <b>Integration tutorials</b>
   * [Build SDK](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/cpp-build-instructions.md)
-  * [Unreal Engine server integration](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/Unreal%20Engine/unreal-engine-integration.md)
+  * [Unreal Engine server integration (C++)](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/Unreal%20Engine/unreal-engine-integration.md)
+  * [Unreal Engine Blueprint integration](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/Unreal%20Engine/ue5-blueprint-integration.md)
   * [Unity server integration](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/Unity/unity-integration.md)
   * [SDK integration examples](https://github.com/getgud-io/cpp-getgud-sdk-dev/tree/main/examples)
     
