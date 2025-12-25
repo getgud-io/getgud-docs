@@ -9,7 +9,7 @@ For C++ integration, see the [C++ Integration Tutorial](https://github.com/getgu
 ## Prerequisites
 
 - Unreal Engine 5.x installed
-- GetgudSDK credentials (`titleId` and `privateKey`)
+- [Getgud.io Dashboard account](https://github.com/getgud-io/getgud-docs/blob/main/2-Platform/get-started-with-dashboard.md) with SDK credentials (`titleId` and `privateKey`)
 - Basic familiarity with UE5 Blueprints
 
 ## Plugin Installation
