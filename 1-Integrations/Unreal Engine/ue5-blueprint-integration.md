@@ -4,7 +4,7 @@
 
 The Getgud Blueprint Plugin provides visual scripting nodes for integrating the GetgudSDK with Unreal Engine 5. This allows you to send player actions, game events, and reports to Getgud.io's cloud without writing C++ code.
 
-For C++ integration, see the [C++ Integration Tutorial](unreal-engine-integration.md).
+For C++ integration, see the [C++ Integration Tutorial](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/Unreal%20Engine/unreal-engine-integration.md).
 
 ## Prerequisites
 
@@ -51,7 +51,7 @@ For C++ integration, see the [C++ Integration Tutorial](unreal-engine-integratio
    - `libGetgudSDK.so`
    - `config.json`
 
-   For build instructions, see the [SDK Build Guide](../cpp-build-instructions.md). If you're unable to build the SDK yourself, contact us and we'll build it for your target system.
+   For build instructions, see the [SDK Build Guide](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/cpp-build-instructions.md). If you're unable to build the SDK yourself, contact us and we'll build it for your target system.
 
 5. Build your UE5 project
 
@@ -72,7 +72,7 @@ The SDK requires a `config.json` file and creates a log file. There are multiple
 
 All nodes are available under the **Getgud** category in the Blueprint editor.
 
-For detailed parameter descriptions and usage examples, see the [full SDK Commands Reference](../../sdk-commands.md).
+For detailed parameter descriptions and usage examples, see the [full SDK Commands Reference](https://github.com/getgud-io/getgud-docs/blob/main/sdk-commands.md).
 
 ### Initialization
 
