@@ -9,7 +9,7 @@ For C++ integration, see the [C++ Integration Tutorial](https://github.com/getgu
 ## Prerequisites
 
 - Unreal Engine 5.x installed
-- GetgudSDK credentials (`titleId` and `privateKey`)
+- [Getgud.io Dashboard account](https://github.com/getgud-io/getgud-docs/blob/main/2-Platform/get-started-with-dashboard.md) with SDK credentials (`titleId` and `privateKey`)
 - Basic familiarity with UE5 Blueprints
 
 ## Plugin Installation
@@ -72,7 +72,7 @@ The SDK requires a `config.json` file and creates a log file. There are multiple
 
 All nodes are available under the **Getgud** category in the Blueprint editor.
 
-For detailed parameter descriptions and usage examples, see the [full SDK Commands Reference](https://github.com/getgud-io/getgud-docs/blob/main/sdk-commands.md).
+For detailed parameter descriptions and usage examples, see the [C SDK Reference](https://github.com/getgud-io/getgud-docs/blob/main/3-Extra/c-integration.md) (the Blueprint plugin wraps the C SDK).
 
 ### Initialization
 
