@@ -6,6 +6,8 @@ The Getgud Blueprint Plugin provides visual scripting nodes for integrating the 
 
 For C++ integration, see the [C++ Integration Tutorial](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/Unreal%20Engine/unreal-engine-integration.md).
 
+[Video Tutorial: How To Integrate Getgud SDK Blueprint Plugin](https://youtu.be/7uIgExkcodQ)
+
 ## Prerequisites
 
 - Unreal Engine 5.x installed
