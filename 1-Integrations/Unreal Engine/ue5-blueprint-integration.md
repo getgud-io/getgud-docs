@@ -91,8 +91,8 @@ For detailed parameter descriptions and usage examples, see the [C SDK Reference
 |------|-------------|---------|
 | `StartGame` | Start a new game session | GameGuid (String) |
 | `StartMatch` | Start a new match within a game | MatchGuid (String) |
+| `SetMatchWinTeam` | Set the winning team for a match (optional, must be called before MarkEndGame) | Success (Bool) |
 | `MarkEndGame` | Mark a game as ended | Success (Bool) |
-| `SetMatchWinTeam` | Set the winning team for a match | Success (Bool) |
 
 **StartGame Parameters:**
 - `TitleId` (Int32) - Your Getgud title ID
@@ -159,9 +159,12 @@ All action nodes require:
    - Buff/debuff → SendAffectAction(...)
    - Chat message → SendChatMessage(...)
 
-5. On Game End:
+5. On Match End (optional):
+   SetMatchWinTeam(MatchGuid, WinTeamGuid) — if you want to record the winning team
+
+6. On Game End:
    MarkEndGame(GameGuid)
 
-6. On Shutdown:
+7. On Shutdown:
    Dispose()
 ```
