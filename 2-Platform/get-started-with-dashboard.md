@@ -1,6 +1,6 @@
 # Get Started with Getgud.io Dashboard
 
-After completing the [initial steps](https://github.com/getgud-io/getgud-docs/blob/main/get-started.md) and integrating the Getgud SDK into your server, it's time to set up the [Getgud.io Dashboard](https://staging.dashboard.getgud.io/) for your organization!
+After completing the [initial steps](https://github.com/getgud-io/getgud-docs/blob/main/get-started.md) and integrating the Getgud SDK into your server, it's time to set up the [Getgud.io Dashboard](https://dashboard.getgud.io/) for your organization!
 
 In this tutorial, we will walk through the basic and most crucial steps to start getting results. We will:
 - Attach the first guard law to your title
