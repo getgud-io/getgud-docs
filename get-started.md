@@ -8,10 +8,10 @@ For a better understanding, we recommend watching our [Onboarding tutorial](http
 
 To get started, create an account with Getgud.io.
 
-- [Sign up](https://staging.dashboard.getgud.io/auth/register/)
+- [Sign up](https://dashboard.getgud.io/auth/register/)
   - If you or your organization has never used Getgud.io before, sign up for a new Getgud account.
  
-- [Log in](https://staging.dashboard.getgud.io/auth/login/)
+- [Log in](https://dashboard.getgud.io/auth/login/)
   - If you or your organization already has a Getgud account, log in to get started.
   - Note: If you are a developer, you may need to ask your organization admin to send you an invite to the Getgud.io platform.
 
@@ -19,7 +19,7 @@ Once you create an account, you can create your first title with Getgud.
 
 ## Create your first title
 
-To create your first title, visit the [Manage Titles](https://staging.dashboard.getgud.io/manage/titles/) section on the dashboard.
+To create your first title, visit the [Manage Titles](https://dashboard.getgud.io/manage/titles/) section on the dashboard.
 
 - In the upper right corner of the screen, find the `Title Actions` button, press it, and then click `Add Title`.
 - In the form pop-up, fill in your Title Name, Title Franchise, and optionally add a logo.
@@ -30,7 +30,7 @@ To create your first title, visit the [Manage Titles](https://staging.dashboard.
 
 Once you create an account, you can start adding members of your organization to Getgud.
 
-- Visit the [Users](https://staging.dashboard.getgud.io/settings/users/) page in settings.
+- Visit the [Users](https://dashboard.getgud.io/settings/users/) page in settings.
 - In the upper right corner of the screen, find the `Actions` button, press it, and then click `Invite User`.
 - In the form pop-up, fill in the First Name, Last Name, Email, and pick the User Role, then click `Invite`.
 - The invited user will receive further instructions via email.
