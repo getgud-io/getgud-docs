@@ -168,3 +168,18 @@ All action nodes require:
 7. On Shutdown:
    Dispose()
 ```
+
+## Troubleshooting
+
+### Plugin Build Errors (FailedDueToEngineChange / Incompatible Module)
+
+If you encounter errors like:
+- `"Incompatible or missing module: GetgudSDKBlueprint"`
+- `"FailedDueToEngineChange"`
+- `"Excluding module GetgudSDKBlueprint: Not under compatible directories"`
+
+This is a known Unreal Engine issue where adding source plugins can trigger false engine rebuild requirements.
+
+**Solution:** Contact Art (art@getgud.io) and request pre-compiled binaries for your specific Unreal Engine version. You will receive a `Binaries/Win64/` folder.
+
+In addition to all the installation steps above, copy the contents of this folder to `Plugins/GetgudSDKBlueprint/Binaries/Win64/`.
