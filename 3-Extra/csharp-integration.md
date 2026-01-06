@@ -130,16 +130,22 @@ static public int StartMatch(StartMatchInfo info, out string matchGuidOut);
   * `mapName` - the unique name of the map - String, Alphanumeric, max 36 chars.
 * `matchGuidOut` - An output parameter to store the match guid.
 
-### MarkEndGame(string gameGuid)
+### MarkEndGame(string gameGuid, bool blocking = false)
 
 Ends a live Game and its associated matches.
 When the live Game ends, you should mark it as finished in order to close it on Getgud's side.
 Once the game is marked as ended, it will not accept new live data.
 
 ```csharp
-static public int MarkEndGame(string gameGuid);
+static public int MarkEndGame(string gameGuid, bool blocking = false);
+
+// Usage:
+int result = GetgudSDK.MarkEndGame(gameGuid);  // Non-blocking
+// Or with blocking mode (waits for all queued actions to be sent):
+int result = GetgudSDK.MarkEndGame(gameGuid, true);  // Blocking
 ```
 * `gameGuid` - The Game guid you received when starting a new Game
+* `blocking` - (optional, default: `false`) If `true`, the function will block until all queued actions are sent to the server or the timeout is reached. The timeout is configured via `markEndGameBlockingTimeoutMilliseconds` (default: 10 seconds).
 
 `MarkEndGame` returns an integer indicating success (0) or failure.
 
@@ -420,6 +426,7 @@ Example of configuration file `config.json`:
   "hyperModeAtBufferPercentage": 10,
   "hyperModeUpperPercentageBound": 90,
   "hyperModeThreadCreationStaggerMilliseconds": 100,
+  "markEndGameBlockingTimeoutMilliseconds": 10000,
   "logLevel": "FULL"
 }
 ```

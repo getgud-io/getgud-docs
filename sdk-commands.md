@@ -163,7 +163,7 @@ bool SendAction(BaseActionData* action);
 ```
 * `action` - a `BaseActionData` object that is the base class of all the primal 7 actions (Spawn, Position, Attack, Damage, Heal, Affect and Death).
 
-### MarkEndGame(gameGuid)
+### MarkEndGame(gameGuid, blocking)
 
 Ends a live Game and its associated matches.
 When the live Game ends, you should mark it as finished in order to close it on Getgud's side.
@@ -171,8 +171,11 @@ Once the game is marked as ended, it will not accept new live data.
 
 ```cpp
 bool gameEnded = GetgudSDK::MarkEndGame(gameGuid);
+// Or with blocking mode (waits for all queued actions to be sent):
+bool gameEnded = GetgudSDK::MarkEndGame(gameGuid, true);
 ```
 * `gameGuid` - The Game guid you received when starting a new Game
+* `blocking` - (optional, default: `false`) If `true`, the function will block until all queued actions are sent to the server or the timeout is reached. The timeout is configured via `markEndGameBlockingTimeoutMilliseconds` (default: 10 seconds).
 
 `MarkEndGame` returns true/false depending if the Game was successfully closed or not.
 
@@ -534,6 +537,7 @@ Example of configuration file `config.json`:
   "hyperModeAtBufferPercentage": 10,
   "hyperModeUpperPercentageBound": 90,
   "hyperModeThreadCreationStaggerMilliseconds": 100,
+  "markEndGameBlockingTimeoutMilliseconds": 10000,
   "logLevel": "FULL"
 }
 ```

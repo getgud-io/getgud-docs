@@ -79,7 +79,7 @@ int result = SendSpawnAction(baseData, characterGuid, strlen(characterGuid),
 End a game (All Game's Matches will close as well):
 
 ```c
-int gameEnded = MarkEndGame(gameGuid, gameGuidSize);
+int gameEnded = MarkEndGame(gameGuid, gameGuidSize, 0);  // 0 = non-blocking, 1 = blocking
 ```
 
 Close and Dispose of the SDK:
@@ -132,17 +132,20 @@ int matchGuidSize = StartMatch(matchInfo, matchGuidOut);
   * `mapName` - the unique name of the map - String, Alphanumeric, max 36 chars.
 * `matchGuidOut` - A pre-allocated char array to store the output match guid (should be at least 37 bytes).
 
-### MarkEndGame(const char* gameGuid, int guidSize)
+### MarkEndGame(const char* gameGuid, int guidSize, int blocking)
 
 Ends a live Game and its associated matches.
 When the live Game ends, you should mark it as finished in order to close it on Getgud's side.
 Once the game is marked as ended, it will not accept new live data.
 
 ```c
-int gameEnded = MarkEndGame(gameGuid, guidSize);
+int gameEnded = MarkEndGame(gameGuid, guidSize, 0);  // Non-blocking
+// Or with blocking mode (waits for all queued actions to be sent):
+int gameEnded = MarkEndGame(gameGuid, guidSize, 1);  // Blocking
 ```
 * `gameGuid` - The Game guid you received when starting a new Game
 * `guidSize` - The size of the game guid
+* `blocking` - If `1`, the function will block until all queued actions are sent to the server or the timeout is reached. If `0`, returns immediately. The timeout is configured via `markEndGameBlockingTimeoutMilliseconds` (default: 10 seconds).
 
 `MarkEndGame` returns 1 if the Game was successfully closed, 0 otherwise.
 
@@ -456,6 +459,7 @@ Example of configuration file `config.json`:
   "hyperModeAtBufferPercentage": 10,
   "hyperModeUpperPercentageBound": 90,
   "hyperModeThreadCreationStaggerMilliseconds": 100,
+  "markEndGameBlockingTimeoutMilliseconds": 10000,
   "logLevel": "FULL"
 }
 ```
