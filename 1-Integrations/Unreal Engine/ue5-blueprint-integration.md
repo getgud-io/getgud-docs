@@ -92,7 +92,8 @@ For detailed parameter descriptions and usage examples, see the [C SDK Reference
 | `StartGame` | Start a new game session | GameGuid (String) |
 | `StartMatch` | Start a new match within a game | MatchGuid (String) |
 | `SetMatchWinTeam` | Set the winning team for a match (optional, must be called before MarkEndGame) | Success (Bool) |
-| `MarkEndGame` | Mark a game as ended (optional Blocking parameter waits for queued actions) | Success (Bool) |
+| `MarkEndGame` | Mark a game as ended | Success (Bool) |
+| `Flush` | Wait for all queued actions to be sent before returning | Success (Bool) |
 
 **StartGame Parameters:**
 - `TitleId` (Int32) - Your Getgud title ID
@@ -164,10 +165,11 @@ All action nodes require:
 
 6. On Game End:
    MarkEndGame(GameGuid)
-   // Optional: Use Blocking=true to wait for all queued actions to be sent
-   MarkEndGame(GameGuid, Blocking=true)
 
-7. On Shutdown:
+7. Before Shutdown (optional):
+   Flush() — waits for all queued actions to be sent
+
+8. On Shutdown:
    Dispose()
 ```
 

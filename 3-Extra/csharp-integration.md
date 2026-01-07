@@ -80,6 +80,12 @@ End a game (All Game's Matches will close as well):
 int result = GetgudSDK.Methods.MarkEndGame(gameGuid);
 ```
 
+Flush and wait for all queued actions to be sent (optional, before shutdown):
+
+```csharp
+int flushResult = GetgudSDK.Methods.Flush();
+```
+
 Close and Dispose of the SDK:
 
 ```csharp
@@ -130,24 +136,34 @@ static public int StartMatch(StartMatchInfo info, out string matchGuidOut);
   * `mapName` - the unique name of the map - String, Alphanumeric, max 36 chars.
 * `matchGuidOut` - An output parameter to store the match guid.
 
-### MarkEndGame(string gameGuid, bool blocking = false)
+### MarkEndGame(string gameGuid)
 
 Ends a live Game and its associated matches.
 When the live Game ends, you should mark it as finished in order to close it on Getgud's side.
 Once the game is marked as ended, it will not accept new live data.
 
 ```csharp
-static public int MarkEndGame(string gameGuid, bool blocking = false);
+static public int MarkEndGame(string gameGuid);
 
 // Usage:
-int result = GetgudSDK.MarkEndGame(gameGuid);  // Non-blocking
-// Or with blocking mode (waits for all queued actions to be sent):
-int result = GetgudSDK.MarkEndGame(gameGuid, true);  // Blocking
+int result = GetgudSDK.MarkEndGame(gameGuid);
 ```
 * `gameGuid` - The Game guid you received when starting a new Game
-* `blocking` - (optional, default: `false`) If `true`, the function will block until all queued actions are sent to the server or the timeout is reached. The timeout is configured via `markEndGameBlockingTimeoutMilliseconds` (default: 10 seconds).
 
-`MarkEndGame` returns an integer indicating success (0) or failure.
+`MarkEndGame` returns an integer indicating success (1) or failure (0).
+
+### Flush()
+
+Waits until all queued actions are sent to the server before returning. Use this when you need to ensure all data has been transmitted before shutting down.
+
+```csharp
+static public int Flush();
+
+// Usage:
+int result = GetgudSDK.Flush();
+```
+
+`Flush` returns `1` if all queued actions were successfully sent, or `0` if the timeout was reached. The timeout is configured via `markEndGameBlockingTimeoutMilliseconds` in config (default: 10 seconds).
 
 ## Sending Actions 
 

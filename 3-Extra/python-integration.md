@@ -70,6 +70,12 @@ End a game (All Game's Matches will close as well):
 result = sdk.mark_end_game(game_guid)
 ```
 
+Flush and wait for all queued actions to be sent (optional, before shutdown):
+
+```python
+flush_result = sdk.flush()
+```
+
 Close and Dispose of the SDK:
 
 ```python
@@ -118,24 +124,33 @@ Parameters:
 Returns:
 - `match_guid` (str) - The unique identifier for the match.
 
-### mark_end_game(game_guid, blocking=False)
+### mark_end_game(game_guid)
 
 Marks a game as ended. This will close the game on the Getgud platform.
 
 Parameters:
 - `game_guid` (str) - The unique identifier for the game.
-- `blocking` (bool, optional) - If `True`, the function will block until all queued actions are sent to the server or the timeout is reached. Defaults to `False`. The timeout is configured via `markEndGameBlockingTimeoutMilliseconds` (default: 10 seconds).
 
 Returns:
-- `result` (int) - The result of the operation (0 for success).
+- `result` (int) - The result of the operation (1 for success, 0 for failure).
 
 Example:
 ```python
-# Non-blocking (default)
-result = getgudsdk.mark_end_game(game_guid)
+result = sdk.mark_end_game(game_guid)
+```
 
-# Blocking mode (waits for all queued actions to be sent)
-result = getgudsdk.mark_end_game(game_guid, blocking=True)
+### flush()
+
+Waits until all queued actions are sent to the server before returning. Use this when you need to ensure all data has been transmitted before shutting down.
+
+Returns:
+- `result` (int) - 1 if all queued actions were successfully sent, 0 if the timeout was reached.
+
+The timeout is configured via `markEndGameBlockingTimeoutMilliseconds` in config (default: 10 seconds).
+
+Example:
+```python
+result = sdk.flush()
 ```
 
 ### send_in_match_report(match_guid, reporter_name, reporter_type, reporter_sub_type, suspected_player_guid, tb_type, tb_time_epoch, suggested_toxicity_score, reported_time_epoch)
@@ -499,6 +514,9 @@ sdk.update_player(
 
 # End the game
 sdk.mark_end_game(game_guid)
+
+# Optional: Flush to ensure all data is sent before shutdown
+sdk.flush()
 
 # Dispose of the SDK
 sdk.dispose()
