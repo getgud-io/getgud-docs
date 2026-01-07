@@ -93,7 +93,7 @@ For detailed parameter descriptions and usage examples, see the [C SDK Reference
 | `StartMatch` | Start a new match within a game | MatchGuid (String) |
 | `SetMatchWinTeam` | Set the winning team for a match (optional, must be called before MarkEndGame) | Success (Bool) |
 | `MarkEndGame` | Mark a game as ended | Success (Bool) |
-| `Flush` | Wait for all queued actions to be sent before returning | Success (Bool) |
+| `Flush` | Wait for all queued actions to be sent before returning (returns false on timeout, configured via `markEndGameBlockingTimeoutMilliseconds`) | Success (Bool) |
 
 **StartGame Parameters:**
 - `TitleId` (Int32) - Your Getgud title ID
