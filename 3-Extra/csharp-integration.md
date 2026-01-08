@@ -163,7 +163,7 @@ static public int Flush();
 int result = GetgudSDK.Flush();
 ```
 
-`Flush` returns `1` if all queued actions were successfully sent, or `0` if the timeout was reached. The timeout is configured via `markEndGameBlockingTimeoutMilliseconds` in config (default: 10 seconds).
+`Flush` returns `1` if all queued actions were successfully sent, or `0` if the timeout was reached. The timeout is configured via `flushTimeoutMilliseconds` in config (default: 10 seconds).
 
 ## Sending Actions 
 
@@ -442,7 +442,7 @@ Example of configuration file `config.json`:
   "hyperModeAtBufferPercentage": 10,
   "hyperModeUpperPercentageBound": 90,
   "hyperModeThreadCreationStaggerMilliseconds": 100,
-  "markEndGameBlockingTimeoutMilliseconds": 10000,
+  "flushTimeoutMilliseconds": 10000,
   "logLevel": "FULL"
 }
 ```
