@@ -82,6 +82,12 @@ End a game (All Game's Matches will close as well):
 int gameEnded = MarkEndGame(gameGuid, gameGuidSize);
 ```
 
+Flush and wait for all queued actions to be sent (optional, before shutdown):
+
+```c
+int flushResult = Flush();
+```
+
 Close and Dispose of the SDK:
 
 ```c
@@ -145,6 +151,16 @@ int gameEnded = MarkEndGame(gameGuid, guidSize);
 * `guidSize` - The size of the game guid
 
 `MarkEndGame` returns 1 if the Game was successfully closed, 0 otherwise.
+
+### Flush()
+
+Waits until all queued actions are sent to the server before returning. Use this when you need to ensure all data has been transmitted before shutting down.
+
+```c
+int success = Flush();
+```
+
+`Flush` returns `1` if all queued actions were successfully sent, or `0` if the timeout was reached. The timeout is configured via `flushTimeoutMilliseconds` in config (default: 10 seconds).
 
 ## Sending Actions 
 
@@ -456,6 +472,7 @@ Example of configuration file `config.json`:
   "hyperModeAtBufferPercentage": 10,
   "hyperModeUpperPercentageBound": 90,
   "hyperModeThreadCreationStaggerMilliseconds": 100,
+  "flushTimeoutMilliseconds": 10000,
   "logLevel": "FULL"
 }
 ```

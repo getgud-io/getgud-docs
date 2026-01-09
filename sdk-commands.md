@@ -176,6 +176,16 @@ bool gameEnded = GetgudSDK::MarkEndGame(gameGuid);
 
 `MarkEndGame` returns true/false depending if the Game was successfully closed or not.
 
+### Flush()
+
+Waits until all queued actions are sent to the server before returning. Use this when you need to ensure all data has been transmitted before shutting down.
+
+```cpp
+bool success = GetgudSDK::Flush();
+```
+
+`Flush` returns `true` if all queued actions were successfully sent, or `false` if the timeout was reached. The timeout is configured via `flushTimeoutMilliseconds` in config (default: 10 seconds).
+
 ## Sending Actions 
 
 When a live Match starts, you can add Actions, Chat Data, and Reports to it. 
@@ -534,6 +544,7 @@ Example of configuration file `config.json`:
   "hyperModeAtBufferPercentage": 10,
   "hyperModeUpperPercentageBound": 90,
   "hyperModeThreadCreationStaggerMilliseconds": 100,
+  "flushTimeoutMilliseconds": 10000,
   "logLevel": "FULL"
 }
 ```
