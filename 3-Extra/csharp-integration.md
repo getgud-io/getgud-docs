@@ -80,6 +80,12 @@ End a game (All Game's Matches will close as well):
 int result = GetgudSDK.Methods.MarkEndGame(gameGuid);
 ```
 
+Flush and wait for all queued actions to be sent (optional, before shutdown):
+
+```csharp
+int flushResult = GetgudSDK.Methods.Flush();
+```
+
 Close and Dispose of the SDK:
 
 ```csharp
@@ -138,10 +144,26 @@ Once the game is marked as ended, it will not accept new live data.
 
 ```csharp
 static public int MarkEndGame(string gameGuid);
+
+// Usage:
+int result = GetgudSDK.MarkEndGame(gameGuid);
 ```
 * `gameGuid` - The Game guid you received when starting a new Game
 
-`MarkEndGame` returns an integer indicating success (0) or failure.
+`MarkEndGame` returns an integer indicating success (1) or failure (0).
+
+### Flush()
+
+Waits until all queued actions are sent to the server before returning. Use this when you need to ensure all data has been transmitted before shutting down.
+
+```csharp
+static public int Flush();
+
+// Usage:
+int result = GetgudSDK.Flush();
+```
+
+`Flush` returns `1` if all queued actions were successfully sent, or `0` if the timeout was reached. The timeout is configured via `flushTimeoutMilliseconds` in config (default: 10 seconds).
 
 ## Sending Actions 
 
@@ -420,6 +442,7 @@ Example of configuration file `config.json`:
   "hyperModeAtBufferPercentage": 10,
   "hyperModeUpperPercentageBound": 90,
   "hyperModeThreadCreationStaggerMilliseconds": 100,
+  "flushTimeoutMilliseconds": 10000,
   "logLevel": "FULL"
 }
 ```
