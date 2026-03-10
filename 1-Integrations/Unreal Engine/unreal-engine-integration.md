@@ -14,6 +14,8 @@ The `Client_Server_Getgud` project demonstrates how to integrate the GetgudSDK w
 - Visual Studio installed
 - GetgudSDK (Ensure you have the required credentials: `titleId` and `privateKey`)
 
+> **Engine Version:** This example project was built and tested with **Unreal Engine 5.4**. If you are using a different version (e.g. 5.5+), you may need to adjust some code — such as input mappings, net mode checks, and delegate naming — to match your engine version's API.
+
 ## Project Setup
 
 ### 1. Create a New UE Project

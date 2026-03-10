@@ -14,6 +14,8 @@ For C++ integration, see the [C++ Integration Tutorial](https://github.com/getgu
 - [Getgud.io Dashboard account](https://github.com/getgud-io/getgud-docs/blob/main/2-Platform/get-started-with-dashboard.md) with SDK credentials (`titleId` and `privateKey`)
 - Basic familiarity with UE5 Blueprints
 
+> **Engine Version:** The Blueprint plugin was built and tested with **Unreal Engine 5.4**. If you are using a different version (e.g. 5.5+), you may need to adjust some code or settings to match your engine version's API.
+
 ## Plugin Installation
 
 1. Clone or download the Getgud repository:
