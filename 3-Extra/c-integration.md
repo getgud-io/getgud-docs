@@ -76,6 +76,12 @@ int result = SendSpawnAction(baseData, characterGuid, strlen(characterGuid),
                              position, rotation);
 ```
 
+Set the winning team for a match (optional, must be called before MarkEndGame):
+
+```c
+int success = SetMatchWinTeam(matchGuid, matchGuidSize, teamGuid, teamGuidSize);
+```
+
 End a game (All Game's Matches will close as well):
 
 ```c
@@ -137,6 +143,20 @@ int matchGuidSize = StartMatch(matchInfo, matchGuidOut);
   * `matchMode` - the mode of the match (each mode has an additional AI learning processes) - String, Alphanumeric, max 36 chars.
   * `mapName` - the unique name of the map - String, Alphanumeric, max 36 chars.
 * `matchGuidOut` - A pre-allocated char array to store the output match guid (should be at least 37 bytes).
+
+### SetMatchWinTeam(const char* matchGuid, int matchGuidSize, const char* teamGuid, int teamGuidSize)
+
+Sets the winning team for a match. This is optional, but must be called before `MarkEndGame`.
+
+```c
+int success = SetMatchWinTeam(matchGuid, matchGuidSize, teamGuid, teamGuidSize);
+```
+* `matchGuid` - The Match guid you received when starting a new Match
+* `matchGuidSize` - The size of the match guid
+* `teamGuid` - The guid of the winning team
+* `teamGuidSize` - The size of the team guid
+
+`SetMatchWinTeam` returns 1 if the winning team was successfully set, 0 otherwise.
 
 ### MarkEndGame(const char* gameGuid, int guidSize)
 
