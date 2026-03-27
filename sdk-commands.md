@@ -76,6 +76,12 @@ for (auto* sentAction : actionsToSend)
 actionsToSend.clear();
 ```
 
+Set the winning team for a match (optional, must be called before MarkEndGame):
+
+```cpp
+bool success = GetgudSDK::SetMatchWinTeam(matchGuid, teamGuid);
+```
+
 End a game (All Game's Matches will close as well):
 
 ```cpp
@@ -162,6 +168,18 @@ This is an async method which will not block the calling thread.
 bool SendAction(BaseActionData* action);
 ```
 * `action` - a `BaseActionData` object that is the base class of all the primal 7 actions (Spawn, Position, Attack, Damage, Heal, Affect and Death).
+
+### SetMatchWinTeam(matchGuid, teamGuid)
+
+Sets the winning team for a match. This is optional, but must be called before `MarkEndGame`.
+
+```cpp
+bool success = GetgudSDK::SetMatchWinTeam(matchGuid, teamGuid);
+```
+* `matchGuid` - The Match guid you received when starting a new Match
+* `teamGuid` - The guid of the winning team
+
+`SetMatchWinTeam` returns true/false depending on if the winning team was successfully set or not.
 
 ### MarkEndGame(gameGuid)
 

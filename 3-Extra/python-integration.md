@@ -64,6 +64,12 @@ sdk.send_spawn_action(
 )
 ```
 
+Set the winning team for a match (optional, must be called before mark_end_game):
+
+```python
+result = sdk.set_match_win_team(match_guid, team_guid)
+```
+
 End a game (All Game's Matches will close as well):
 
 ```python
@@ -123,6 +129,22 @@ Parameters:
 
 Returns:
 - `match_guid` (str) - The unique identifier for the match.
+
+### set_match_win_team(match_guid, team_guid)
+
+Sets the winning team for a match. This is optional, but must be called before `mark_end_game`.
+
+Parameters:
+- `match_guid` (str) - The unique identifier for the match.
+- `team_guid` (str) - The unique identifier of the winning team.
+
+Returns:
+- `result` (int) - The result of the operation (1 for success, 0 for failure).
+
+Example:
+```python
+result = sdk.set_match_win_team(match_guid, team_guid)
+```
 
 ### mark_end_game(game_guid)
 

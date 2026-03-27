@@ -74,6 +74,12 @@ GetgudSDK.SendSpawnActionInfo spawnInfo = new GetgudSDK.SendSpawnActionInfo
 int result = GetgudSDK.Methods.SendSpawnAction(spawnInfo);
 ```
 
+Set the winning team for a match (optional, must be called before MarkEndGame):
+
+```csharp
+int result = GetgudSDK.Methods.SetMatchWinTeam(matchGuid, teamGuid);
+```
+
 End a game (All Game's Matches will close as well):
 
 ```csharp
@@ -135,6 +141,21 @@ static public int StartMatch(StartMatchInfo info, out string matchGuidOut);
   * `matchMode` - the mode of the match (each mode has an additional AI learning processes) - String, Alphanumeric, max 36 chars.
   * `mapName` - the unique name of the map - String, Alphanumeric, max 36 chars.
 * `matchGuidOut` - An output parameter to store the match guid.
+
+### SetMatchWinTeam(string matchGuid, string teamGuid)
+
+Sets the winning team for a match. This is optional, but must be called before `MarkEndGame`.
+
+```csharp
+static public int SetMatchWinTeam(string matchGuid, string teamGuid);
+
+// Usage:
+int result = GetgudSDK.Methods.SetMatchWinTeam(matchGuid, teamGuid);
+```
+* `matchGuid` - The Match guid you received when starting a new Match
+* `teamGuid` - The guid of the winning team
+
+`SetMatchWinTeam` returns an integer indicating success (1) or failure (0).
 
 ### MarkEndGame(string gameGuid)
 
