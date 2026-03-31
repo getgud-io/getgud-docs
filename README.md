@@ -14,6 +14,8 @@ This repository contains docs & tutorials for everything related to Getgud.io pl
   * [C# SDK commands & events list](https://github.com/getgud-io/getgud-docs/blob/main/3-Extra/csharp-integration.md)
   * [Python SDK commands & events list](https://github.com/getgud-io/getgud-docs/blob/main/3-Extra/python-integration.md)
 
+- <b>[SDK Integration FAQ](https://github.com/getgud-io/getgud-docs/blob/main/sdk-integration-faq.md)</b>
+
 - <b>Integration tutorials</b>
   * [Build SDK](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/cpp-build-instructions.md)
   * [Unreal Engine server integration (C++)](https://github.com/getgud-io/getgud-docs/blob/main/1-Integrations/Unreal%20Engine/unreal-engine-integration.md)
