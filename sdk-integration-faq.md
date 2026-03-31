@@ -10,7 +10,7 @@ For the full SDK API reference, see [SDK Commands](https://github.com/getgud-io/
 
 **Should Spawn be triggered only once at initial spawn, even if the character is teleported right after?**
 
-Yes, one Spawn per life cycle. If there's a small delay between the actual game spawn and when you call Spawn, that's fine — call it whenever works best for your game logic. If a teleport happens right after, handle that separately with an Affect (see [teleportation](#how-should-teleportation-be-distinguished-from-normal-movement-in-position-updates)).
+Yes, one Spawn per life cycle. If there's a small delay between the actual game spawn and when you call Spawn, that's fine — call it whenever works best for your game logic. If a teleport happens right after, handle that separately with an Affect.
 
 **When should teleportation be treated as a Spawn vs a position update?**
 
