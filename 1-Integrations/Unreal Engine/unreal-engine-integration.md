@@ -54,10 +54,10 @@ The `Client_Server_Getgud` project demonstrates how to integrate the GetgudSDK w
 
 ```json
 {
-  "streamGameURL": "https://api.staging.getgud.io/api/game_stream/send_game_packet",
-  "updatePlayersURL": "https://api.staging.getgud.io/api/player_data/update_players_via_sdk",
-  "sendReportsURL": "https://api.staging.getgud.io/api/report_data/send_reports",
-  "throttleCheckUrl": "https://api.staging.getgud.io/api/game_stream/throttle_match_check",
+  "streamGameURL": "https://api.getgud.io/api/game_stream/send_game_packet",
+  "updatePlayersURL": "https://api.getgud.io/api/player_data/update_players_via_sdk",
+  "sendReportsURL": "https://api.getgud.io/api/report_data/send_reports",
+  "throttleCheckUrl": "https://api.getgud.io/api/game_stream/throttle_match_check",
   "logToFile": true,
   "logFileSizeInBytes": 10000000,
   "circularLogFile": true,
