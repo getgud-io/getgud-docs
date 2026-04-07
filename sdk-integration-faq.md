@@ -121,6 +121,10 @@ Yes — send a new Affect event for refreshes, extensions, and stacks so we know
 
 Send a new Activate for each stack. For most practical purposes, a single Activate when the effect first applies and a single Deactivate when it fully wears off is also sufficient.
 
+**Should ability cooldowns be reported as Affects?**
+
+No — don't track the cooldown itself. Track the ability's actual active window: send `Activate` when the ability triggers, and `Deactivate` when its effect ends. The cooldown is a side effect of when you call `Activate` and `Deactivate`. If the ability is being abused, we'll see it either from an `Activate` arriving before the previous `Deactivate`, or from the Affect triggering faster than the learned normals for that ability.
+
 **Should passive effects (always active) be sent?**
 
 If the passive affects movement speed, damage modifiers, or other gameplay-relevant characteristics, send an Affect Activate at spawn time. Cosmetic-only passives can be skipped.
