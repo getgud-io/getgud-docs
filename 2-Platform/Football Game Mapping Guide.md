@@ -204,7 +204,7 @@ This is used for **momentary or continuous gameplay actions**.
 
 Use `Activate` when:
 
-- a player Possessed the ball
+- a player possessed the ball
 - a player starts sprinting  
 - a player starts applying pressure  
 - a player performs a tackle, jump, or shot  
