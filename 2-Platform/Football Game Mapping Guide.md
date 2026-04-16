@@ -19,7 +19,7 @@ Getgud.io fully supports football-style games with:
 
 ## Player Mapping
 
-Every footballer must include:
+Every footballer must include the following parameters when spawnning on the field:
 
 - `player_guid`  
 - `character_guid`  
