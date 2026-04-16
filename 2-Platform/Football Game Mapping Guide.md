@@ -2,24 +2,24 @@
   <img style="width: 512px" src="https://getgud-public-content.s3.amazonaws.com/gg-cover.png">
 </div>
 
-# Getgud.io Open-World Mapping Guide
+# Getgud.io Football Game Mapping Guide
 
-This document describes how to correctly model Players, NPCs, Weapons, Maps, Affects, and Zones to achieve full analytics coverage in open-world and RPG-style games.
+This document describes how to correctly model Players, NPCs, Ball, Teams, Affects, and Gameplay Signals to achieve full analytics coverage in football (soccer) games.
 
-Getgud.io fully supports large-scale, open-world, and single-player games similar to Final Fantasy, Dragon’s Dogma, Skyrim, and other RPGs with:
+Getgud.io fully supports football-style games with:
 
-- Thousands of NPCs  
-- Dozens of NPC types  
-- Massive open-world maps  
-- Player character classes  
-- Weapons with buff permutations  
-- Single-player or multiplayer scenarios  
+- 11 vs 11 player matches  
+- Dynamic player control switching  
+- AI/NPC-controlled teammates and opponents  
+- A shared ball entity  
+- Continuous gameplay systems (stamina, power, pressure)  
+- Real-time positional gameplay  
 
 ---
 
 ## Player Mapping
 
-Every player must include:
+Every footballer must include:
 
 - `player_guid`  
 - `character_guid`  
@@ -27,471 +27,209 @@ Every player must include:
 
 ### Player GUID
 
-A stable, unique identifier for the player.
+When a user controls a footballer, `player_guid` must be a stable, unique identifier for the user.
 
 ```
-347589734578
+1125555
 ```
 
 ### Character GUID
 
-Represents the class, archetype, or form of the player.
+Represents the footballer identity.
 
 Examples:
 
-- Wizard  
-- Fighter  
-- Rogue  
-- Paladin  
+- Messi  
+- Ronaldo  
+- Mbappe  
+- Bellingham  
 
 ### Player Team GUID
 
-Required even in single-player.
+Represents the team the footballer belongs to.
 
 Examples:
 
-- Player-Team  
-- Hero-Team  
-- MainTeam  
+- Spain  
+- Germany  
+- Blue-Team  
+- Home-Team  
 
 ### Example
 
-```yaml
-player_guid: 347589734578
-character_guid: Wizard
-team_guid: Player-Team
+```cpp
+GetgudSDK::SendAction(new GetgudSDK::SpawnActionData(
+  matchGuid,
+  curTimeEpoch,
+  "1125555",
+  "Messi",
+  "Spain",
+  100.f,
+  GetgudSDK::PositionF{12.0f, 8.0f, 0.0f},
+  GetgudSDK::RotationF{0.0f, 0.0f, 0.0f}
+));
 ```
 
 ---
 
 ## NPC Mapping
 
-NPCs in open-world RPGs often spawn in large numbers. Each NPC must have:
+All footballers not controlled by a user are NPCs.
 
-- `npc_guid` (unique per NPC instance alive at the same time)  
-- `character_guid` (type/archetype)  
-- `team_guid` (faction/group)  
+Each NPC must have:
 
-### NPC GUID (instance identifier)
+- `player_guid` = `NPC_<character>`  
+- `character_guid` = `NPC_<character>`  
+- `team_guid` = team  
 
-Best practice: every NPC GUID should start with `NPC_`.
+### NPC GUID
 
-Examples:
-
-```
-NPC_small_zombie_1
-NPC_small_zombie_2
-NPC_small_zombie_100
-NPC_big_zombie_1
-NPC_big_zombie_2
-NPC_orc_boss_1
-NPC_orc_boss_2
-```
-
-If you want an NPC to appear in the replay and 3D modeler, but **not** be analyzed in any Getgud.io metric (no insights, no behavior tracking, no scoring), prefix the GUID with `PvE_`:
-
-```
-PvE_small_zombie_1
-PvE_forest_deer_12
-```
-
-### NPC Character GUID (type/class)
-
-Represents the archetype, not the specific instance.
-
-Examples:
-
-- small_zombie  
-- big_zombie  
-- orc_boss  
-- forest_dragon  
-
-All small zombies share the same `character_guid`, even though their `npc_guid`s differ.
-
-### NPC Team GUID (faction)
-
-Assign each NPC type to the appropriate team:
-
-- zombie_team  
-- orc_team  
-- wildlife_team  
-- boss_team  
-
-This enables Getgud.io to group behaviors, interactions, and combat analytics by faction.
-
----
-
-## Winning Team Reporting
-
-At the end of a boss fight, battle, encounter, or zone-level combat session, you should call:
-
-```
-sendMatchWinningTeam(<team_guid>)
-```
-
-If the player wins:
-
-```
-sendMatchWinningTeam("Player-Team")
-```
-
-If NPCs win (player dies, wipes, fails event):
-
-```
-sendMatchWinningTeam("zombie_team")
-```
-
-Reporting the winning team allows Getgud.io to:
-
-- Track success/fail rates  
-- Understand difficulty curves  
-- Analyze player skill progression  
-- Identify frustrating encounters  
-
----
-
-## Weapon Mapping
-
-Weapons should include their type and any buffs, enchantments, temporary effects, or permutations in a single identifier.
-
-Base example:
-
-```
-two_handed_sword
-```
-
-With poison buff:
-
-```
-two_handed_sword_poison
-```
-
-With fire buff:
-
-```
-two_handed_sword_fire
-```
-
-With multiple buffs:
-
-```
-two_handed_sword_fire_poison
-```
-
-Each permutation can have different:
-
-- Damage profiles  
-- Status effects  
-- Combat performance  
-- Player behavior impact  
-
-Getgud.io analyzes each weapon permutation separately.
-
----
-
-## Respawns and Reuse of NPC GUIDs
-
-### Best practice
-
-When an NPC dies and respawns in the same zone, reuse the same NPC GUID:
-
-```
-NPC_small_zombie_14  (dies)
-NPC_small_zombie_14  (respawns)
-```
-
-### Avoid
-
-Creating new GUIDs on every respawn:
-
-```
-NPC_small_zombie_101
-NPC_small_zombie_102
-```
-
-This inflates analytics and breaks continuity for that NPC type.
-
----
-
-## Map and Zone Mapping
-
-Map GUID = map name. Use meaningful, readable names.
+Best practice: prefix all NPCs with `NPC_`.
 
 Examples:
 
 ```
-burning_village
-eastern_forest
-ancient_ruins
-mountain_pass
-crystal_caverns
+NPC_Messi
+NPC_Ronaldo
+NPC_Mbappe
+NPC_Defender_1
 ```
 
-Each map/zone must be treated as a separate match session.
+### Example
+
+```cpp
+GetgudSDK::SendAction(new GetgudSDK::SpawnActionData(
+  matchGuid,
+  curTimeEpoch,
+  "NPC_Messi",
+  "NPC_Messi",
+  "Spain",
+  100.f,
+  GetgudSDK::PositionF{10.0f, 5.0f, 0.0f},
+  GetgudSDK::RotationF{0.0f, 0.0f, 0.0f}
+));
+```
 
 ---
 
-## Match Boundaries in Open Worlds
+## Player Switching (Core Football Mechanic)
 
-A “match” = time spent in one map/zone.
+A user controls only one footballer at a time but can switch control during the match.
 
-When the player transitions from:
+Whenever a user switches control from one footballer to another, you must send two Spawn actions.
 
+### Example: User switches from Ronaldo → Messi
+
+#### 1. Spawn new user-controlled footballer
+
+```cpp
+GetgudSDK::SendAction(new GetgudSDK::SpawnActionData(
+  matchGuid,
+  curTimeEpoch,
+  "1125555",
+  "Messi",
+  "Spain",
+  100.f,
+  GetgudSDK::PositionF{12.0f, 8.0f, 0.0f},
+  GetgudSDK::RotationF{0.0f, 0.0f, 0.0f}
+));
 ```
-burning_village → eastern_forest
+
+#### 2. Spawn previous footballer as NPC
+
+```cpp
+GetgudSDK::SendAction(new GetgudSDK::SpawnActionData(
+  matchGuid,
+  curTimeEpoch,
+  "NPC_Ronaldo",
+  "NPC_Ronaldo",
+  "Spain",
+  100.f,
+  GetgudSDK::PositionF{5.0f, 3.0f, 0.0f},
+  GetgudSDK::RotationF{0.0f, 0.0f, 0.0f}
+));
 ```
-
-You should:
-
-1. End the current match  
-2. Start a new match  
-3. Optionally upload the 3D map for visualization  
-
-This keeps the analytics clean, efficient, and meaningful.
 
 ---
 
-## NPC Counting Rules Across Zones
+## Ball Mapping
 
-You have two options:
+The ball is treated as a PvE (environment) entity.
 
-### Option A: Reset NPC numbering per map
+### Ball Rules
 
-Zone 1:
+- `player_guid` = `PVE_ball`  
+- `character_guid` = `ball`  
+- `team_guid` = `ball`  
 
+### Ball Spawn
+
+```cpp
+GetgudSDK::SendAction(new GetgudSDK::SpawnActionData(
+  matchGuid,
+  curTimeEpoch,
+  "PVE_ball",
+  "ball",
+  "ball",
+  0.f,
+  GetgudSDK::PositionF{0.0f, 0.0f, 0.0f},
+  GetgudSDK::RotationF{0.0f, 0.0f, 0.0f}
+));
 ```
-NPC_small_zombie_1 … NPC_small_zombie_100
-```
-
-Zone 2:
-
-```
-NPC_small_zombie_1 … NPC_small_zombie_80
-```
-
-This is simpler and perfectly acceptable.
-
-### Option B: Global NPC numbering across the entire world
-
-Zone 1:
-
-```
-NPC_small_zombie_1 … NPC_small_zombie_100
-```
-
-Zone 2:
-
-```
-NPC_small_zombie_101 … NPC_small_zombie_181
-```
-
-Use this if you want per-creature lifetime analytics across the entire world.
-
----
-
-## Tickrate Recommendations
-
-### NPCs
-
-NPC movement is usually not critical for precision analytics. Send 1 position update per second:
-
-```
-NPC position: 1 Hz
-```
-
-This prevents match file bloating.
-
-### Player
-
-Recommended send rates:
-
-- Single-player: `5–10 Hz`  
-- Multiplayer / future-proof anti-cheat: `32 Hz` minimum  
 
 ---
 
 ## Affects
 
-Affects are one of the most powerful features of the Getgud.io platform.
+Affects represent everything happening to a footballer.
 
-They allow you to represent any game-specific mechanic (abilities, buffs, debuffs, consumables, spells, items, status effects, etc.) in a game-agnostic, structured, and analyzable way.
+Football games typically use:
 
-Affect events describe what is happening to a player or NPC, when it happens, and why.
+- ACTIVATE  
+- DEACTIVATE  
 
-Affect GUIDs are defined by your game logic, for example:
+### Example
 
-- `health_potion`  
-- `rage_buff`  
-- `fire_enchant`  
-- `combo_strike`  
-
-Each affect has four possible states, representing the full lifecycle of an item, ability, buff, or mechanic.
-
-### Affect States
-
-The four affect states are:
-
-1. ATTACH  
-2. DETACH  
-3. ACTIVATE  
-4. DEACTIVATE (optional)  
-
-#### ATTACH
-
-Indicates the moment an affect is gained, acquired, or applied to a player or NPC.
-
-Examples:
-
-- Player picks up a health potion → `health_potion`, state: `attach`  
-- Player receives a poison debuff from stepping in toxic gas → `poison_debuff`, state: `attach`  
-- Player learns or equips a new spell → `fireball_spell`, state: `attach`  
-
-Key rule: ATTACH is inventory/availability level, not activation level.
-
-#### DETACH
-
-Indicates the moment the affect is lost, removed, or no longer available, no matter the cause.
-
-Examples:
-
-- Potion was consumed → `health_potion`, state: `detach`  
-- Buff expired naturally → `poison_debuff`, state: `detach`  
-- Spell book discarded → `fireball_spell`, state: `detach`  
-- Weapon unequipped → `two_handed_sword`, state: `detach`  
-
-#### ACTIVATE
-
-Indicates the moment the affect is used, triggered, or activated.
-
-Examples:
-
-- Player drinks the health potion → `health_potion`, state: `activate`  
-- Player casts fireball → `fireball_spell`, state: `activate`  
-- Player enters rage mode → `rage_buff`, state: `activate`  
-- Player triggers a combo strike → `combo_strike`, state: `activate`  
-
-Most gameplay-specific insights come from ACTIVATE events.
-
-#### DEACTIVATE (optional)
-
-Indicates the moment an affect’s in-game effect ends.
-
-Examples:
-
-- Rage mode expires → `rage_buff`, state: `deactivate`  
-- Fly spell duration ends → `fly_spell`, state: `deactivate`  
-
-You only need to send this if it matters to gameplay or analysis.
-
-### Why Affects Matter
-
-Affects allow Getgud.io to track:
-
-- Consumable usage  
-- Spell activations  
-- Damage-over-time effects  
-- Temporary buffs and debuffs  
-- Combo chains  
-- Class abilities  
-- Weapon enchantments  
-- Movement boosts  
-- Crowd control effects  
-- Status ailments  
-- Mechanics unique to your game  
-
-Affects create a rich behavioral timeline, enabling:
-
-- Insight generation  
-- Balance analysis  
-- Player behavior pattern analysis  
-- Build/gear effectiveness studies  
-- Ability performance tracking  
-- Usage frequency metrics  
-- Combat sequence reconstruction  
-- Anti-cheat anomaly detection  
-
-In simple terms:
-
-> Affects = your game’s vocabulary expressed in Getgud.io format.
-
-### Naming and Structure
-
-Affect GUIDs can be anything meaningful, clear, and reusable across the game.
-
-Examples:
-
-```
-fireball
-rage_buff
-health_potion
-slow_debuff
-two_handed_sword_poisoned
-berserk_combo_stage2
+```cpp
+GetgudSDK::SendAction(new GetgudSDK::AffectActionData(
+  matchGuid,
+  curTimeEpoch,
+  "1125555",
+  "sprint",
+  GetgudSDK::AffectState::Activate
+));
 ```
 
-Structure recommendation:
+---
 
-- `<category>_<effect>`  
-- `<item>_<modifier>`  
-- `<spell>_<tier>`  
+## Affect Scale
 
-You can choose any system as long as it’s consistent.
+Use:
+
+```
+<affect>-Scale-<value>
+```
+
+Example:
+
+```cpp
+GetgudSDK::SendAction(new GetgudSDK::AffectActionData(
+  matchGuid,
+  curTimeEpoch,
+  "1125555",
+  "stamina-Scale-73",
+  GetgudSDK::AffectState::Activate
+));
+```
 
 ---
 
 ## Summary Checklist
 
-### Player
+- User → real GUID  
+- NPC → NPC_<character>  
+- Ball → PVE_ball  
+- 2 spawn events per switch  
+- Use Affects for gameplay  
+- Use Scale for continuous values  
 
-- Unique `player_guid`  
-- Player `character_guid`  
-- Player `team_guid`  
-
-### NPCs
-
-- GUID starting with `NPC_`  
-- Unique per instance on the map  
-- Character GUID = NPC type  
-- Team GUID = NPC faction  
-- Reuse GUIDs for respawns  
-- Use `PvE_` prefix to ignore NPC analysis  
-
-### Weapons
-
-- Include type + buff(s)  
-- Example: `magic_staff_fire`  
-
-### Map/Zone
-
-- Map GUID = map name  
-- One match per zone  
-- End match when changing zones  
-
-### Tickrates
-
-- NPCs: 1/sec  
-- Player: 10–32/sec  
-
-### Winning Team
-
-- Use SDK method `sendMatchWinningTeam(team_guid)` at the end of any encounter  
-
-### Affects
-
-- Use affect states to model abilities, buffs, spells, consumables, items, and mechanics  
-
----
-
-## Final Notes
-
-Following this design ensures:
-
-- Accurate replay reconstruction  
-- Clean analytics across massive worlds  
-- Efficient data usage  
-- Clear team-based win/loss insights  
-- Per-type and per-permutation weapon analysis  
-- Stable long-term NPC tracking  
-- Fully visualized maps and combat zones  
-
-Your open-world game will be completely analyzable inside Getgud.io, with powerful insights into player performance, difficulty balance, encounter design, weapon effectiveness, and NPC behavior.
