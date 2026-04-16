@@ -183,12 +183,75 @@ GetgudSDK::SendAction(new GetgudSDK::SpawnActionData(
 
 Affects represent everything happening to a footballer.
 
-Football games typically use:
+Football games usually need only the Affect states:
 
-- ACTIVATE  
-- DEACTIVATE  
+- `Activate`  
+- `Deactivate`
 
-### Example
+and not need:
+
+- `Attach`  
+- `Detach`  
+
+This is because football actions are generally momentary or state-based, rather than inventory-based.
+
+---
+
+## Types of Affects
+
+Most football games have mechanics in the following Affect categories.
+
+### Movement Affects
+
+- `sprint`  
+- `jog`  
+- `turn`  
+- `stop`  
+
+### Ball Interaction Affects
+
+- `pass`  
+- `short_pass`  
+- `long_pass`  
+- `through_pass`  
+- `cross`  
+- `low_cross`  
+- `shot`  
+- `header`  
+- `first_touch`  
+
+### Dribbling Affects
+
+- `dribble`  
+- `skill_move`  
+- `ball_control`  
+
+### Defensive Affects
+
+- `pressure`  
+- `tackle_standing`  
+- `tackle_slide`  
+- `interception`  
+- `block`  
+
+### Goalkeeper Affects
+
+- `goalkeeper_save`  
+- `goalkeeper_dive`  
+- `goalkeeper_catch`  
+- `goalkeeper_punch`  
+
+### Physical Affects
+
+- `jump`  
+- `collision`  
+- `fall`  
+
+---
+
+## Affect Examples
+
+### Sprint Start
 
 ```cpp
 GetgudSDK::SendAction(new GetgudSDK::AffectActionData(
@@ -200,17 +263,84 @@ GetgudSDK::SendAction(new GetgudSDK::AffectActionData(
 ));
 ```
 
+### Sprint Stop
+
+```cpp
+GetgudSDK::SendAction(new GetgudSDK::AffectActionData(
+  matchGuid,
+  curTimeEpoch,
+  "1125555",
+  "sprint",
+  GetgudSDK::AffectState::Deactivate
+));
+```
+
+### Pressure Start
+
+```cpp
+GetgudSDK::SendAction(new GetgudSDK::AffectActionData(
+  matchGuid,
+  curTimeEpoch,
+  "1125555",
+  "pressure",
+  GetgudSDK::AffectState::Activate
+));
+```
+
+### Slide Tackle
+
+```cpp
+GetgudSDK::SendAction(new GetgudSDK::AffectActionData(
+  matchGuid,
+  curTimeEpoch,
+  "1125555",
+  "tackle_slide",
+  GetgudSDK::AffectState::Activate
+));
+```
+
+### Header
+
+```cpp
+GetgudSDK::SendAction(new GetgudSDK::AffectActionData(
+  matchGuid,
+  curTimeEpoch,
+  "1125555",
+  "header",
+  GetgudSDK::AffectState::Activate
+));
+```
+
 ---
 
-## Affect Scale
+## Affects with Scale
 
-Use:
+Football games often have continuous gameplay values that should also be modeled through Affects.
 
-```
+Examples include:
+
+- stamina  
+- shot power  
+- pass power  
+- pressure intensity  
+- dribble intensity  
+
+### Format
+
+Use the following naming convention:
+
+```text
 <affect>-Scale-<value>
 ```
 
-Example:
+### Examples
+
+- `stamina-Scale-73`  
+- `shot_power-Scale-91`  
+- `pressure-Scale-65`  
+- `pass_power-Scale-40`  
+
+### Example: Stamina Reporting
 
 ```cpp
 GetgudSDK::SendAction(new GetgudSDK::AffectActionData(
@@ -222,14 +352,181 @@ GetgudSDK::SendAction(new GetgudSDK::AffectActionData(
 ));
 ```
 
+### Example: Shot Power Reporting
+
+```cpp
+GetgudSDK::SendAction(new GetgudSDK::AffectActionData(
+  matchGuid,
+  curTimeEpoch,
+  "1125555",
+  "shot_power-Scale-91",
+  GetgudSDK::AffectState::Activate
+));
+```
+
+### Scale Guidelines
+
+- Scale values should typically be between `0` and `100`  
+- Scale values can be sent periodically, for example every 1 to 10 seconds  
+- Each scale Affect must be tied to the relevant player  
+
+---
+
+## Winning Team Reporting
+
+At the end of the football match, the winning team should be reported.
+
+### Example
+
+```cpp
+GetgudSDK::SetMatchWinTeam(matchGuid, "Spain");
+```
+
+This allows Getgud.io to analyze match outcome by team.
+
+---
+
+## Football KPIs
+
+Using the above mapping, football games can derive meaningful KPIs.
+
+### Possession
+
+Derived from:
+
+- ball position  
+- proximity between footballer and ball  
+- ball interaction Affects such as:
+  - `dribble`
+  - `first_touch`
+  - `pass`
+
+### Pressure
+
+Derived from:
+
+- `pressure` Affect  
+- `pressure-Scale-X`  
+- proximity to the opponent ball carrier  
+
+### Stamina Usage
+
+Derived from:
+
+- `stamina-Scale-X`  
+- `sprint`  
+- frequency and duration of high-intensity movement  
+
+### Passing Behavior
+
+Derived from:
+
+- `pass`  
+- `short_pass`  
+- `long_pass`  
+- `through_pass`  
+- `cross`  
+- `low_cross`  
+
+### Shooting Behavior
+
+Derived from:
+
+- `shot`  
+- `header`  
+- `shot_power-Scale-X`  
+
+### Defensive Activity
+
+Derived from:
+
+- `pressure`  
+- `tackle_standing`  
+- `tackle_slide`  
+- `interception`  
+- `block`  
+
+### Goalkeeper Performance
+
+Derived from:
+
+- `goalkeeper_save`  
+- `goalkeeper_dive`  
+- `goalkeeper_catch`  
+- `goalkeeper_punch`  
+
+### Movement and Positioning
+
+Derived from:
+
+- `PositionActionData`  
+- player heatmaps  
+- team shape  
+- spacing between lines  
+- coverage of field zones  
+
+### Player Switching Patterns
+
+Derived from:
+
+- repeated Spawn actions  
+- time spent controlling each footballer  
+- switch frequency  
+
 ---
 
 ## Summary Checklist
 
-- User → real GUID  
-- NPC → NPC_<character>  
-- Ball → PvE_ball  
-- 2 spawn events per switch  
-- Use Affects for gameplay  
-- Use Scale for continuous values  
+### User-Controlled Footballers
+
+- `player_guid` = real user GUID  
+- `character_guid` = actual footballer identity  
+- `team_guid` = actual team  
+
+### NPC-Controlled Footballers
+
+- `player_guid` = `NPC_<character>`  
+- `character_guid` = `NPC_<character>`  
+- `team_guid` = actual team  
+
+### User Switching
+
+- Every control switch must send two Spawn actions  
+- New footballer becomes user-controlled  
+- Previous footballer becomes NPC-controlled  
+
+### Ball
+
+- `player_guid` = `PVE_ball`  
+- `character_guid` = `ball`  
+- `team_guid` = `ball`  
+
+### Affects
+
+- Use football-specific Affects  
+- Use primarily `Activate` and `Deactivate`  
+
+### Affects with Scale
+
+- Use `<affect>-Scale-<value>`  
+- Use for stamina, power, pressure, and other continuous values  
+
+### Position Tracking
+
+- User-controlled footballers: `10-32 Hz`  
+- NPC footballers: `1-5 Hz`  
+- Ball: `10-32 Hz`  
+
+---
+
+## Final Notes
+
+Following this design ensures:
+
+- accurate football replay reconstruction  
+- clear distinction between user-controlled and NPC-controlled footballers  
+- correct ball visualization  
+- meaningful football-specific analytics  
+- scalable support across different football games  
+
 
