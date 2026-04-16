@@ -183,6 +183,63 @@ GetgudSDK::SendAction(new GetgudSDK::SpawnActionData(
 
 Affects represent everything happening to a footballer.
 
+Affects have four possible states, representing the full lifecycle of something that is happening to a player.
+
+- `Attach`  
+- `Detach`  
+- `Activate`  
+- `Deactivate`  
+
+Each state has a specific meaning and should be used consistently.
+
+---
+
+### Attach
+
+`Attach` indicates that something is now **associated with the player** and remains with them over time.
+
+In football games, this is mainly used for **ball possession**.
+
+Use `Attach` when:
+
+- a player gains control of the ball  
+- the ball becomes owned or controlled by a specific player
+
+### Detach
+
+`Detach` indicates that something is **no longer associated with the player**.
+
+In football games, this is mainly used when the player **loses possession of the ball**.
+
+Use `Detach` when:
+
+- the player passes the ball  
+- the player shoots  
+- the player loses control (tackle, interception, loose ball)
+
+### Activate
+
+`Activate` indicates that an action or state has **started affecting the player**.
+
+This is used for **momentary or continuous gameplay actions**.
+
+Use `Activate` when:
+
+- a player starts sprinting  
+- a player starts applying pressure  
+- a player performs a tackle, jump, or shot  
+- a player enters a gameplay state (dribble, skill move, etc.)
+
+### Deactivate
+
+`Deactivate` indicates that an action or state has **stopped affecting the player**.
+
+Use `Deactivate` when:
+
+- a player stops sprinting  
+- pressure ends  
+- a temporary state ends
+
 ## Types of Affects
 
 Most football games have mechanics in the following Affect categories.
