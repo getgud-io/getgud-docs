@@ -306,7 +306,7 @@ GetgudSDK::SendAction(new GetgudSDK::AffectActionData(
 ));
 ```
 
-### Ball Detached from Player
+### Ball Lose
 
 ```cpp
 GetgudSDK::SendAction(new GetgudSDK::AffectActionData(
