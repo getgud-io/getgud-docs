@@ -158,7 +158,7 @@ The ball is treated as a PvE (environment) entity.
 
 ### Ball Rules
 
-- `player_guid` = `PVE_ball`  
+- `player_guid` = `PvE_ball`  
 - `character_guid` = `ball`  
 - `team_guid` = `ball`  
 
@@ -168,7 +168,7 @@ The ball is treated as a PvE (environment) entity.
 GetgudSDK::SendAction(new GetgudSDK::SpawnActionData(
   matchGuid,
   curTimeEpoch,
-  "PVE_ball",
+  "PvE_ball",
   "ball",
   "ball",
   0.f,
@@ -228,7 +228,7 @@ GetgudSDK::SendAction(new GetgudSDK::AffectActionData(
 
 - User → real GUID  
 - NPC → NPC_<character>  
-- Ball → PVE_ball  
+- Ball → PvE_ball  
 - 2 spawn events per switch  
 - Use Affects for gameplay  
 - Use Scale for continuous values  
