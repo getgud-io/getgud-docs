@@ -183,20 +183,6 @@ GetgudSDK::SendAction(new GetgudSDK::SpawnActionData(
 
 Affects represent everything happening to a footballer.
 
-Football games usually need only the Affect states:
-
-- `Activate`  
-- `Deactivate`
-
-and not need:
-
-- `Attach`  
-- `Detach`  
-
-This is because football actions are generally momentary or state-based, rather than inventory-based.
-
----
-
 ## Types of Affects
 
 Most football games have mechanics in the following Affect categories.
@@ -250,6 +236,30 @@ Most football games have mechanics in the following Affect categories.
 ---
 
 ## Affect Examples
+
+### Ball Possession
+
+```cpp
+GetgudSDK::SendAction(new GetgudSDK::AffectActionData(
+  matchGuid,
+  curTimeEpoch,
+  "1125555",
+  "ball",
+  GetgudSDK::AffectState::Attach
+));
+```
+
+### Ball Detached from Player
+
+```cpp
+GetgudSDK::SendAction(new GetgudSDK::AffectActionData(
+  matchGuid,
+  curTimeEpoch,
+  "1125555",
+  "ball",
+  GetgudSDK::AffectState::Detach
+));
+```
 
 ### Sprint Start
 
