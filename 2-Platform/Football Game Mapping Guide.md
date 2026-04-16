@@ -78,13 +78,13 @@ All footballers not controlled by a user are NPCs.
 
 Each NPC must have:
 
-- `player_guid` = `NPC_<character>`  
-- `character_guid` = `NPC_<character>`  
-- `team_guid` = team  
+- `player_guid` = `NPC_<footballer name>`  
+- `character_guid` = `NPC_<footballer name>`  
+- `team_guid` = team name  
 
 ### NPC GUID
 
-Best practice: prefix all NPCs with `NPC_`.
+Prefix of all NPCs must be `NPC_`.
 
 Examples:
 
@@ -392,13 +392,13 @@ This allows Getgud.io to analyze match outcome by team.
 
 - `player_guid` = real user GUID  
 - `character_guid` = actual footballer identity  
-- `team_guid` = actual team  
+- `team_guid` = actual team name  
 
 ### NPC-Controlled Footballers
 
-- `player_guid` = `NPC_<character>`  
-- `character_guid` = `NPC_<character>`  
-- `team_guid` = actual team  
+- `player_guid` = `NPC_<footballer identity>`  
+- `character_guid` = `NPC_<footballer identity>`  
+- `team_guid` = actual team name  
 
 ### User Switching
 
