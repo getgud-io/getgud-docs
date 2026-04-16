@@ -190,32 +190,11 @@ Affects have four possible states, representing the full lifecycle of something 
 - `Activate`  
 - `Deactivate`  
 
+But for football games, it is possible to use only Activate and Deactivate.
+
 Each state has a specific meaning and should be used consistently.
 
 ---
-
-### Attach
-
-`Attach` indicates that something is now **associated with the player** and remains with them over time.
-
-In football games, this is mainly used for **ball possession**.
-
-Use `Attach` when:
-
-- a player gains control of the ball  
-- the ball becomes owned or controlled by a specific player
-
-### Detach
-
-`Detach` indicates that something is **no longer associated with the player**.
-
-In football games, this is mainly used when the player **loses possession of the ball**.
-
-Use `Detach` when:
-
-- the player passes the ball  
-- the player shoots  
-- the player loses control (tackle, interception, loose ball)
 
 ### Activate
 
@@ -225,6 +204,7 @@ This is used for **momentary or continuous gameplay actions**.
 
 Use `Activate` when:
 
+- a player Possessed the ball
 - a player starts sprinting  
 - a player starts applying pressure  
 - a player performs a tackle, jump, or shot  
@@ -236,6 +216,7 @@ Use `Activate` when:
 
 Use `Deactivate` when:
 
+- a player lost the ball
 - a player stops sprinting  
 - pressure ends  
 - a temporary state ends
@@ -253,6 +234,7 @@ Most football games have mechanics in the following Affect categories.
 
 ### Ball Interaction Affects
 
+- `ball_possession`
 - `pass`  
 - `short_pass`  
 - `long_pass`  
@@ -301,8 +283,8 @@ GetgudSDK::SendAction(new GetgudSDK::AffectActionData(
   matchGuid,
   curTimeEpoch,
   "1125555",
-  "ball",
-  GetgudSDK::AffectState::Attach
+  "ball_possession",
+  GetgudSDK::AffectState::Activate
 ));
 ```
 
@@ -313,8 +295,8 @@ GetgudSDK::SendAction(new GetgudSDK::AffectActionData(
   matchGuid,
   curTimeEpoch,
   "1125555",
-  "ball",
-  GetgudSDK::AffectState::Detach
+  "ball_possession",
+  GetgudSDK::AffectState::Deactivate
 ));
 ```
 
