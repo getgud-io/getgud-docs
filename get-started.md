@@ -75,7 +75,7 @@ Now, we need to understand the basic structure GetGud uses to describe a video g
   4. `Attack` - Whenever a player initiates any action that might cause damage, now or in the future. Examples: shooting, throwing a grenade, planting a bomb, swinging a sword, punching, firing a photon torpedo, etc.
   5. `Damage` - Whenever a player receives any damage, either from another player, the environment, or the player themselves.
   6. `Heal` - Whenever a player is healed, no matter by whom or how.
-  7. `Affect` - Whenever an in-match effect of any kind is applied to the player. Examples: crouch, prone, jump, fly, use special ability, boost speed/ammo/shield/health, etc.
+  7. `Affect` - Whenever an in-match affect of any kind is applied to the player. Examples: crouch, prone, jump, fly, use special ability, boost speed/ammo/shield/health, etc.
 
 ## How to start the integration process
 
