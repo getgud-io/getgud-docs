@@ -107,7 +107,7 @@ No. We may use all 4 states for gameplay tracking, or just some — it depends o
 
 **For debuffs that deal damage over time, should we send both Attack and Affect?**
 
-Yes — they serve different purposes. The Affect tracks the debuff state (Activate when applied, Deactivate when it ends). The Damage events track each tick of health loss. The original ability cast is the Attack. Full sequence: Attack → Affect Activate → Damage, Damage, Damage → Affect Deactivate.
+Yes — they serve different purposes. The Affect tracks the debuff state (Activate when applied, Deactivate when it ends). Each DoT tick should send an Attack + Damage pair using a separate `weaponGuid` suffixed with `-DoT` (see the DoT question under Damage). Full sequence: Attack (source weapon) → Affect Activate → Attack + Damage (DoT), Attack + Damage (DoT), ... → Affect Deactivate.
 
 **Should grouped buffs be sent as one Affect or multiple?**
 
@@ -137,13 +137,19 @@ If the passive affects movement speed, damage modifiers, or other gameplay-relev
 
 Yes. Every instance of health loss generates a Damage event. An instant kill = Damage event (full damage amount) + Death event. Both are needed.
 
-**Can Damage events exist without a preceding Attack (e.g., environment, DoT)?**
+**Can Damage events exist without a preceding Attack (e.g., environment)?**
 
-Yes. Attack and Damage are independent. Environment damage uses `"Environment"` as the `playerGuid`. Damage-over-time ticks don't need individual Attacks — the initial ability cast was the Attack.
+Yes. Attack and Damage are independent. Environment damage uses `"Environment"` as the `playerGuid`.
 
-**Should damage-over-time ticks be individual Damage events or aggregated?**
+**How should Damage-over-Time (DoT) damage be represented?**
 
-Either approach works. Individual events give more granular timeline data; aggregated events are simpler. Use whatever fits your game's logic.
+Treat DoT as its own Attack + Damage flow using a separate `weaponGuid`, suffixed with `-DoT` so the relationship to the source weapon stays explicit.
+
+Example:
+- User-triggered weapon attacks → `AK-47-Poison`
+- Poison damage ticks → `AK-47-Poison-DoT`
+
+Each DoT tick should send an Attack event followed by a Damage event. This keeps the source weapon's real usage, accuracy, and behavior stats clean, while allowing separate analytics for DoT damage, kills, and tick behavior. DoT GUIDs naturally have near-100% hit rates since they represent guaranteed damage, not aim-based attacks.
 
 **How should overkill damage be represented?**
 
