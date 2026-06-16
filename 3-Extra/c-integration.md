@@ -54,6 +54,9 @@ char matchGuid[37]; // 36 chars + null terminator
 int matchGuidSize = StartMatch(matchInfo, matchGuid);
 ```
 
+> [!IMPORTANT]
+> `StartMatch()` must be called immediately after `StartGame()`. Always start a Match right after starting a Game - never start a new Game before a Match has been started for the current one.
+
 Once you create a match, you can send Actions to it.
 Let's send a spawn action:
 
@@ -131,6 +134,9 @@ int gameGuidSize = StartGame(gameInfo, gameGuidOut);
 * `gameGuidOut` - A pre-allocated char array to store the output game guid (should be at least 37 bytes).
 
 ### StartMatch(struct StartMatchInfo matchInfo, char* matchGuidOut)
+
+> [!IMPORTANT]
+> `StartMatch()` must be called immediately after `StartGame()`. Always start a Match right after starting a Game - never start a new Game before a Match has been started for the current one.
 
 Once you've started a live Game, you can now attach Matches to that Game.
 When a live Match starts it returns a `matchGuid`, which is used to add Actions, Chat messages, and Reports to that specific match.
