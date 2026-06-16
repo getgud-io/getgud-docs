@@ -85,7 +85,7 @@ Choose one of these methods to initialize the SDK in `Assets/Scripts/Multiplayer
 Call `GetgudSDK.Methods.StartGame()` and `GetgudSDK.Methods.StartMatch()` with the appropriate parameters when the game and match start.
 
 > [!IMPORTANT]
-> `StartMatch()` must be called immediately after `StartGame()`. Always start a Match right after starting a Game - never start a new Game before a Match has been started for the current one.
+> Call `StartMatch()` shortly after `StartGame()` and begin sending actions. Empty games are automatically closed after a configurable timeout.
 
 In this example, these methods are called when the server starts in `Assets/Scripts/Multiplayer/NetworkManager.cs`.
 

@@ -114,7 +114,7 @@ export GETGUD_LOG_FILE_PATH=/path/to/your/logs.txt
 In this example project we have already integrated Init, StartGame, StartMatch, PositionActionData, SpawnActionData and other events. For full list of GetgudSDK commands please visit [this tutorial](https://github.com/getgud-io/getgud-docs/blob/main/sdk-commands.md)
 
 > [!IMPORTANT]
-> `StartMatch()` must be called immediately after `StartGame()`. Always start a Match right after starting a Game - never start a new Game before a Match has been started for the current one.
+> Call `StartMatch()` shortly after `StartGame()` and begin sending actions. Empty games are automatically closed after a configurable timeout.
 
 
 ### 6. Run C++ Server
