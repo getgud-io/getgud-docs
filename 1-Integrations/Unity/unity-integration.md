@@ -84,6 +84,9 @@ Choose one of these methods to initialize the SDK in `Assets/Scripts/Multiplayer
 ### 7. Start Game and Match
 Call `GetgudSDK.Methods.StartGame()` and `GetgudSDK.Methods.StartMatch()` with the appropriate parameters when the game and match start.
 
+> [!IMPORTANT]
+> `StartMatch()` must be called immediately after `StartGame()`. Always start a Match right after starting a Game - never start a new Game before a Match has been started for the current one.
+
 In this example, these methods are called when the server starts in `Assets/Scripts/Multiplayer/NetworkManager.cs`.
 
 Make sure to provide your `TITLE_ID` and `PRIVATE_KEY` which you received from the Getgud.io dashboard on the StartGame method:

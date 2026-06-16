@@ -108,6 +108,9 @@ For detailed parameter descriptions and usage examples, see the [C SDK Reference
 - `MapName` (String) - Current map
 - `CustomField` (String) - Optional custom data
 
+> [!IMPORTANT]
+> The `StartMatch` node must be called immediately after `StartGame`. Always start a Match right after starting a Game - never start a new Game before a Match has been started for the current one.
+
 ### Actions
 
 | Node | Key Parameters |
