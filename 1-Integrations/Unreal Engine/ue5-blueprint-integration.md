@@ -109,7 +109,7 @@ For detailed parameter descriptions and usage examples, see the [C SDK Reference
 - `CustomField` (String) - Optional custom data
 
 > [!IMPORTANT]
-> The `StartMatch` node must be called immediately after `StartGame`. Always start a Match right after starting a Game - never start a new Game before a Match has been started for the current one.
+> Call the `StartMatch` node shortly after `StartGame` and begin sending actions. Empty games are automatically closed after a configurable timeout.
 
 ### Actions
 

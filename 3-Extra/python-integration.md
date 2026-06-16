@@ -48,7 +48,7 @@ match_guid = sdk.start_match(
 ```
 
 > [!IMPORTANT]
-> `start_match()` must be called immediately after `start_game()`. Always start a Match right after starting a Game - never start a new Game before a Match has been started for the current one.
+> Call `start_match()` shortly after `start_game()` and begin sending actions. Empty games are automatically closed after a configurable timeout.
 
 Once you create a match, you can send Actions to it.
 Let's create a spawn action and send it to the match:
@@ -124,7 +124,7 @@ Returns:
 ### start_match(game_guid, match_mode, map_name)
 
 > [!IMPORTANT]
-> `start_match()` must be called immediately after `start_game()`. Always start a Match right after starting a Game - never start a new Game before a Match has been started for the current one.
+> Call `start_match()` shortly after `start_game()` and begin sending actions. Empty games are automatically closed after a configurable timeout.
 
 Starts a new match within a game and returns the `match_guid`, a unique identifier for the match.
 

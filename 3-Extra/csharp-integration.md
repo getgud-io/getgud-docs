@@ -53,7 +53,7 @@ int result = GetgudSDK.Methods.StartMatch(matchInfo, out matchGuid);
 ```
 
 > [!IMPORTANT]
-> `StartMatch()` must be called immediately after `StartGame()`. Always start a Match right after starting a Game - never start a new Game before a Match has been started for the current one.
+> Call `StartMatch()` shortly after `StartGame()` and begin sending actions. Empty games are automatically closed after a configurable timeout.
 
 Once you create a match, you can send Actions to it.
 Let's create a spawn action and send it to the match:
@@ -134,7 +134,7 @@ static public int StartGame(StartGameInfo info, out string gameGuidOut);
 ### StartMatch(StartMatchInfo info, out string matchGuidOut)
 
 > [!IMPORTANT]
-> `StartMatch()` must be called immediately after `StartGame()`. Always start a Match right after starting a Game - never start a new Game before a Match has been started for the current one.
+> Call `StartMatch()` shortly after `StartGame()` and begin sending actions. Empty games are automatically closed after a configurable timeout.
 
 Once you've started a live Game, you can now attach Matches to that Game.
 When a live Match starts it returns a `matchGuid`, which is used to add Actions, Chat messages, and Reports to that specific match.
