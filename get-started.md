@@ -68,7 +68,7 @@ Now, we need to understand the basic structure GetGud uses to describe a video g
   Example of a Match: A single CS:GO round inside the game.
   ```
 
-- `Action` represents an in-match activity associated with a player. We collect seven different action types common to all first-person shooter games:
+- `Action` represents an in-match activity associated with a player. We collect seven different action types common to all first-person shooter games, plus a Custom Event for anything game-specific:
   1. `Spawn` - Whenever a player appears or reappears in-match, on the map.
   2. `Death` - A death of a player, either by another player, the environment, or the player themselves.
   3. `Position` - Player position change (including looking direction). This action should be sent every X Ticks (minimum of 32 tick rate).
@@ -76,6 +76,7 @@ Now, we need to understand the basic structure GetGud uses to describe a video g
   5. `Damage` - Whenever a player receives any damage, either from another player, the environment, or the player themselves.
   6. `Heal` - Whenever a player is healed, no matter by whom or how.
   7. `Affect` - Whenever an in-match effect of any kind is applied to the player. Examples: crouch, prone, jump, fly, use special ability, boost speed/ammo/shield/health, etc.
+  8. `Custom Event` - Any game-specific event with your own payload, with or without a player attached. Examples: objective activated, storm phase changed, zone captured. Kept in the match timeline and exports, not used for detection.
 
 ## How to start the integration process
 
