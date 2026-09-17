@@ -34,6 +34,7 @@ For C++ integration, see the [C++ Integration Tutorial](https://github.com/getgu
        ├── AffectAction.h
        ├── AttackAction.h
        ├── BaseActionData.h
+       ├── CustomEventActionData.h
        ├── DamageAction.h
        ├── DeathAction.h
        ├── HealAction.h
@@ -122,6 +123,7 @@ For detailed parameter descriptions and usage examples, see the [C SDK Reference
 | `SendDeathAction` | MatchGuid, PlayerGuid, AttackerGuid |
 | `SendHealAction` | MatchGuid, PlayerGuid, HealthGained |
 | `SendAffectAction` | MatchGuid, PlayerGuid, AffectGuid, AffectState |
+| `SendCustomEventAction` | MatchGuid, PlayerGuid (empty for a match-level event), CustomEventGuid, Version, Payload (any string, ideally JSON) |
 
 All action nodes require:
 - `MatchGuid` (String) - From StartMatch

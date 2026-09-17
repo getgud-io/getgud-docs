@@ -323,6 +323,21 @@ Parameters:
 Returns:
 - `result` (int) - The result of the operation (0 for success).
 
+### send_custom_event_action(match_guid, action_time_epoch, player_guid, custom_event_guid, version=0, payload="")
+
+Sends a custom event to a match: any game-specific event with your own payload. Examples: ObjectiveActivated, StormPhaseChanged, ZoneCaptured. Getgud keeps it in the match timeline, shows it in the Modeler, and includes it in match exports. It takes no part in cheat detection.
+
+Parameters:
+- `match_guid` (str) - The unique identifier for the match. Max 36 chars.
+- `action_time_epoch` (int) - Epoch time of when the event occurred.
+- `player_guid` (str or None) - The player the event belongs to. Max 36 chars. Pass `None` or `""` for a match-level event, it is sent as `PvE`.
+- `custom_event_guid` (str) - The name of the event type, e.g. `Choice_Selected`. Reused across every event of that type. Max 36 chars.
+- `version` (int) - Version of the payload structure, so the same event type can evolve without renaming it. Defaults to `0`.
+- `payload` (str, dict or list) - The event data, ideally JSON. A dict or list is JSON-encoded for you; a string is sent as is. The SDK does not validate it. It is base64 encoded before it enters the action stream and Getgud decodes it back.
+
+Returns:
+- `result` (int) - The result of the operation (0 for success).
+
 ### update_player(title_id, private_key, player_guid, player_nickname, player_email, player_rank, player_join_date_epoch, player_suspect_score, player_reputation, player_status, player_campaign, player_notes, player_device, player_os, player_age, player_gender, player_location, transactions)
 
 Updates player information.
