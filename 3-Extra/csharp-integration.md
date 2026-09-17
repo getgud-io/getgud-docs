@@ -257,10 +257,10 @@ static public int SendAttackAction(SendAttackActionInfo info);
 ### Affect Action
 
 An Affect action should be sent whenever an in-match affect of any kind is applied to the player. Examples: crouch, prone, jump, fly, use special ability, boost speed/ammo/shield/health, etc. 
-To create an Affect Action, use the `SendAffectkAction` method.
+To create an Affect Action, use the `SendAffectAction` method.
 
 ```csharp
-static public int SendAffectkAction(SendAffectActionInfo info);
+static public int SendAffectAction(SendAffectActionInfo info);
 ```
 * `info` - A structure containing affect action information:
   * `baseData` - See BaseActionData
@@ -270,6 +270,20 @@ static public int SendAffectkAction(SendAffectActionInfo info);
     * Detach - indicate affect is detached from a player (not mandatory).
     * Activate - indicate affect is affecting the player.
     * Deactivate - indicate affect stopped affecting the player.
+
+### Custom Event Action
+
+A Custom Event carries game-specific data that does not fit any of the primal actions. Examples: ObjectiveActivated, StormPhaseChanged, ZoneCaptured. Getgud keeps it in the match timeline, shows it in the Modeler, and includes it in match exports. It takes no part in cheat detection.
+To create a Custom Event Action, use the `SendCustomEventAction` method.
+
+```csharp
+static public int SendCustomEventAction(SendCustomEventActionInfo info);
+```
+* `info` - A structure containing custom event information:
+  * `baseData` - See BaseActionData. Leave `playerGuid` null or empty for a match-level event that belongs to no player, it is sent as `PvE`.
+  * `customEventGuid` - the name of the event type, e.g. `Choice_Selected`. Reused across every event of that type. Max 36 chars.
+  * `version` - version of the payload structure, so the same event type can evolve without renaming it. Use `0` if you do not need versioning.
+  * `payload` - the event data, ideally a JSON object, though any string works. The SDK does not validate it. It is sent as UTF-8 and base64 encoded before it enters the action stream, and Getgud decodes it back. If it parses as JSON, Getgud can do more with it later; otherwise it is kept as a plain string.
 
 ### Damage Action
 

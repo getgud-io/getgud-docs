@@ -278,6 +278,24 @@ int SendAffectAction(struct BaseActionData baseData,
   	Activate - indicate affect is affecting the player.
   	Deactivate - indicate affect stopped affecting the player.
 
+### Custom Event Action
+
+A Custom Event carries game-specific data that does not fit any of the primal actions. Examples: ObjectiveActivated, StormPhaseChanged, ZoneCaptured. Getgud keeps it in the match timeline, shows it in the Modeler, and includes it in match exports. It takes no part in cheat detection.
+To create a Custom Event Action, use the `SendCustomEventAction` function.
+
+```c
+int SendCustomEventAction(struct BaseActionData baseData,
+    const char* customEventGuid,
+    int customEventGuidSize,
+    int version,
+    const char* payload,
+    int payloadSize);
+```
+* `baseData` - See BaseActionData. Set `playerGuid` to `NULL` with `playerGuidSize` 0 for a match-level event that belongs to no player, it is sent as `PvE`.
+* `customEventGuid` - the name of the event type, e.g. `Choice_Selected`. Reused across every event of that type. Max 36 chars.
+* `version` - version of the payload structure, so the same event type can evolve without renaming it. Use `0` if you do not need versioning.
+* `payload` - the event data, ideally a JSON object, though any string works. The SDK does not validate it. `payloadSize` is used as the length, so the payload may contain any bytes. The SDK base64 encodes it before it enters the action stream, and Getgud decodes it back. If it parses as JSON, Getgud can do more with it later; otherwise it is kept as a plain string.
+
 ### Damage Action
 
 A Damage action should be raised when a player loses health, both PVP and PVE.

@@ -163,7 +163,7 @@ This is an async method which will not block the calling thread.
 ```cpp
 bool SendActions(std::deque<BaseActionData*> actions);
 ```
-* `actions` - deque of `BaseActionData` objects, where `BaseActionData` is the base class of all the primal 7 actions (Spawn, Position, Attack, Damage, Heal, Affect and Death).
+* `actions` - deque of `BaseActionData` objects, where `BaseActionData` is the base class of all the primal 7 actions (Spawn, Position, Attack, Damage, Heal, Affect and Death) and Custom Event.
 
 #### SendAction(BaseActionData* action)
 
@@ -173,7 +173,7 @@ This is an async method which will not block the calling thread.
 ```cpp
 bool SendAction(BaseActionData* action);
 ```
-* `action` - a `BaseActionData` object that is the base class of all the primal 7 actions (Spawn, Position, Attack, Damage, Heal, Affect and Death).
+* `action` - a `BaseActionData` object that is the base class of all the primal 7 actions (Spawn, Position, Attack, Damage, Heal, Affect and Death) and Custom Event.
 
 ### SetMatchWinTeam(matchGuid, teamGuid)
 
@@ -317,6 +317,39 @@ GetgudSDK::BaseActionData* action = new GetgudSDK::AffectActionData(
   	Detach - indicate affect is detached from a player (not mandatory).
   	Activate - indicate affect is affecting the player.
   	Deactivate - indicate affect stopped affecting the player.  
+
+### Custom Event Action
+
+A Custom Event carries game-specific data that does not fit any of the primal actions. Examples: ObjectiveActivated, StormPhaseChanged, ShopInventoryChanged, ZoneCaptured, DifficultyChanged. Getgud keeps the event in the match timeline, shows it in the Modeler, and includes it in match exports. It takes no part in cheat detection.
+To create a Custom Event Action, use the `CustomEventActionData` Class.
+
+```cpp
+GetgudSDK::BaseActionData* action = new GetgudSDK::CustomEventActionData(
+                     std::string matchGuid,
+                     long long actionTimeEpoch,
+                     std::string playerGuid,
+                     std::string customEventGuid,
+                     int version,
+                     std::string payload
+);
+```
+* `matchGuid` - guid of the live Match where the event happened. Max 36 chars.
+* `actionTimeEpoch` - epoch time in milliseconds when the event happened
+* `playerGuid` - your player Id. Max 36 chars. Pass an empty string for a match-level event that belongs to no player, it is sent as `PvE`.
+* `customEventGuid` - the name of the event type, e.g. `Choice_Selected`. Reused across every event of that type. Max 36 chars.
+* `version` - version of the payload structure, so the same event type can evolve without renaming it. Use `0` if you do not need versioning.
+* `payload` - the event data, ideally a JSON object, though any string works. The SDK does not validate it. It base64 encodes it before it enters the action stream, and Getgud decodes it back, so you never see the encoded form. If it parses as JSON, Getgud can do more with it later; otherwise it is kept as a plain string.
+
+You can also send one directly with `SendCustomEventAction`:
+
+```cpp
+bool SendCustomEventAction(const std::string& matchGuid,
+                     long long actionTimeEpoch,
+                     const std::string& playerGuid,
+                     const std::string& customEventGuid,
+                     int version,
+                     const std::string& payload);
+```
 
 ### Damage Action
 
