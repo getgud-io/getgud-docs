@@ -144,7 +144,7 @@ The server ships with its own documentation for the AI: what the numbers mean, t
 | Area | Tools |
 |------|-------|
 | Search | `list_titles`, `find_matches`, `find_players`, `find_insights`, `find_reports` |
-| Matches and maps | `get_match`, `get_match_action_stream`, `get_match_chat`, `get_live_games_info`, `get_live_game_packets`, `get_map_data`, `upload_client_map`, `save_games` |
+| Matches and maps | `get_match`, `get_match_action_stream`, `get_match_chat`, `get_live_games_info`, `get_map_data`, `upload_client_map`, `save_games` |
 | Models | `get_title_model`, `update_title_model`, `get_player_model` |
 | Players and reports | `update_players`, `delete_players`, `send_reports` |
 | Guard laws, filters, rules | `update_guard_laws`, `remove_guard_laws`, `update_filters`, `delete_filters`, `update_rules`, `delete_rules` |
