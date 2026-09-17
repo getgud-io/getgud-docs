@@ -139,7 +139,7 @@ Yes. Every instance of health loss generates a Damage event. An instant kill = D
 
 **Can Damage events exist without a preceding Attack (e.g., environment)?**
 
-Yes. Attack and Damage are independent. Environment damage uses `"Environment"` as the `playerGuid`.
+Yes. Attack and Damage are independent. Environment damage uses `"PvE"` as the `playerGuid`.
 
 **How should Damage-over-Time (DoT) damage be represented?**
 
@@ -165,7 +165,7 @@ Any damage source — weapons, abilities, traps, environmental hazards. It's a s
 
 **How should indirect damage (traps, projectiles, NPCs) be attributed?**
 
-Attribute to whoever is logically responsible. Player-placed traps → owning player. Autonomous NPCs → the NPC (if tracked as a separate entity with NPC prefix) or the owning player. Environment → `"Environment"`.
+Attribute to whoever is logically responsible. Player-placed traps → owning player. Autonomous NPCs → the NPC (if tracked as a separate entity with NPC prefix) or the owning player. Environment → `"PvE"`.
 
 **Can damage be negative or zero?**
 
@@ -193,7 +193,7 @@ Either approach works — same as damage-over-time. Use whatever fits your game'
 
 **Should shields or temporary HP be treated as Heal or Affect?**
 
-Depends on your game's mechanics. If the shield grants bonus health, you can send it as a Heal when applied, and remove it via a Damage event with `"Environment"` when the shield expires or breaks. Pair it with an Affect (`"shield", Activate` / `"shield", Deactivate`) for additional context. Use whatever maps best to how shields work in your game.
+Depends on your game's mechanics. If the shield grants bonus health, you can send it as a Heal when applied, and remove it via a Damage event with `"PvE"` when the shield expires or breaks. Pair it with an Affect (`"shield", Activate` / `"shield", Deactivate`) for additional context. Use whatever maps best to how shields work in your game.
 
 ---
 
@@ -201,7 +201,7 @@ Depends on your game's mechanics. If the shield grants bonus health, you can sen
 
 **Should every death trigger a Death event, regardless of respawn mechanics?**
 
-Yes, always. Every time a player's life ends, send Death — regardless of respawn timing. The `attackerGuid` tells us who killed them. Use `"Environment"` for PvE deaths, or the player's own guid for suicides.
+Yes, always. Every time a player's life ends, send Death — regardless of respawn timing. The `attackerGuid` tells us who killed them. Use `"PvE"` for PvE deaths, or the player's own guid for suicides.
 
 **Should downed/knocked states be treated as Death?**
 
