@@ -14,6 +14,8 @@ This repository contains docs & tutorials for everything related to Getgud.io pl
   * [C# SDK commands & events list](https://github.com/getgud-io/getgud-docs/blob/main/3-Extra/csharp-integration.md)
   * [Python SDK commands & events list](https://github.com/getgud-io/getgud-docs/blob/main/3-Extra/python-integration.md)
 
+- <b>[MCP server: connect Claude, ChatGPT, Cursor and other AI apps](https://github.com/getgud-io/getgud-docs/blob/main/2-Platform/mcp.md)</b>
+
 - <b>[SDK Integration FAQ](https://github.com/getgud-io/getgud-docs/blob/main/sdk-integration-faq.md)</b>
 
 - <b>Integration tutorials</b>
