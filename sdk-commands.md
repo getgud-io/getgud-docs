@@ -353,7 +353,7 @@ bool SendCustomEventAction(const std::string& matchGuid,
 
 ### Damage Action
 
-A Damage action should be raised when a player loses health, both PVP and PVE. If the Damage is caused by the environment you can specify this in a playerGuid using a predefined variable `GetgudSDK::Values::Environment`
+A Damage action should be raised when a player loses health, both PVP and PVE. If the Damage is caused by the environment, pass `PvE` as the playerGuid. The SDK ships it as the predefined variable `GetgudSDK::Values::g_PvE`. Any other value, such as `Environment`, is treated as a real player.
 To create a Damage Action, use the `DamageActionData` class. 
 
 ```cpp
@@ -406,7 +406,7 @@ GetgudSDK::BaseActionData* action = new GetgudSDK::DeathActionData(
 * `matchGuid` - guid of the live Match where the action happened. Max 36 chars.
 * `actionTimeEpoch` - epoch time in milliseconds when the action happened
 * `playerGuid` - your player Id. Max 36 chars.
-* `attackerGuid` - guid of the player who killed the victim of the Damage action. Max 36 chars. Use `GetgudSDK::Values::Environment` to indicate that PvE killed the player
+* `attackerGuid` - guid of the player who killed the victim of the Damage action. Max 36 chars. Use `PvE` (`GetgudSDK::Values::g_PvE`) to indicate that the environment killed the player
 
 ## Adding Chat Messages
 To add a chat message to a live Match:
