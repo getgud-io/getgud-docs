@@ -257,10 +257,10 @@ static public int SendAttackAction(SendAttackActionInfo info);
 ### Affect Action
 
 An Affect action should be sent whenever an in-match affect of any kind is applied to the player. Examples: crouch, prone, jump, fly, use special ability, boost speed/ammo/shield/health, etc. 
-To create an Affect Action, use the `SendAffectkAction` method.
+To create an Affect Action, use the `SendAffectAction` method.
 
 ```csharp
-static public int SendAffectkAction(SendAffectActionInfo info);
+static public int SendAffectAction(SendAffectActionInfo info);
 ```
 * `info` - A structure containing affect action information:
   * `baseData` - See BaseActionData
