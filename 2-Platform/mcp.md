@@ -188,8 +188,5 @@ Connections last 30 days. Reconnect from your AI app's connector settings and lo
 **I get "not found" for a match.**
 Match data is kept for your plan's retention period. Matches that were purged return not found. Mark games as saved (or ask the AI to) to keep them longer.
 
-**My account uses a second login step (MFA).**
-Connecting an AI app is not supported for accounts with MFA yet.
-
 **Something is not working.**
 Remove the connector, add it again and log in. If it still fails, contact us with the name of your AI app and the time of the attempt.
