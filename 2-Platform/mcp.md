@@ -1,6 +1,6 @@
 # Getgud MCP Server
 
-The Getgud [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) server connects your AI app to your Getgud account. Once connected, you can ask Claude, ChatGPT, Cursor or any other MCP client about your titles, matches, players, insights and reports in plain language, and let it manage your Getgud setup for you.
+The Getgud [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) server connects your AI app to your Getgud account. Once connected, you can ask Claude, ChatGPT, Cursor or any other MCP client about your titles, matches, players, insights, reports and Action Tags in plain language, and let it manage your Getgud setup for you.
 
 It is a hosted server, so there is nothing to install.
 
@@ -118,6 +118,7 @@ When you connect, a browser tab opens on the Getgud dashboard and asks **"Allow 
 - "Show me the 10 most toxic players in the last 24 hours and what they were flagged for."
 - "Which matches yesterday had more than 3 reports?"
 - "Did aimbot detections go up after Tuesday's patch? Show me the daily trend."
+- "Which players hit our AK_Sniper Action Tag this week, and whose score is highest?"
 
 **Analyze game balance**
 
@@ -134,6 +135,7 @@ When you connect, a browser tab opens on the Getgud dashboard and asks **"Allow 
 
 - "Turn on the AFK guard law for our QA title."
 - "Create a rule that sends players with a toxicity score above 80 to our webhook."
+- "Create an Action Tag for players who die more than 30 times in a match, and turn on Action Tag Analysis for Title X."
 - "Save this search as a query and pin it to my dashboard."
 - "Invite a new teammate with the analyst role and give them access to Title X."
 
@@ -143,11 +145,12 @@ The server ships with its own documentation for the AI: what the numbers mean, t
 
 | Area | Tools |
 |------|-------|
-| Search | `list_titles`, `find_matches`, `find_players`, `find_insights`, `find_reports` |
+| Search | `list_titles`, `find_matches`, `find_players`, `find_insights`, `find_reports`, `find_action_tags` |
 | Matches and maps | `get_match`, `get_match_action_stream`, `get_match_chat`, `get_live_games_info`, `get_map_data`, `upload_client_map`, `save_games` |
 | Models | `get_title_model`, `update_title_model`, `get_player_model` |
 | Players and reports | `update_players`, `delete_players`, `send_reports` |
 | Guard laws, filters, rules | `update_guard_laws`, `remove_guard_laws`, `update_filters`, `delete_filters`, `update_rules`, `delete_rules` |
+| Action Tags | `update_action_tag_types`, `delete_action_tag_types` |
 | Titles | `create_title`, `update_title`, `delete_titles`, `delete_titles_maps`, `delete_titles_assets`, `reset_title_private_key`, `update_npc_settings`, `update_affect_mapping`, `update_heatmaps_state`, `update_asset_variants` |
 | Queries and AI reports | `get_saved_queries_info`, `save_queries`, `delete_queries`, `update_dashboard_queries`, `update_ai_reports`, `delete_ai_reports` |
 | Organization and users | `get_client_info`, `get_users_info`, `get_user_roles`, `create_user`, `change_user_role_to_users`, `update_user_roles`, `delete_user_roles`, `assign_users_to_titles`, `unassign_users_to_titles`, `delete_users` |
